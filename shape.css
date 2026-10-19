@@ -1,0 +1,2465 @@
+/*
+ * ==========================================================================
+ * WORDPRESS ELEMENTOR BACKGROUND SHAPE LIBRARY
+ * Pure CSS Pseudo-Elements (::before & ::after) — Zero Extra DOM Overhead
+ * 136 Unique Shapes + 13 Placement & Strength Modifiers
+ * ==========================================================================
+ *
+ * ORGANIZED CATALOG STRUCTURE:
+ * 00. GLOBAL CONFIGURATION & DESIGN TOKENS
+ * 01. SHARED FOUNDATION & RESET
+ * 02. SECTION 1: GRIDS, MATRICES & PINSTRIPES (#001 – #035) [35 Shapes]
+ * 03. SECTION 2: 3D FLOORS & PERSPECTIVE PLANES (#036 – #056) [21 Shapes]
+ * 04. SECTION 3: ISOMETRIC CUBES, TILES & WIREFRAMES (#057 – #088) [32 Shapes]
+ * 05. SECTION 4: CIRCLES, RINGS, OVALS & RADAR (#089 – #099) [11 Shapes]
+ * 06. SECTION 5: ARCHITECTURAL LINES, CIRCUITS & BLUEPRINTS (#100 – #120) [21 Shapes]
+ * 07. SECTION 6: AMBIENT GLOWS & FLUID BLOBS (#121 – #132) [12 Shapes]
+ * 08. SECTION 7: HERO COMPOSITIONS & WATERMARKS (#133 – #136) [4 Shapes]
+ * 09. SECTION 8: POSITION, SCALE & CONTRAST MODIFIERS [13 Utilities]
+ * 10. SECTION 9: UNIFIED RESPONSIVE ADAPTATIONS (Mobile & Tablet)
+ * ==========================================================================
+ */
+
+/* ==========================================================================
+   00. GLOBAL CONFIGURATION & DESIGN TOKENS
+   Pure Light-Mode Fade Styling — Engineered for all light/white websites.
+   Subtle graphite/slate fade (15, 23, 42) that sits quietly in the background.
+   Override on any container if desired: --bg-shape-color: R, G, B;
+   ========================================================================== */
+
+:root {
+  /* ==========================================================================
+     UNIVERSAL ASH & NEUTRAL FADE DESIGN TOKENS
+     Engineered to fit universally on ALL websites (white, off-white, light grey).
+     Pure neutral ash / smoke fade with zero specific, clashing, or saturated color casts.
+     ========================================================================== */
+  --bg-shape-color: 100, 116, 139; /* Neutral Slate Ash (Universal Default: #64748b) */
+  --bg-shape-opacity: 1;           /* 100% Default Opacity */
+}
+
+
+/* ==========================================================================
+   01. SHARED FOUNDATION & RESET
+   Ensures section isolation, proper z-indexing, and non-blocking interactions
+   ========================================================================== */
+
+[class*="bg-shape-"],
+[class*="bgx-"] {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+[class*="bg-shape-"]::before,
+[class*="bg-shape-"]::after,
+[class*="bgx-"]::before,
+[class*="bgx-"]::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  opacity: var(--bg-shape-opacity, 1);
+  transition: opacity 0.2s ease;
+}
+
+/* Base reset container */
+.bg-shape-none::before,
+.bg-shape-none::after {
+  display: none;
+}
+
+
+/* ==========================================================================
+   02. SECTION 1: GRIDS, MATRICES & PINSTRIPES (#001 – #035)
+   All grid variations, dot matrices, pinstripes, and grid-glow combinations
+   assembled in one dedicated, continuous section.
+   ========================================================================== */
+
+/* 001 — None (Clean reset container) */
+/* (Handled by shared reset foundation above) */
+
+/* 002 — Classic Grid (3.25rem) */
+.bg-shape-grid::before {
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(var(--bg-shape-color), 0.20) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.20) 1px, transparent 1px);
+  background-size: 3.25rem 3.25rem;
+}
+
+/* 003 — Large Grid (6.25rem) */
+.bg-shape-grid-large::before {
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(var(--bg-shape-color), 0.20) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.20) 1px, transparent 1px);
+  background-size: 6.25rem 6.25rem;
+}
+
+/* 004 — Grid Fade (Vertical Gradient Mask) */
+.bg-shape-grid-fade::before {
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(var(--bg-shape-color), 0.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.22) 1px, transparent 1px);
+  background-size: 3.25rem 3.25rem;
+  mask-image: linear-gradient(to bottom, #000 0%, #000 42%, transparent 92%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 42%, transparent 92%);
+}
+
+/* 005 — Grid Sides (Radial Vignette Mask) */
+.bg-shape-grid-sides::before {
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(var(--bg-shape-color), 0.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.22) 1px, transparent 1px);
+  background-size: 3.25rem 3.25rem;
+  mask-image: radial-gradient(ellipse at center, #000 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 20%, transparent 80%);
+}
+
+/* 006 — Grid Glow (Grid with Ambient Top Spotlight) */
+.bg-shape-grid-glow::before {
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(var(--bg-shape-color), 0.18), transparent 50%),
+    linear-gradient(rgba(var(--bg-shape-color), 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.18) 1px, transparent 1px);
+  background-size: auto, 3.25rem 3.25rem, 3.25rem 3.25rem;
+}
+
+/* Shared Grid Layer for Grid Compositions (007–025) */
+.bg-shape-grid-top-right::before,
+.bg-shape-grid-top-left::before,
+.bg-shape-grid-bottom-right::before,
+.bg-shape-grid-bottom-left::before,
+.bg-shape-grid-glow-tr::before,
+.bg-shape-grid-glow-center::before,
+.bg-shape-grid-glow-sides::before,
+.bg-shape-grid-frame::before,
+.bg-shape-grid-diagonal::before,
+.bg-shape-grid-wave::before,
+.bg-shape-grid-radial-tr::before,
+.bg-shape-grid-rings-tr::before,
+.bg-shape-grid-rings-center::before,
+.bg-shape-grid-circles::before,
+.bg-shape-grid-squares-tr::before,
+.bg-shape-grid-orbit-tr::before,
+.bg-shape-grid-blob-tr::before,
+.bg-shape-grid-dots-tr::before,
+.bg-shape-grid-architecture::before {
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(var(--bg-shape-color), 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.18) 1px, transparent 1px);
+  background-size: 3.25rem 3.25rem;
+}
+
+/* 007 — Grid Top Right (Grid + Top-Right Radial Glow Aura) */
+.bg-shape-grid-top-right::after {
+  width: 36rem;
+  height: 36rem;
+  right: -12rem;
+  top: -19rem;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(var(--bg-shape-color), 0.17) 0%,
+    rgba(var(--bg-shape-color), 0.07) 35%,
+    transparent 72%
+  );
+}
+
+/* 008 — Grid Top Left (Grid + Top-Left Radial Glow Aura) */
+.bg-shape-grid-top-left::after {
+  width: 36rem;
+  height: 36rem;
+  left: -14rem;
+  top: -20rem;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(var(--bg-shape-color), 0.16),
+    rgba(var(--bg-shape-color), 0.05) 42%,
+    transparent 72%
+  );
+}
+
+/* 009 — Grid Bottom Right (Grid + Bottom-Right Corner Glow) */
+.bg-shape-grid-bottom-right::after {
+  width: 38rem;
+  height: 38rem;
+  right: -16rem;
+  bottom: -24rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--bg-shape-color), 0.15), transparent 70%);
+}
+
+/* 010 — Grid Bottom Left (Grid + Bottom-Left Corner Glow) */
+.bg-shape-grid-bottom-left::after {
+  width: 38rem;
+  height: 38rem;
+  left: -17rem;
+  bottom: -24rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--bg-shape-color), 0.15), transparent 70%);
+}
+
+/* 011 — Grid Glow TR (Grid + Full Top-Right Elliptical Flare) */
+.bg-shape-grid-glow-tr::after {
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 100% 0%,
+    rgba(var(--bg-shape-color), 0.16),
+    rgba(var(--bg-shape-color), 0.045) 30%,
+    transparent 65%
+  );
+}
+
+/* 012 — Grid Glow Center (Grid + Centered Ambient Flare) */
+.bg-shape-grid-glow-center::after {
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 45%, rgba(var(--bg-shape-color), 0.10), transparent 65%);
+}
+
+/* 013 — Grid Glow Sides (Grid + Lateral Flanking Glows) */
+.bg-shape-grid-glow-sides::after {
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 0% 50%, rgba(var(--bg-shape-color), 0.09), transparent 48%),
+    radial-gradient(ellipse at 100% 50%, rgba(var(--bg-shape-color), 0.09), transparent 48%);
+}
+
+/* 014 — Grid Frame (Grid with Inset Technical Frame & Shadow) */
+.bg-shape-grid-frame::after {
+  inset: 2.5rem;
+  border: 1px solid rgba(var(--bg-shape-color), 0.12);
+  box-shadow: inset 0 0 5rem rgba(var(--bg-shape-color), 0.025);
+}
+
+/* 015 — Grid Diagonal (Grid + 135deg Light Beam) */
+.bg-shape-grid-diagonal::after {
+  inset: -30%;
+  background: linear-gradient(135deg, transparent 30%, rgba(var(--bg-shape-color), 0.09) 50%, transparent 70%);
+}
+
+/* 016 — Grid Wave (Grid + Radiating Wave Ripples) */
+.bg-shape-grid-wave::after {
+  inset: 0;
+  background: repeating-radial-gradient(
+    ellipse at 100% 0%,
+    transparent 0 2rem,
+    rgba(var(--bg-shape-color), 0.08) 2.05rem 2.1rem,
+    transparent 2.15rem 3rem
+  );
+  mask-image: linear-gradient(135deg, #000, transparent 80%);
+  -webkit-mask-image: linear-gradient(135deg, #000, transparent 80%);
+}
+
+/* 017 — Grid Radial TR (Grid + Conic Radar Sunburst Beams) */
+.bg-shape-grid-radial-tr::after {
+  width: 38rem;
+  height: 38rem;
+  right: -13rem;
+  top: -20rem;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba(var(--bg-shape-color), 0.065) 0deg 0.5deg,
+    transparent 0.5deg 15deg
+  );
+  mask-image: radial-gradient(circle, #000, transparent 68%);
+  -webkit-mask-image: radial-gradient(circle, #000, transparent 68%);
+}
+
+/* 018 — Grid Rings TR (Grid + Cascading Top-Right Ripple Rings) */
+.bg-shape-grid-rings-tr::after {
+  width: 30rem;
+  height: 30rem;
+  right: -12rem;
+  top: -16rem;
+  border-radius: 50%;
+  border: 1px solid rgba(var(--bg-shape-color), 0.17);
+  box-shadow:
+    0 0 0 2rem rgba(var(--bg-shape-color), 0.025),
+    0 0 0 4rem rgba(var(--bg-shape-color), 0.025),
+    0 0 0 6rem rgba(var(--bg-shape-color), 0.018);
+}
+
+/* 019 — Grid Rings Center (Grid + Concentric Center Radar Rings) */
+.bg-shape-grid-rings-center::after {
+  width: 28rem;
+  height: 28rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid rgba(var(--bg-shape-color), 0.13);
+  box-shadow:
+    0 0 0 2rem rgba(var(--bg-shape-color), 0.02),
+    0 0 0 4rem rgba(var(--bg-shape-color), 0.02),
+    0 0 0 6rem rgba(var(--bg-shape-color), 0.015);
+}
+
+/* 020 — Grid Circles (Grid + Multi-Ring Formation) */
+.bg-shape-grid-circles::after {
+  width: 32rem;
+  height: 32rem;
+  right: -10rem;
+  top: -15rem;
+  border-radius: 50%;
+  border: 1px solid rgba(var(--bg-shape-color), 0.15);
+  box-shadow:
+    0 0 0 3rem rgba(var(--bg-shape-color), 0.018),
+    0 0 0 6rem rgba(var(--bg-shape-color), 0.018);
+}
+
+/* 021 — Grid Squares TR (Grid + 25deg Rotated Square with Echoes) */
+.bg-shape-grid-squares-tr::after {
+  width: 19rem;
+  height: 19rem;
+  right: -7rem;
+  top: -8rem;
+  border: 1px solid rgba(var(--bg-shape-color), 0.17);
+  transform: rotate(25deg);
+  box-shadow:
+    0 0 0 1.5rem rgba(var(--bg-shape-color), 0.018),
+    0 0 0 3rem rgba(var(--bg-shape-color), 0.018);
+}
+
+/* 022 — Grid Orbit TR (Grid + Slanted -35deg Orbital Ring) */
+.bg-shape-grid-orbit-tr::after {
+  width: 34rem;
+  height: 17rem;
+  right: -9rem;
+  top: -5rem;
+  border: 1px solid rgba(var(--bg-shape-color), 0.18);
+  border-radius: 50%;
+  transform: rotate(-35deg);
+  box-shadow: 0 0 0 2rem rgba(var(--bg-shape-color), 0.018);
+}
+
+/* 023 — Grid Blob TR (Grid + Top-Right Organic Fluid Blob) */
+.bg-shape-grid-blob-tr::after {
+  width: 34rem;
+  height: 28rem;
+  right: -9rem;
+  top: -11rem;
+  border-radius: 60% 40% 35% 65% / 55% 45% 65% 35%;
+  transform: rotate(-20deg);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(var(--bg-shape-color), 0.14),
+    rgba(var(--bg-shape-color), 0.045) 55%,
+    transparent 76%
+  );
+}
+
+/* 024 — Grid Dots TR (Grid + Top-Right Concentrated Dot Cluster) */
+.bg-shape-grid-dots-tr::after {
+  width: 20rem;
+  height: 20rem;
+  right: -3rem;
+  top: -5rem;
+  background-image: radial-gradient(rgba(var(--bg-shape-color), 0.22) 1.5px, transparent 2px);
+  background-size: 1.4rem 1.4rem;
+  mask-image: radial-gradient(circle at center, #000, transparent 72%);
+  -webkit-mask-image: radial-gradient(circle at center, #000, transparent 72%);
+}
+
+/* 025 — Grid Architecture (Grid + Architectural Precision Axis Lines) */
+.bg-shape-grid-architecture::after {
+  inset: 0;
+  background-image:
+    linear-gradient(90deg, transparent 19.9%, rgba(var(--bg-shape-color), 0.16) 20%, transparent 20.1%),
+    linear-gradient(90deg, transparent 79.9%, rgba(var(--bg-shape-color), 0.16) 80%, transparent 80.1%),
+    linear-gradient(transparent 24.9%, rgba(var(--bg-shape-color), 0.16) 25%, transparent 25.1%),
+    linear-gradient(transparent 74.9%, rgba(var(--bg-shape-color), 0.16) 75%, transparent 75.1%);
+}
+
+/* 026 — Rings Grid (Concentric Radar Overlaid on Metric Grid) */
+.bgx-rings-grid::before {
+  width: 270px;
+  height: 270px;
+  top: -100px;
+  right: -50px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.15);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 20px rgba(var(--bg-shape-color), 0.018),
+    0 0 0 21px rgba(var(--bg-shape-color), 0.09),
+    0 0 0 42px rgba(var(--bg-shape-color), 0.012),
+    0 0 0 43px rgba(var(--bg-shape-color), 0.06);
+}
+.bgx-rings-grid::after {
+  top: 0;
+  right: 0;
+  width: 42%;
+  height: 100%;
+  background:
+    linear-gradient(rgba(var(--bg-shape-color), 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.16) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse at top right, #000, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at top right, #000, transparent 75%);
+}
+
+/* 027 — Corner Frame Grid (Corner Metric Grid + Double Border Accent) */
+.bgx-corner-frame-grid::before {
+  top: -8%;
+  right: -8%;
+  width: 50%;
+  height: 110%;
+  background:
+    linear-gradient(rgba(var(--bg-shape-color), 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.16) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse at top right, #000, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse at top right, #000, transparent 78%);
+}
+.bgx-corner-frame-grid::after {
+  width: 200px;
+  height: 150px;
+  top: -45px;
+  right: 10px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.16);
+  transform: rotate(35deg);
+  box-shadow:
+    0 0 0 18px rgba(var(--bg-shape-color), 0.015),
+    0 0 0 19px rgba(var(--bg-shape-color), 0.08);
+}
+
+/* 028 — Dots (1.5rem Polka Matrix) */
+.bg-shape-dots::before {
+  inset: 0;
+  background-image: radial-gradient(rgba(var(--bg-shape-color), 0.32) 1.5px, transparent 1.5px);
+  background-size: 1.5rem 1.5rem;
+}
+
+/* 029 — Dots Fade (Dots with Bottom Fade) */
+.bg-shape-dots-fade::before {
+  inset: 0;
+  background-image: radial-gradient(rgba(var(--bg-shape-color), 0.32) 1.5px, transparent 1.5px);
+  background-size: 1.5rem 1.5rem;
+  mask-image: linear-gradient(to bottom, #000, transparent 85%);
+  -webkit-mask-image: linear-gradient(to bottom, #000, transparent 85%);
+}
+
+/* 030 — Large Dots (2.75rem Spacing, 2px radius) */
+.bg-shape-dots-large::before {
+  inset: 0;
+  background-image: radial-gradient(rgba(var(--bg-shape-color), 0.32) 2px, transparent 2px);
+  background-size: 2.75rem 2.75rem;
+}
+
+/* 031 — Vertical Bars (Pinstripes at 7rem intervals) */
+.bg-shape-bars-v::before {
+  inset: 0;
+  background-image: repeating-linear-gradient(90deg, rgba(var(--bg-shape-color), 0.18) 0 1px, transparent 1px 7rem);
+}
+
+/* 032 — Horizontal Bars (Ledger lines at 6rem intervals) */
+.bg-shape-bars-h::before {
+  inset: 0;
+  background-image: repeating-linear-gradient(rgba(var(--bg-shape-color), 0.18) 0 1px, transparent 1px 6rem);
+}
+
+/* 033 — Stripes (Slanted technical stripes at -18deg) */
+.bg-shape-stripes::before {
+  inset: 0;
+  background-image: repeating-linear-gradient(-18deg, rgba(var(--bg-shape-color), 0.18) 0 1px, transparent 1px 3.5rem);
+}
+
+/* 034 — Diagonal Boxes (45-degree repeating bands) */
+.bg-shape-diagonal-boxes::before {
+  width: 360px;
+  height: 260px;
+  top: -70px;
+  right: -60px;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent 0 38px,
+    rgba(var(--bg-shape-color), 0.14) 38px 39px,
+    transparent 39px 76px
+  );
+  transform: rotate(-12deg);
+  mask-image: radial-gradient(ellipse, #000 10%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse, #000 10%, transparent 75%);
+}
+
+/* 035 — Diamond Lattice (High-density crisscross mesh) */
+.bgx-diamond-lattice::before {
+  inset: -10% -5% auto auto;
+  width: 50%;
+  height: 110%;
+  background:
+    repeating-linear-gradient(45deg, transparent 0 31px, rgba(var(--bg-shape-color), 0.14) 31px 32px),
+    repeating-linear-gradient(-45deg, transparent 0 31px, rgba(var(--bg-shape-color), 0.14) 31px 32px);
+  mask-image: radial-gradient(ellipse, #000, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse, #000, transparent 75%);
+}
+
+
+/* ==========================================================================
+   03. SECTION 2: 3D FLOORS & PERSPECTIVE PLANES (#036 – #056)
+   Receding floor planes, isometric terrains, 3D platforms, and grids in depth.
+   ========================================================================== */
+
+/* 036 — Grid Perspective (Dual-plane receding floor) */
+.bg-shape-grid-perspective::before {
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(var(--bg-shape-color), 0.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.10) 1px, transparent 1px);
+  background-size: 3rem 3rem;
+}
+.bg-shape-grid-perspective::after {
+  left: -25%;
+  right: -25%;
+  bottom: -65%;
+  height: 120%;
+  transform: perspective(25rem) rotateX(58deg);
+  transform-origin: center top;
+  background-image:
+    linear-gradient(rgba(var(--bg-shape-color), 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.16) 1px, transparent 1px);
+  background-size: 3rem 3rem;
+  mask-image: linear-gradient(to bottom, #000, transparent 85%);
+  -webkit-mask-image: linear-gradient(to bottom, #000, transparent 85%);
+}
+
+/* 037 — Boxes Lying (Perspective floor with floating tile) */
+.bg-shape-boxes-lying::before {
+  width: 620px;
+  height: 440px;
+  top: -145px;
+  right: -100px;
+  background:
+    linear-gradient(rgba(var(--bg-shape-color), 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.16) 1px, transparent 1px);
+  background-size: 42px 42px;
+  transform: perspective(700px) rotateX(55deg) rotateZ(-32deg);
+  transform-origin: center;
+  mask-image: radial-gradient(ellipse at center, #000 0%, rgba(0, 0, 0, 0.75) 35%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 0%, rgba(0, 0, 0, 0.75) 35%, transparent 75%);
+}
+.bg-shape-boxes-lying::after {
+  width: 115px;
+  height: 78px;
+  top: 65px;
+  right: 100px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.20);
+  background: rgba(var(--bg-shape-color), 0.025);
+  box-shadow:
+    18px 13px 0 -1px rgba(var(--bg-shape-color), 0.025),
+    18px 13px 0 0 rgba(var(--bg-shape-color), 0.14),
+    36px 26px 0 -1px rgba(var(--bg-shape-color), 0.018),
+    36px 26px 0 0 rgba(var(--bg-shape-color), 0.10);
+  transform: rotate(-32deg) skewX(12deg);
+}
+
+/* 038 — Diamond Floor (Tilted 48deg Checkered Ground) */
+.bg-shape-diamond-floor::before {
+  width: 540px;
+  height: 340px;
+  top: -90px;
+  right: -110px;
+  background:
+    linear-gradient(45deg, transparent 48.8%, rgba(var(--bg-shape-color), 0.16) 49.5%, rgba(var(--bg-shape-color), 0.16) 50.5%, transparent 51.2%),
+    linear-gradient(-45deg, transparent 48.8%, rgba(var(--bg-shape-color), 0.16) 49.5%, rgba(var(--bg-shape-color), 0.16) 50.5%, transparent 51.2%);
+  background-size: 44px 44px;
+  transform: perspective(600px) rotateX(48deg) rotateZ(-15deg);
+  mask-image: radial-gradient(ellipse at center, #000, transparent 72%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000, transparent 72%);
+}
+
+/* 039 — Perspective Steps (Terraced floor steps) */
+.bg-shape-perspective-steps::before {
+  width: 330px;
+  height: 250px;
+  right: -30px;
+  top: -30px;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 35px, rgba(var(--bg-shape-color), 0.16) 35px 36px),
+    repeating-linear-gradient(90deg, transparent 0 52px, rgba(var(--bg-shape-color), 0.16) 52px 53px);
+  transform: perspective(500px) rotateX(55deg) rotateZ(-32deg);
+  transform-origin: center;
+  mask-image: radial-gradient(ellipse, #000 10%, transparent 72%);
+  -webkit-mask-image: radial-gradient(ellipse, #000 10%, transparent 72%);
+}
+
+/* 040 — Hexagon Floor (Perspective Honeycomb) */
+.bg-shape-hex-floor::before {
+  width: 390px;
+  height: 310px;
+  top: -70px;
+  right: -80px;
+  background:
+    linear-gradient(30deg, transparent 49.3%, rgba(var(--bg-shape-color), 0.16) 49.7%, rgba(var(--bg-shape-color), 0.16) 50.3%, transparent 50.7%),
+    linear-gradient(150deg, transparent 49.3%, rgba(var(--bg-shape-color), 0.16) 49.7%, rgba(var(--bg-shape-color), 0.16) 50.3%, transparent 50.7%),
+    linear-gradient(90deg, transparent 49.3%, rgba(var(--bg-shape-color), 0.13) 49.7%, rgba(var(--bg-shape-color), 0.13) 50.3%, transparent 50.7%);
+  background-size: 52px 90px;
+  mask-image: radial-gradient(ellipse, #000 10%, transparent 72%);
+  -webkit-mask-image: radial-gradient(ellipse, #000 10%, transparent 72%);
+}
+
+/* 041 — Grid Platform (Framed floating 3D stage) */
+.bg-shape-grid-platform::before {
+  width: 440px;
+  height: 260px;
+  top: -30px;
+  right: -70px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.18);
+  background:
+    linear-gradient(rgba(var(--bg-shape-color), 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.16) 1px, transparent 1px),
+    rgba(var(--bg-shape-color), 0.025);
+  background-size: 30px 30px;
+  transform: perspective(650px) rotateX(48deg) rotateZ(-24deg);
+  box-shadow: 0 0 45px rgba(var(--bg-shape-color), 0.04);
+  mask-image: linear-gradient(135deg, #000, transparent 85%);
+  -webkit-mask-image: linear-gradient(135deg, #000, transparent 85%);
+}
+
+/* 042 — 3D Lattice (Perspective triangular spatial mesh) */
+.bg-shape-3d-lattice::before {
+  width: 460px;
+  height: 330px;
+  top: -90px;
+  right: -90px;
+  background:
+    repeating-linear-gradient(30deg, transparent 0 27px, rgba(var(--bg-shape-color), 0.15) 27px 28px),
+    repeating-linear-gradient(150deg, transparent 0 27px, rgba(var(--bg-shape-color), 0.15) 27px 28px);
+  transform: perspective(700px) rotateX(45deg) rotateZ(-12deg);
+  mask-image: radial-gradient(ellipse, #000 10%, transparent 72%);
+  -webkit-mask-image: radial-gradient(ellipse, #000 10%, transparent 72%);
+}
+
+/* 043 — Isometric Floor (Dense 36px x 21px ground grid) */
+.bg-shape-isometric-floor::before {
+  width: 520px;
+  height: 350px;
+  top: -65px;
+  right: -100px;
+  background:
+    linear-gradient(30deg, transparent 49.5%, rgba(var(--bg-shape-color), 0.15) 49.8%, transparent 50.2%),
+    linear-gradient(150deg, transparent 49.5%, rgba(var(--bg-shape-color), 0.15) 49.8%, transparent 50.2%);
+  background-size: 36px 21px;
+  transform: perspective(700px) rotateX(58deg) rotateZ(-25deg);
+  mask-image: radial-gradient(ellipse, #000 10%, transparent 72%);
+  -webkit-mask-image: radial-gradient(ellipse, #000 10%, transparent 72%);
+}
+
+/* 044 — Wide Perspective Grid Floor */
+.bgx-floor-wide::before {
+  inset: -20% -5% auto auto;
+  width: 65%;
+  height: 120%;
+  background:
+    linear-gradient(rgba(var(--bg-shape-color), 0.17) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.17) 1px, transparent 1px);
+  background-size: 38px 38px;
+  transform: perspective(700px) rotateX(58deg) rotateZ(-28deg);
+  transform-origin: top right;
+  mask-image: radial-gradient(ellipse, #000, transparent 72%);
+  -webkit-mask-image: radial-gradient(ellipse, #000, transparent 72%);
+}
+
+/* 045 — Dense Perspective Floor */
+.bgx-floor-dense::before {
+  inset: -15% -5% auto auto;
+  width: 60%;
+  height: 100%;
+  background:
+    linear-gradient(rgba(var(--bg-shape-color), 0.17) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.17) 1px, transparent 1px);
+  background-size: 22px 22px;
+  transform: perspective(650px) rotateX(60deg) rotateZ(-32deg);
+  transform-origin: top right;
+  mask-image: radial-gradient(ellipse, #000, transparent 74%);
+  -webkit-mask-image: radial-gradient(ellipse, #000, transparent 74%);
+}
+
+/* 046 — Giant Floor Tiles (90px) */
+.bgx-floor-giant::before {
+  inset: -15% -10% auto auto;
+  width: 70%;
+  height: 120%;
+  background:
+    linear-gradient(rgba(var(--bg-shape-color), 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.16) 1px, transparent 1px);
+  background-size: 90px 90px;
+  transform: perspective(750px) rotateX(56deg) rotateZ(-30deg);
+  transform-origin: top right;
+  mask-image: radial-gradient(ellipse, #000, transparent 76%);
+  -webkit-mask-image: radial-gradient(ellipse, #000, transparent 76%);
+}
+
+/* 047 — Diagonal Perspective Floor */
+.bgx-floor-diagonal::before {
+  inset: -10% -10% auto auto;
+  width: 60%;
+  height: 100%;
+  background:
+    repeating-linear-gradient(45deg, transparent 0 35px, rgba(var(--bg-shape-color), 0.14) 35px 36px),
+    repeating-linear-gradient(-45deg, transparent 0 35px, rgba(var(--bg-shape-color), 0.14) 35px 36px);
+  transform: perspective(700px) rotateX(52deg) rotateZ(-22deg);
+  mask-image: radial-gradient(ellipse, #000, transparent 72%);
+  -webkit-mask-image: radial-gradient(ellipse, #000, transparent 72%);
+}
+
+/* 048 — Double Opposing Floors */
+.bgx-floor-double::before {
+  inset: -15% -10% auto auto;
+  width: 60%;
+  height: 105%;
+  background:
+    linear-gradient(rgba(var(--bg-shape-color), 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.14) 1px, transparent 1px);
+  background-size: 35px 35px;
+  transform: perspective(650px) rotateX(58deg) rotateZ(-30deg);
+  mask-image: radial-gradient(ellipse, #000, transparent 74%);
+  -webkit-mask-image: radial-gradient(ellipse, #000, transparent 74%);
+}
+.bgx-floor-double::after {
+  inset: auto auto -22% -5%;
+  width: 48%;
+  height: 75%;
+  background:
+    linear-gradient(rgba(var(--bg-shape-color), 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.12) 1px, transparent 1px);
+  background-size: 42px 42px;
+  transform: perspective(650px) rotateX(55deg) rotateZ(28deg);
+  mask-image: radial-gradient(ellipse, #000, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse, #000, transparent 75%);
+}
+
+/* 049 — Box Tile Floor Platform */
+.bgx-floor-boxes::before {
+  top: 5%;
+  right: -5%;
+  width: 48%;
+  height: 230px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.18);
+  background:
+    linear-gradient(rgba(var(--bg-shape-color), 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.12) 1px, transparent 1px);
+  background-size: 50px 50px;
+  transform: skewY(-24deg) rotate(-8deg);
+  box-shadow:
+    16px 14px 0 rgba(var(--bg-shape-color), 0.025),
+    16px 14px 0 1px rgba(var(--bg-shape-color), 0.12),
+    32px 28px 0 rgba(var(--bg-shape-color), 0.02),
+    32px 28px 0 1px rgba(var(--bg-shape-color), 0.08);
+  mask-image: radial-gradient(ellipse, #000, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse, #000, transparent 80%);
+}
+
+/* 050 — Parallel Floor Tracks */
+.bgx-floor-tracks::before {
+  inset: -5% -5% auto auto;
+  width: 55%;
+  height: 110%;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0 28px,
+    rgba(var(--bg-shape-color), 0.15) 28px 29px,
+    transparent 29px 56px
+  );
+  transform: perspective(700px) rotateX(58deg) rotateZ(-32deg);
+  mask-image: radial-gradient(ellipse, #000, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse, #000, transparent 75%);
+}
+
+/* 051 — Offset Shifted Floor */
+.bgx-floor-offset::before {
+  inset: -5% -5% auto auto;
+  width: 55%;
+  height: 110%;
+  background:
+    linear-gradient(rgba(var(--bg-shape-color), 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.14) 1px, transparent 1px);
+  background-size: 46px 46px;
+  background-position: 23px 23px;
+  transform: perspective(700px) rotateX(55deg) rotateZ(-25deg);
+  mask-image: radial-gradient(ellipse, #000, transparent 74%);
+  -webkit-mask-image: radial-gradient(ellipse, #000, transparent 74%);
+}
+
+/* 052 — Floor Fading Toward Content */
+.bgx-floor-fade::before {
+  inset: -10% -5% auto auto;
+  width: 65%;
+  height: 120%;
+  background:
+    linear-gradient(rgba(var(--bg-shape-color), 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.15) 1px, transparent 1px);
+  background-size: 34px 34px;
+  transform: perspective(650px) rotateX(55deg) rotateZ(-30deg);
+  mask-image: linear-gradient(135deg, #000 0%, transparent 80%);
+  -webkit-mask-image: linear-gradient(135deg, #000 0%, transparent 80%);
+}
+
+/* 053 — Corner Perspective Grid */
+.bgx-floor-corner::before {
+  top: -15%;
+  right: -15%;
+  width: 65%;
+  height: 110%;
+  background:
+    linear-gradient(rgba(var(--bg-shape-color), 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.15) 1px, transparent 1px);
+  background-size: 42px 42px;
+  transform: perspective(700px) rotateX(60deg) rotateZ(-34deg);
+  mask-image: radial-gradient(ellipse at top right, #000, transparent 76%);
+  -webkit-mask-image: radial-gradient(ellipse at top right, #000, transparent 76%);
+}
+
+/* 054 — 56px Diamond Tilted Ground Plane */
+.bgx-diamond-floor::before {
+  inset: -10% -10% auto auto;
+  width: 55%;
+  height: 110%;
+  background:
+    linear-gradient(45deg, transparent 49.3%, rgba(var(--bg-shape-color), 0.15) 49.8%, transparent 50.3%),
+    linear-gradient(-45deg, transparent 49.3%, rgba(var(--bg-shape-color), 0.15) 49.8%, transparent 50.3%);
+  background-size: 56px 56px;
+  transform: perspective(700px) rotateX(48deg) rotateZ(-18deg);
+  mask-image: radial-gradient(ellipse, #000, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse, #000, transparent 75%);
+}
+
+/* 055 — Perspective Floor + Structural Frame */
+.bgx-floor-architecture::before {
+  top: -5%;
+  right: -5%;
+  width: 55%;
+  height: 110%;
+  background:
+    linear-gradient(rgba(var(--bg-shape-color), 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.12) 1px, transparent 1px);
+  background-size: 34px 34px;
+  transform: perspective(700px) rotateX(52deg) rotateZ(-28deg);
+  mask-image: radial-gradient(ellipse, #000, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse, #000, transparent 78%);
+}
+.bgx-floor-architecture::after {
+  width: 180px;
+  height: 130px;
+  top: 30px;
+  right: 70px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.18);
+  transform: skewY(-24deg) rotate(15deg);
+  box-shadow:
+    20px 14px 0 -1px transparent,
+    20px 14px 0 0 rgba(var(--bg-shape-color), 0.11);
+}
+
+/* 056 — Receding Floor with Cube Outlines */
+.bgx-grid-cubes::before {
+  top: -5%;
+  right: -5%;
+  width: 55%;
+  height: 110%;
+  background:
+    linear-gradient(rgba(var(--bg-shape-color), 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.12) 1px, transparent 1px);
+  background-size: 34px 34px;
+  transform: perspective(650px) rotateX(45deg) rotateZ(-20deg);
+  mask-image: radial-gradient(ellipse, #000, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse, #000, transparent 78%);
+}
+.bgx-grid-cubes::after {
+  width: 80px;
+  height: 80px;
+  top: 30px;
+  right: 90px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.20);
+  transform: rotate(45deg);
+  box-shadow:
+    32px 32px 0 -1px transparent,
+    32px 32px 0 0 rgba(var(--bg-shape-color), 0.12);
+}
+
+
+/* ==========================================================================
+   04. SECTION 3: ISOMETRIC CUBES, TILES & WIREFRAMES (#057 – #088)
+   Rotated squares, floating tiles, 3D cubes, wireframes, and stacked slabs.
+   ========================================================================== */
+
+/* 057 — Dual Angled Outline Squares */
+.bg-shape-squares::before,
+.bg-shape-squares::after {
+  border: 1px solid rgba(var(--bg-shape-color), 0.22);
+}
+.bg-shape-squares::before {
+  width: 31.25rem;
+  height: 31.25rem;
+  left: -11rem;
+  top: -11rem;
+  transform: rotate(15deg);
+}
+.bg-shape-squares::after {
+  width: 40rem;
+  height: 40rem;
+  right: -17rem;
+  bottom: -18rem;
+  transform: rotate(-12deg);
+}
+
+/* 058 — Floating Rotated Squares */
+.bg-shape-squares-float::before,
+.bg-shape-squares-float::after {
+  border: 1px solid rgba(var(--bg-shape-color), 0.22);
+}
+.bg-shape-squares-float::before {
+  width: 13.75rem;
+  height: 13.75rem;
+  left: 10%;
+  top: 15%;
+  transform: rotate(15deg);
+}
+.bg-shape-squares-float::after {
+  width: 21.75rem;
+  height: 21.75rem;
+  right: 5%;
+  bottom: 10%;
+  transform: rotate(-20deg);
+}
+
+/* 059 — Rotated Square with Echo Shadows */
+.bg-shape-squares-tr::before {
+  width: 19rem;
+  height: 19rem;
+  right: -7rem;
+  top: -8rem;
+  border: 1px solid rgba(var(--bg-shape-color), 0.18);
+  transform: rotate(25deg);
+  box-shadow:
+    0 0 0 1.5rem rgba(var(--bg-shape-color), 0.018),
+    0 0 0 3rem rgba(var(--bg-shape-color), 0.018);
+}
+
+/* 060 — 45-degree Corner Diamond with Echoes */
+.bg-shape-corner-geometry::before {
+  width: 24rem;
+  height: 24rem;
+  right: -12rem;
+  top: -12rem;
+  border: 1px solid rgba(var(--bg-shape-color), 0.18);
+  transform: rotate(45deg);
+  box-shadow:
+    0 0 0 2rem rgba(var(--bg-shape-color), 0.018),
+    0 0 0 4rem rgba(var(--bg-shape-color), 0.018);
+}
+.bg-shape-corner-geometry::after {
+  inset: 0;
+  background: radial-gradient(circle at 100% 0%, rgba(var(--bg-shape-color), 0.12), transparent 50%);
+}
+
+/* 061 — Isometric Cubes Matrix */
+.bg-shape-iso-cubes::before {
+  width: 430px;
+  height: 360px;
+  top: -100px;
+  right: -70px;
+  background:
+    linear-gradient(30deg, transparent 48.8%, rgba(var(--bg-shape-color), 0.16) 49.5%, rgba(var(--bg-shape-color), 0.16) 50.5%, transparent 51.2%),
+    linear-gradient(150deg, transparent 48.8%, rgba(var(--bg-shape-color), 0.16) 49.5%, rgba(var(--bg-shape-color), 0.16) 50.5%, transparent 51.2%),
+    linear-gradient(90deg, transparent 49.2%, rgba(var(--bg-shape-color), 0.12) 49.7%, rgba(var(--bg-shape-color), 0.12) 50.3%, transparent 50.8%);
+  background-size: 62px 36px;
+  transform: rotate(-8deg);
+  mask-image: radial-gradient(ellipse, #000 10%, transparent 72%);
+  -webkit-mask-image: radial-gradient(ellipse, #000 10%, transparent 72%);
+}
+
+/* 062 — Stacked Tiles (3D Descending Slabs) */
+.bg-shape-tile-stack::before {
+  width: 150px;
+  height: 100px;
+  top: 45px;
+  right: 100px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.20);
+  background: rgba(var(--bg-shape-color), 0.025);
+  transform: skewY(-25deg) rotate(15deg);
+  box-shadow:
+    16px 12px 0 0 rgba(var(--bg-shape-color), 0.15),
+    32px 24px 0 0 rgba(var(--bg-shape-color), 0.11),
+    48px 36px 0 0 rgba(var(--bg-shape-color), 0.075);
+}
+
+/* 063 — Wireframe Architecture Cuboid */
+.bg-shape-wireframe::before {
+  width: 190px;
+  height: 130px;
+  top: 55px;
+  right: 90px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.20);
+  transform: skewY(-30deg) rotate(30deg);
+  box-shadow:
+    35px -20px 0 0 rgba(var(--bg-shape-color), 0.14),
+    70px -40px 0 0 rgba(var(--bg-shape-color), 0.10);
+}
+.bg-shape-wireframe::after {
+  width: 190px;
+  height: 130px;
+  top: 55px;
+  right: 90px;
+  border-top: 1px solid rgba(var(--bg-shape-color), 0.16);
+  border-left: 1px solid rgba(var(--bg-shape-color), 0.14);
+  transform: translate(35px, -20px) skewY(-30deg) rotate(30deg);
+}
+
+/* 064 — Floating Diamond Tiles */
+.bg-shape-floating-tiles::before {
+  width: 100px;
+  height: 100px;
+  top: 50px;
+  right: 110px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.19);
+  background: rgba(var(--bg-shape-color), 0.025);
+  transform: rotate(45deg) skew(-8deg, -8deg);
+  box-shadow:
+    92px 35px 0 0 rgba(var(--bg-shape-color), 0.13),
+    -60px 90px 0 0 rgba(var(--bg-shape-color), 0.10);
+}
+
+/* 065 — Box Cluster */
+.bg-shape-box-cluster::before {
+  width: 240px;
+  height: 180px;
+  top: 15px;
+  right: 15px;
+  background:
+    linear-gradient(rgba(var(--bg-shape-color), 0.14), rgba(var(--bg-shape-color), 0.14)) 10px 10px / 72px 55px no-repeat,
+    linear-gradient(rgba(var(--bg-shape-color), 0.04), rgba(var(--bg-shape-color), 0.04)) 10px 10px / 72px 55px no-repeat;
+  filter: drop-shadow(18px 15px 0 rgba(var(--bg-shape-color), 0.11));
+  transform: skewY(-18deg) rotate(-8deg);
+  mask-image: radial-gradient(ellipse, #000 10%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse, #000 10%, transparent 75%);
+}
+.bg-shape-box-cluster::after {
+  width: 80px;
+  height: 60px;
+  top: 55px;
+  right: 55px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.20);
+  transform: skewY(-18deg) rotate(-8deg);
+  box-shadow: 18px 15px 0 0 rgba(var(--bg-shape-color), 0.11);
+}
+
+/* 066 — Isometric Cube Corners (Dual Diagonal) */
+.bg-shape-cube-corners::before,
+.bg-shape-cube-corners::after {
+  width: 110px;
+  height: 85px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.18);
+  transform: skewY(-25deg) rotate(20deg);
+}
+.bg-shape-cube-corners::before {
+  top: 35px;
+  right: 80px;
+  box-shadow: 15px -12px 0 0 rgba(var(--bg-shape-color), 0.13);
+}
+.bg-shape-cube-corners::after {
+  bottom: 20px;
+  left: 35px;
+  opacity: 0.6;
+  transform: skewY(-25deg) rotate(20deg) scale(0.65);
+}
+
+/* 067 — Layered Cascading Frames */
+.bg-shape-layered-frames::before {
+  width: 125px;
+  height: 90px;
+  top: 55px;
+  right: 90px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.22);
+  transform: rotate(-30deg) skewX(8deg);
+  box-shadow:
+    18px 14px 0 0 rgba(var(--bg-shape-color), 0.15),
+    36px 28px 0 0 rgba(var(--bg-shape-color), 0.11),
+    54px 42px 0 0 rgba(var(--bg-shape-color), 0.075);
+}
+
+/* 068 — Tilted Squares (45deg Diamond with Cross) */
+.bg-shape-tilted-squares::before {
+  width: 200px;
+  height: 200px;
+  top: -55px;
+  right: 5px;
+  background:
+    linear-gradient(45deg, transparent 49.5%, rgba(var(--bg-shape-color), 0.16) 49.8%, transparent 50.2%),
+    linear-gradient(-45deg, transparent 49.5%, rgba(var(--bg-shape-color), 0.16) 49.8%, transparent 50.2%);
+  border: 1px solid rgba(var(--bg-shape-color), 0.14);
+  transform: rotate(45deg) scale(0.8);
+  box-shadow: 20px 20px 0 0 rgba(var(--bg-shape-color), 0.09);
+}
+
+/* 069 — Ascending Outline Blocks */
+.bg-shape-outline-blocks::before {
+  width: 90px;
+  height: 65px;
+  top: 55px;
+  right: 110px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.22);
+  transform: skewY(-20deg) rotate(20deg);
+  box-shadow:
+    30px -18px 0 0 rgba(var(--bg-shape-color), 0.14),
+    60px -36px 0 0 rgba(var(--bg-shape-color), 0.09);
+}
+
+/* 070 — Concentric Geometric Corner */
+.bg-shape-geometric-corner::before {
+  width: 320px;
+  height: 320px;
+  top: -170px;
+  right: -100px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.16);
+  transform: rotate(45deg);
+  box-shadow:
+    0 0 0 24px rgba(var(--bg-shape-color), 0.018),
+    0 0 0 25px rgba(var(--bg-shape-color), 0.09),
+    0 0 0 50px rgba(var(--bg-shape-color), 0.012),
+    0 0 0 51px rgba(var(--bg-shape-color), 0.06);
+}
+
+/* 071 — 4-Tier Nested Wireframe Boxes */
+.bgx-box-nested::before {
+  width: 150px;
+  height: 110px;
+  top: 40px;
+  right: 100px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.22);
+  transform: rotate(-25deg) skewX(10deg);
+  box-shadow:
+    15px 12px 0 0 rgba(var(--bg-shape-color), 0.15),
+    30px 24px 0 0 rgba(var(--bg-shape-color), 0.11),
+    45px 36px 0 0 rgba(var(--bg-shape-color), 0.07);
+}
+
+/* 072 — Upward-Staggered Box Outlines */
+.bgx-box-offset::before {
+  width: 120px;
+  height: 85px;
+  top: 40px;
+  right: 100px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.21);
+  transform: skewY(-22deg) rotate(15deg);
+  box-shadow:
+    24px -16px 0 0 rgba(var(--bg-shape-color), 0.13),
+    48px -32px 0 0 rgba(var(--bg-shape-color), 0.08);
+}
+
+/* 073 — Stacked Floating Diamonds */
+.bgx-tile-stack::before {
+  width: 90px;
+  height: 90px;
+  top: 35px;
+  right: 120px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.21);
+  background: rgba(var(--bg-shape-color), 0.025);
+  transform: rotate(45deg) skew(-5deg, -5deg);
+  box-shadow:
+    35px 35px 0 0 rgba(var(--bg-shape-color), 0.13),
+    70px 70px 0 0 rgba(var(--bg-shape-color), 0.08);
+}
+
+/* 074 — Long Horizontal Isometric Slabs */
+.bgx-blocks-long::before {
+  width: 200px;
+  height: 70px;
+  top: 60px;
+  right: 50px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.19);
+  transform: skewY(-22deg) rotate(-8deg);
+  box-shadow:
+    0 20px 0 0 rgba(var(--bg-shape-color), 0.13),
+    0 40px 0 0 rgba(var(--bg-shape-color), 0.08);
+}
+
+/* 075 — Quad Diamond Constellation */
+.bgx-box-cluster::before {
+  width: 70px;
+  height: 70px;
+  top: 35px;
+  right: 70px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.21);
+  transform: rotate(45deg);
+  box-shadow:
+    -70px 35px 0 0 rgba(var(--bg-shape-color), 0.14),
+    70px 35px 0 0 rgba(var(--bg-shape-color), 0.11),
+    0 105px 0 0 rgba(var(--bg-shape-color), 0.08);
+}
+
+/* 076 — Broad Slanted Isometric Surface Tile */
+.bgx-tile-outline::before {
+  width: 180px;
+  height: 125px;
+  top: 35px;
+  right: 75px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.22);
+  transform: skewY(-24deg) rotate(-12deg);
+  box-shadow: 22px 18px 0 0 rgba(var(--bg-shape-color), 0.12);
+}
+
+/* 077 — Dual Staggered Structural Panels */
+.bgx-panels-double::before {
+  width: 180px;
+  height: 130px;
+  top: 25px;
+  right: 65px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.19);
+  transform: skewY(-25deg) rotate(15deg);
+  box-shadow: 22px 12px 0 0 rgba(var(--bg-shape-color), 0.13);
+}
+.bgx-panels-double::after {
+  width: 110px;
+  height: 85px;
+  top: 105px;
+  right: 155px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.14);
+  transform: skewY(-25deg) rotate(15deg);
+}
+
+/* 078 — Concentric Diamond Corner Accent */
+.bgx-box-corner::before {
+  width: 240px;
+  height: 190px;
+  top: -100px;
+  right: -80px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.20);
+  transform: rotate(45deg);
+  box-shadow:
+    0 0 0 18px rgba(var(--bg-shape-color), 0.018),
+    0 0 0 19px rgba(var(--bg-shape-color), 0.10),
+    0 0 0 38px rgba(var(--bg-shape-color), 0.012),
+    0 0 0 39px rgba(var(--bg-shape-color), 0.07);
+}
+
+/* 079 — Cascading Triple Diamond Staircase */
+.bgx-diamond-stack::before {
+  width: 95px;
+  height: 95px;
+  top: 30px;
+  right: 100px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.22);
+  transform: rotate(45deg);
+  box-shadow:
+    24px 24px 0 0 rgba(var(--bg-shape-color), 0.14),
+    48px 48px 0 0 rgba(var(--bg-shape-color), 0.09);
+}
+
+/* 080 — Triple Cascading Long Wireframes */
+.bgx-frames-long::before {
+  width: 200px;
+  height: 100px;
+  top: 45px;
+  right: 70px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.19);
+  transform: skewX(-20deg) rotate(-10deg);
+  box-shadow:
+    15px 15px 0 0 rgba(var(--bg-shape-color), 0.13),
+    30px 30px 0 0 rgba(var(--bg-shape-color), 0.08);
+}
+
+/* 081 — 3D Isometric Diamond Net */
+.bgx-iso-mesh::before {
+  inset: -10% -5% auto auto;
+  width: 55%;
+  height: 105%;
+  background:
+    repeating-linear-gradient(30deg, transparent 0 31px, rgba(var(--bg-shape-color), 0.14) 31px 32px),
+    repeating-linear-gradient(150deg, transparent 0 31px, rgba(var(--bg-shape-color), 0.14) 31px 32px);
+  transform: perspective(650px) rotateX(45deg) rotateZ(-12deg);
+  mask-image: radial-gradient(ellipse, #000, transparent 74%);
+  -webkit-mask-image: radial-gradient(ellipse, #000, transparent 74%);
+}
+
+/* 082 — 3-Axis Cube Grid Matrix */
+.bgx-cube-grid::before {
+  inset: -5% -5% auto auto;
+  width: 48%;
+  height: 95%;
+  background:
+    linear-gradient(30deg, transparent 48.8%, rgba(var(--bg-shape-color), 0.15) 49.5%, rgba(var(--bg-shape-color), 0.15) 50.5%, transparent 51.2%),
+    linear-gradient(150deg, transparent 48.8%, rgba(var(--bg-shape-color), 0.15) 49.5%, rgba(var(--bg-shape-color), 0.15) 50.5%, transparent 51.2%),
+    linear-gradient(90deg, transparent 48.8%, rgba(var(--bg-shape-color), 0.12) 49.5%, rgba(var(--bg-shape-color), 0.12) 50.5%, transparent 51.2%);
+  background-size: 62px 36px;
+  mask-image: radial-gradient(ellipse, #000, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse, #000, transparent 75%);
+}
+
+/* 083 — Stepped 3D Cube Cluster */
+.bgx-cube-cluster::before {
+  width: 90px;
+  height: 75px;
+  top: 40px;
+  right: 90px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.21);
+  transform: skewY(-25deg) rotate(30deg);
+  box-shadow:
+    30px -18px 0 0 rgba(var(--bg-shape-color), 0.13),
+    60px -36px 0 0 rgba(var(--bg-shape-color), 0.09);
+}
+
+/* 084 — Isometric Block with Gradient Fill */
+.bgx-iso-blocks::before {
+  width: 140px;
+  height: 90px;
+  top: 50px;
+  right: 100px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.20);
+  background: linear-gradient(135deg, rgba(var(--bg-shape-color), 0.04), transparent);
+  transform: skewY(-28deg) rotate(28deg);
+  box-shadow:
+    25px 14px 0 0 rgba(var(--bg-shape-color), 0.14),
+    50px 28px 0 0 rgba(var(--bg-shape-color), 0.09);
+}
+
+/* 085 — Deep Isometric Corner Web */
+.bgx-iso-corner::before {
+  top: -15%;
+  right: -10%;
+  width: 55%;
+  height: 115%;
+  background:
+    repeating-linear-gradient(30deg, transparent 0 28px, rgba(var(--bg-shape-color), 0.14) 28px 29px),
+    repeating-linear-gradient(150deg, transparent 0 28px, rgba(var(--bg-shape-color), 0.14) 28px 29px);
+  transform: perspective(700px) rotateX(55deg) rotateZ(-22deg);
+  mask-image: radial-gradient(ellipse at top right, #000, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse at top right, #000, transparent 78%);
+}
+
+/* 086 — Interlocking Orthogonal Cube Trio */
+.bgx-cubes-interlock::before {
+  width: 85px;
+  height: 85px;
+  top: 35px;
+  right: 100px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.20);
+  transform: rotate(45deg) skew(-5deg, -5deg);
+  box-shadow:
+    42px 0 0 0 rgba(var(--bg-shape-color), 0.13),
+    21px 42px 0 0 rgba(var(--bg-shape-color), 0.09);
+}
+
+/* 087 — Overlapping Diamond + Skewed Box */
+.bgx-box-diamond::before {
+  width: 105px;
+  height: 105px;
+  top: 35px;
+  right: 90px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.20);
+  transform: rotate(45deg);
+  box-shadow: 26px 26px 0 0 rgba(var(--bg-shape-color), 0.11);
+}
+.bgx-box-diamond::after {
+  width: 150px;
+  height: 105px;
+  top: 45px;
+  right: 70px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.12);
+  transform: skewY(-22deg) rotate(-10deg);
+}
+
+/* 088 — Multi-Tier Structural Frame with Diamond */
+.bgx-abstract-layers::before {
+  width: 220px;
+  height: 150px;
+  top: 25px;
+  right: 40px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.18);
+  transform: skewY(-22deg) rotate(18deg);
+  box-shadow:
+    22px 18px 0 0 rgba(var(--bg-shape-color), 0.11),
+    44px 36px 0 0 rgba(var(--bg-shape-color), 0.07);
+}
+.bgx-abstract-layers::after {
+  width: 75px;
+  height: 75px;
+  top: 80px;
+  right: 120px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.16);
+  transform: rotate(45deg);
+}
+
+
+/* ==========================================================================
+   05. SECTION 4: CIRCLES, RINGS, OVALS & RADAR (#089 – #099)
+   Concentric target rings, circular domes, elliptical orbitals, and radar rays.
+   ========================================================================== */
+
+/* 089 — Giant Outlined Circle (43rem) */
+.bg-shape-circle::before {
+  width: 43rem;
+  height: 43rem;
+  border: 1px solid rgba(var(--bg-shape-color), 0.22);
+  border-radius: 50%;
+  right: -18rem;
+  top: -9rem;
+}
+
+/* 090 — Half Circle Dome (42rem bottom-centered) */
+.bg-shape-half-circle::before {
+  width: 42rem;
+  height: 42rem;
+  border: 1px solid rgba(var(--bg-shape-color), 0.22);
+  border-radius: 50%;
+  left: 50%;
+  bottom: -24rem;
+  transform: translateX(-50%);
+}
+
+/* 091 — Dual Concentric Outlined Rings */
+.bg-shape-rings::before,
+.bg-shape-rings::after {
+  border: 1px solid rgba(var(--bg-shape-color), 0.22);
+  border-radius: 50%;
+}
+.bg-shape-rings::before {
+  width: 34rem;
+  height: 34rem;
+  right: -13rem;
+  left: auto;
+  top: -6rem;
+}
+.bg-shape-rings::after {
+  width: 53rem;
+  height: 53rem;
+  right: -23rem;
+  top: -15rem;
+}
+
+/* 092 — Concentric Centered Target Rings */
+.bg-shape-concentric::before,
+.bg-shape-concentric::after {
+  border: 1px solid rgba(var(--bg-shape-color), 0.22);
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.bg-shape-concentric::before { width: 22rem; height: 22rem; }
+.bg-shape-concentric::after { width: 36rem; height: 36rem; }
+
+/* 093 — Angled Oval Orbital Ring */
+.bg-shape-oval::before {
+  width: 44rem;
+  height: 18rem;
+  border: 1px solid rgba(var(--bg-shape-color), 0.22);
+  border-radius: 50%;
+  right: -10rem;
+  top: 20%;
+  transform: rotate(-12deg);
+}
+
+/* 094 — Top-Right Ripple Waves (Stand-alone without grid) */
+.bg-shape-rings-tr::before {
+  width: 30rem;
+  height: 30rem;
+  right: -12rem;
+  top: -16rem;
+  border-radius: 50%;
+  border: 1px solid rgba(var(--bg-shape-color), 0.20);
+  box-shadow:
+    0 0 0 2rem rgba(var(--bg-shape-color), 0.025),
+    0 0 0 4rem rgba(var(--bg-shape-color), 0.025),
+    0 0 0 6rem rgba(var(--bg-shape-color), 0.018);
+}
+
+/* 095 — Dual Crossing Orbital Rings */
+.bg-shape-orbit-tr::before {
+  width: 34rem;
+  height: 17rem;
+  right: -9rem;
+  top: -5rem;
+  border: 1px solid rgba(var(--bg-shape-color), 0.20);
+  border-radius: 50%;
+  transform: rotate(-35deg);
+  box-shadow: 0 0 0 2rem rgba(var(--bg-shape-color), 0.018);
+}
+.bg-shape-orbit-tr::after {
+  width: 34rem;
+  height: 17rem;
+  right: -9rem;
+  top: -5rem;
+  border: 1px solid rgba(var(--bg-shape-color), 0.15);
+  border-radius: 50%;
+  transform: rotate(35deg);
+}
+
+/* 096 — Conic Radar Sunburst Light Rays */
+.bg-shape-radial-tr::before {
+  width: 38rem;
+  height: 38rem;
+  right: -13rem;
+  top: -20rem;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba(var(--bg-shape-color), 0.075) 0deg 0.5deg,
+    transparent 0.5deg 15deg
+  );
+  mask-image: radial-gradient(circle, #000, transparent 68%);
+  -webkit-mask-image: radial-gradient(circle, #000, transparent 68%);
+}
+
+/* 097 — Ambient Glow + Concentric Wire Rings */
+.bg-shape-glow-rings::before {
+  width: 32rem;
+  height: 32rem;
+  right: -10rem;
+  top: -16rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--bg-shape-color), 0.14), transparent 70%);
+}
+.bg-shape-glow-rings::after {
+  width: 25rem;
+  height: 25rem;
+  right: -8rem;
+  top: -12rem;
+  border: 1px solid rgba(var(--bg-shape-color), 0.18);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 2rem rgba(var(--bg-shape-color), 0.02),
+    0 0 0 4rem rgba(var(--bg-shape-color), 0.02);
+}
+
+/* 098 — Ambient Glow + Tilted Orbit Ring */
+.bg-shape-glow-orbit::before {
+  width: 35rem;
+  height: 20rem;
+  right: -10rem;
+  top: -5rem;
+  border-radius: 50%;
+  border: 1px solid rgba(var(--bg-shape-color), 0.18);
+  transform: rotate(-35deg);
+}
+.bg-shape-glow-orbit::after {
+  inset: 0;
+  background: radial-gradient(ellipse at 90% 5%, rgba(var(--bg-shape-color), 0.14), transparent 58%);
+}
+
+/* 099 — Concentric High-Tech Corner Radar / Target */
+.bgx-tech-corner::before {
+  width: 250px;
+  height: 210px;
+  top: -100px;
+  right: -80px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.18);
+  transform: rotate(45deg);
+  box-shadow:
+    0 0 0 22px rgba(var(--bg-shape-color), 0.018),
+    0 0 0 23px rgba(var(--bg-shape-color), 0.09),
+    0 0 0 46px rgba(var(--bg-shape-color), 0.012),
+    0 0 0 47px rgba(var(--bg-shape-color), 0.06);
+}
+
+
+/* ==========================================================================
+   06. SECTION 5: ARCHITECTURAL LINES, CIRCUITS & BLUEPRINTS (#100 – #120)
+   Precision alignment rules, blueprint matrices, circuits, and louvers.
+   ========================================================================== */
+
+/* 100 — Minimal Alignment Guidelines */
+.bg-shape-lines::before {
+  inset: 0;
+  background-image:
+    linear-gradient(90deg, transparent 14.9%, rgba(var(--bg-shape-color), 0.18) 15%, transparent 15.1%),
+    linear-gradient(90deg, transparent 84.9%, rgba(var(--bg-shape-color), 0.18) 85%, transparent 85.1%),
+    linear-gradient(transparent 29.9%, rgba(var(--bg-shape-color), 0.18) 30%, transparent 30.1%),
+    linear-gradient(transparent 79.9%, rgba(var(--bg-shape-color), 0.18) 80%, transparent 80.1%);
+}
+
+/* 101 — Structural Framing Axes */
+.bg-shape-architecture::before {
+  inset: 0;
+  background-image:
+    linear-gradient(90deg, transparent 19.9%, rgba(var(--bg-shape-color), 0.18) 20%, transparent 20.1%),
+    linear-gradient(90deg, transparent 79.9%, rgba(var(--bg-shape-color), 0.18) 80%, transparent 80.1%),
+    linear-gradient(transparent 24.9%, rgba(var(--bg-shape-color), 0.18) 25%, transparent 25.1%),
+    linear-gradient(transparent 74.9%, rgba(var(--bg-shape-color), 0.18) 75%, transparent 75.1%);
+}
+
+/* 102 — Full Section Crosshairs */
+.bg-shape-cross::before,
+.bg-shape-cross::after {
+  background: rgba(var(--bg-shape-color), 0.22);
+}
+.bg-shape-cross::before {
+  width: 100%;
+  height: 1px;
+  top: 50%;
+  left: 0;
+}
+.bg-shape-cross::after {
+  width: 1px;
+  height: 100%;
+  top: 0;
+  left: 50%;
+}
+
+/* 103 — Center Plus Target Marker */
+.bg-shape-plus::before,
+.bg-shape-plus::after {
+  background: rgba(var(--bg-shape-color), 0.22);
+}
+.bg-shape-plus::before {
+  width: 40%;
+  height: 1px;
+  top: 50%;
+  left: 30%;
+}
+.bg-shape-plus::after {
+  width: 1px;
+  height: 40%;
+  top: 30%;
+  left: 50%;
+}
+
+/* 104 — Inset Perimeter Frame */
+.bg-shape-frame::before {
+  inset: 3.75rem;
+  border: 1px solid rgba(var(--bg-shape-color), 0.22);
+}
+
+/* 105 — Diagonal Divider Rule (-7deg) */
+.bg-shape-diagonal-line::before {
+  width: 140%;
+  height: 1px;
+  left: -20%;
+  top: 50%;
+  background: rgba(var(--bg-shape-color), 0.22);
+  transform: rotate(-7deg);
+}
+
+/* 106 — Slanted Shearing Facade Panels */
+.bg-shape-angled-panels::before {
+  width: 300px;
+  height: 220px;
+  top: -50px;
+  right: -40px;
+  background: linear-gradient(135deg, transparent 49.5%, rgba(var(--bg-shape-color), 0.16) 50%, transparent 50.5%);
+  border-right: 1px solid rgba(var(--bg-shape-color), 0.14);
+  transform: skewX(-22deg) rotate(12deg);
+  box-shadow: -30px 0 0 -1px rgba(var(--bg-shape-color), 0.025);
+}
+
+/* 107 — Tech Panels Matrix */
+.bg-shape-tech-panels::before {
+  width: 340px;
+  height: 220px;
+  top: -40px;
+  right: -20px;
+  background:
+    linear-gradient(90deg, transparent 0 48%, rgba(var(--bg-shape-color), 0.14) 48% 49%, transparent 49%),
+    linear-gradient(0deg, transparent 0 48%, rgba(var(--bg-shape-color), 0.14) 48% 49%, transparent 49%);
+  background-size: 64px 52px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.14);
+  transform: skewY(-15deg) rotate(-8deg);
+  mask-image: radial-gradient(ellipse, #000, transparent 76%);
+  -webkit-mask-image: radial-gradient(ellipse, #000, transparent 76%);
+}
+
+/* 108 — Cantilevered Stepped Skyline Frame */
+.bg-shape-abstract-architecture::before {
+  width: 260px;
+  height: 200px;
+  top: 10px;
+  right: 30px;
+  border-top: 1px solid rgba(var(--bg-shape-color), 0.19);
+  border-right: 1px solid rgba(var(--bg-shape-color), 0.19);
+  transform: skewY(-25deg) rotate(18deg);
+  box-shadow:
+    20px 20px 0 0 rgba(var(--bg-shape-color), 0.11),
+    40px 40px 0 0 rgba(var(--bg-shape-color), 0.07);
+}
+
+/* 109 — Hexagonal Honeycomb Structural Grid */
+.bgx-hex-grid::before {
+  inset: -5% -5% auto auto;
+  width: 50%;
+  height: 100%;
+  background:
+    linear-gradient(30deg, transparent 49.2%, rgba(var(--bg-shape-color), 0.15) 49.7%, transparent 50.3%),
+    linear-gradient(150deg, transparent 49.2%, rgba(var(--bg-shape-color), 0.15) 49.7%, transparent 50.3%),
+    linear-gradient(90deg, transparent 49.2%, rgba(var(--bg-shape-color), 0.12) 49.7%, transparent 50.3%);
+  background-size: 44px 76px;
+  mask-image: radial-gradient(ellipse, #000, transparent 76%);
+  -webkit-mask-image: radial-gradient(ellipse, #000, transparent 76%);
+}
+
+/* 110 — Concentric Hexagonal Corner Shield */
+.bgx-hex-corner::before {
+  width: 220px;
+  height: 190px;
+  top: -80px;
+  right: -60px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.19);
+  transform: rotate(30deg) skewY(10deg);
+  box-shadow:
+    0 0 0 18px rgba(var(--bg-shape-color), 0.018),
+    0 0 0 19px rgba(var(--bg-shape-color), 0.09);
+}
+
+/* 111 — Skewed Large Architectural Grid Matrix (68px) */
+.bgx-architecture-lines::before {
+  top: -10%;
+  right: 0;
+  width: 45%;
+  height: 120%;
+  background:
+    linear-gradient(90deg, transparent 49.5%, rgba(var(--bg-shape-color), 0.14) 50%, transparent 50.5%),
+    linear-gradient(0deg, transparent 49.5%, rgba(var(--bg-shape-color), 0.12) 50%, transparent 50.5%);
+  background-size: 68px 68px;
+  transform: skewY(-18deg);
+  mask-image: linear-gradient(135deg, #000, transparent 85%);
+  -webkit-mask-image: linear-gradient(135deg, #000, transparent 85%);
+}
+
+/* 112 — Architectural Frame with Triple Echo */
+.bgx-architecture-frame::before {
+  width: 220px;
+  height: 170px;
+  top: -35px;
+  right: 20px;
+  border-top: 1px solid rgba(var(--bg-shape-color), 0.19);
+  border-right: 1px solid rgba(var(--bg-shape-color), 0.19);
+  transform: skewY(-24deg) rotate(10deg);
+  box-shadow:
+    18px 18px 0 0 rgba(var(--bg-shape-color), 0.11),
+    36px 36px 0 0 rgba(var(--bg-shape-color), 0.07);
+}
+
+/* 113 — Precision Circuit Board Grid with Node Dots */
+.bgx-circuit::before {
+  top: 0;
+  right: 0;
+  width: 48%;
+  height: 100%;
+  background:
+    linear-gradient(90deg, transparent 49.5%, rgba(var(--bg-shape-color), 0.15) 50%, transparent 50.5%),
+    linear-gradient(0deg, transparent 49.5%, rgba(var(--bg-shape-color), 0.15) 50%, transparent 50.5%);
+  background-size: 55px 40px;
+  mask-image: radial-gradient(ellipse at top right, #000, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at top right, #000, transparent 80%);
+}
+.bgx-circuit::after {
+  width: 7px;
+  height: 7px;
+  top: 40px;
+  right: 55px;
+  border-radius: 50%;
+  background: rgba(var(--bg-shape-color), 0.24);
+  box-shadow:
+    -110px 40px 0 rgba(var(--bg-shape-color), 0.18),
+    -55px 120px 0 rgba(var(--bg-shape-color), 0.17),
+    -165px 160px 0 rgba(var(--bg-shape-color), 0.15);
+}
+
+/* 114 — Angled Engineering Tech Grid Panels */
+.bgx-tech-grid::before {
+  top: -5%;
+  right: -5%;
+  width: 52%;
+  height: 110%;
+  border: 1px solid rgba(var(--bg-shape-color), 0.14);
+  background:
+    linear-gradient(rgba(var(--bg-shape-color), 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.12) 1px, transparent 1px);
+  background-size: 64px 52px;
+  transform: skewY(-14deg) rotate(-6deg);
+  mask-image: radial-gradient(ellipse, #000, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse, #000, transparent 78%);
+}
+
+/* 115 — Stepped Cantilevered Flight / Escalator */
+.bgx-stairs::before {
+  width: 220px;
+  height: 150px;
+  top: 25px;
+  right: 55px;
+  background:
+    linear-gradient(90deg, transparent 0 24%, rgba(var(--bg-shape-color), 0.12) 24% 25%, transparent 25%),
+    linear-gradient(0deg, transparent 0 24%, rgba(var(--bg-shape-color), 0.12) 24% 25%, transparent 25%);
+  background-size: 48px 36px;
+  border-bottom: 1px solid rgba(var(--bg-shape-color), 0.18);
+  transform: skewY(-25deg) rotate(-5deg);
+  mask-image: linear-gradient(135deg, #000, transparent 90%);
+  -webkit-mask-image: linear-gradient(135deg, #000, transparent 90%);
+}
+
+/* 116 — Slanted Multi-Rib Architectural Louvers */
+.bgx-parallel-architecture::before {
+  top: -10%;
+  right: -5%;
+  width: 50%;
+  height: 115%;
+  background: repeating-linear-gradient(
+    135deg,
+    transparent 0 28px,
+    rgba(var(--bg-shape-color), 0.13) 28px 29px,
+    transparent 29px 56px
+  );
+  transform: skewY(-12deg);
+  mask-image: radial-gradient(ellipse, #000, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse, #000, transparent 78%);
+}
+
+/* 117 — Fine 18px Blueprint Millimeter Grid */
+.bgx-blueprint::before {
+  inset: 0 0 auto auto;
+  width: 48%;
+  height: 100%;
+  background:
+    linear-gradient(rgba(var(--bg-shape-color), 0.11) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.11) 1px, transparent 1px);
+  background-size: 18px 18px;
+  mask-image: radial-gradient(ellipse at top right, #000, transparent 82%);
+  -webkit-mask-image: radial-gradient(ellipse at top right, #000, transparent 82%);
+}
+
+/* 118 — Sheared Diagonal Facade Louvers (44px) */
+.bgx-slanted-panels::before {
+  top: -10%;
+  right: 0;
+  width: 48%;
+  height: 120%;
+  background: repeating-linear-gradient(135deg, transparent 0 44px, rgba(var(--bg-shape-color), 0.13) 44px 45px);
+  transform: skewX(-15deg);
+  mask-image: linear-gradient(135deg, #000, transparent 85%);
+  -webkit-mask-image: linear-gradient(135deg, #000, transparent 85%);
+}
+
+/* 119 — Blueprint Grid Within Cascading Isometric Frames */
+.bgx-blueprint-frames::before {
+  width: 180px;
+  height: 130px;
+  top: 20px;
+  right: 60px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.18);
+  background:
+    linear-gradient(rgba(var(--bg-shape-color), 0.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.10) 1px, transparent 1px);
+  background-size: 18px 18px;
+  transform: skewY(-20deg) rotate(10deg);
+  box-shadow: 18px 14px 0 0 rgba(var(--bg-shape-color), 0.11);
+}
+
+/* 120 — Split Diagonal Cut Glass Panel with Floating Tile */
+.bgx-split-corner::before {
+  top: -10%;
+  right: -5%;
+  width: 45%;
+  height: 120%;
+  background: linear-gradient(135deg, rgba(var(--bg-shape-color), 0.04), transparent 70%);
+  border-left: 1px solid rgba(var(--bg-shape-color), 0.15);
+  transform: skewX(-15deg);
+}
+.bgx-split-corner::after {
+  width: 170px;
+  height: 130px;
+  top: 20px;
+  right: 45px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.18);
+  transform: skewY(-20deg) rotate(15deg);
+}
+
+
+/* ==========================================================================
+   07. SECTION 6: AMBIENT GLOWS & FLUID BLOBS (#121 – #132)
+   Soft radial luminescence, fluid morphic shapes, and smooth gradient washes.
+   ========================================================================== */
+
+/* 121 — Center Ambient Radial Glow */
+.bg-shape-glow::before {
+  inset: 0;
+  background: radial-gradient(circle at 50% 28%, rgba(var(--bg-shape-color), 0.16), transparent 46%);
+}
+
+/* 122 — Top Edge Radial Glow Wash */
+.bg-shape-top-glow::before {
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(var(--bg-shape-color), 0.16), transparent 55%);
+}
+
+/* 123 — Dual Corner Ambient Flares */
+.bg-shape-corner-glow::before {
+  inset: 0;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(var(--bg-shape-color), 0.16), transparent 36%),
+    radial-gradient(circle at 0% 100%, rgba(var(--bg-shape-color), 0.10), transparent 32%);
+}
+
+/* 124 — Center Radial Bloom Spotlight */
+.bg-shape-fade-center::before {
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(var(--bg-shape-color), 0.16), transparent 48%);
+}
+
+/* 125 — Soft Blurred Orb (28rem, 4rem blur) */
+.bg-shape-blur-circle::before {
+  width: 28rem;
+  height: 28rem;
+  right: -6rem;
+  top: -4rem;
+  border-radius: 50%;
+  background: rgba(var(--bg-shape-color), 0.16);
+  filter: blur(4rem);
+}
+
+/* 126 — Translucent Diagonal Band (-6deg) */
+.bg-shape-diagonal::before {
+  width: 130%;
+  height: 18rem;
+  left: -15%;
+  top: -10.5rem;
+  background: rgba(var(--bg-shape-color), 0.10);
+  transform: rotate(-6deg);
+}
+
+/* 127 — Organic Fluid Morphic Blob */
+.bg-shape-blob::before {
+  width: 34rem;
+  height: 28rem;
+  right: -9rem;
+  top: -6rem;
+  background: rgba(var(--bg-shape-color), 0.10);
+  border-radius: 60% 40% 35% 65% / 55% 45% 65% 35%;
+  transform: rotate(20deg);
+}
+
+/* 128 — Smooth Top-to-Bottom Shading Wash */
+.bg-shape-fade::before {
+  inset: 0;
+  background: rgba(var(--bg-shape-color), 0.10);
+  mask-image: linear-gradient(to bottom, #000, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, #000, transparent);
+}
+
+/* 129 — Smooth Left-to-Right Horizontal Shading */
+.bg-shape-fade-side::before {
+  inset: 0;
+  background: rgba(var(--bg-shape-color), 0.10);
+  mask-image: linear-gradient(to right, #000, transparent);
+  -webkit-mask-image: linear-gradient(to right, #000, transparent);
+}
+
+/* 130 — Standalone Fluid Gradient Blob in Top Right */
+.bg-shape-blob-tr::before {
+  width: 34rem;
+  height: 28rem;
+  right: -9rem;
+  top: -11rem;
+  border-radius: 60% 40% 35% 65% / 55% 45% 65% 35%;
+  background: radial-gradient(ellipse at center, rgba(var(--bg-shape-color), 0.15), transparent 75%);
+  transform: rotate(-20deg);
+}
+
+/* 131 — Opposing Diagonal Ambient Glow Flares */
+.bg-shape-glow-corners::before {
+  inset: 0;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(var(--bg-shape-color), 0.16), transparent 36%),
+    radial-gradient(circle at 0% 100%, rgba(var(--bg-shape-color), 0.10), transparent 32%);
+}
+
+/* 132 — Ambient Glow + Organic Morphic Blob */
+.bg-shape-glow-blob::before {
+  width: 32rem;
+  height: 28rem;
+  right: -8rem;
+  top: -10rem;
+  border-radius: 55% 45% 40% 60% / 60% 35% 65% 40%;
+  background: radial-gradient(ellipse at center, rgba(var(--bg-shape-color), 0.16), transparent 72%);
+}
+
+
+/* ==========================================================================
+   08. SECTION 7: HERO COMPOSITIONS & WATERMARKS (#133 – #136)
+   Signature hero centerpieces, watermark text, and multi-layer composites.
+   ========================================================================== */
+
+/* 133 — Large Background Stroke Watermark Text */
+.bg-shape-text::before {
+  content: "Outline text";
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  display: block;
+  font-family: Urbanist, Georgia, "Times New Roman", serif;
+  font-size: clamp(4.75rem, 13vw, 10.5rem);
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 0.8;
+  white-space: nowrap;
+  color: rgba(var(--bg-shape-color), 0.12);
+  -webkit-text-fill-color: rgba(var(--bg-shape-color), 0.12);
+  -webkit-text-stroke: 2px rgba(var(--bg-shape-color), 0.38);
+  paint-order: stroke fill;
+  user-select: none;
+}
+
+/* 134 — Radial Glow Halo + Rotated 45deg Tile */
+.bgx-glow-tile::before {
+  width: 280px;
+  height: 280px;
+  top: -100px;
+  right: -50px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--bg-shape-color), 0.13), transparent 70%);
+}
+.bgx-glow-tile::after {
+  width: 100px;
+  height: 100px;
+  top: 35px;
+  right: 80px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.21);
+  transform: rotate(45deg);
+  box-shadow: 20px 20px 0 0 rgba(var(--bg-shape-color), 0.12);
+}
+
+/* 135 — Perspective Diamond Floor + Ambient Halo */
+.bgx-diamond-glow::before {
+  top: -10%;
+  right: -8%;
+  width: 58%;
+  height: 115%;
+  background:
+    linear-gradient(45deg, transparent 49.5%, rgba(var(--bg-shape-color), 0.14) 50%, transparent 50.5%),
+    linear-gradient(-45deg, transparent 49.5%, rgba(var(--bg-shape-color), 0.14) 50%, transparent 50.5%);
+  background-size: 42px 42px;
+  transform: perspective(700px) rotateX(48deg) rotateZ(-20deg);
+  mask-image: radial-gradient(ellipse, #000, transparent 76%);
+  -webkit-mask-image: radial-gradient(ellipse, #000, transparent 76%);
+}
+.bgx-diamond-glow::after {
+  width: 240px;
+  height: 240px;
+  top: -90px;
+  right: -45px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--bg-shape-color), 0.12), transparent 70%);
+}
+
+/* 136 — Signature Hero Flagship Composition */
+.bgx-signature::before {
+  top: -10%;
+  right: -5%;
+  width: 60%;
+  height: 120%;
+  background:
+    linear-gradient(rgba(var(--bg-shape-color), 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.12) 1px, transparent 1px);
+  background-size: 34px 34px;
+  transform: perspective(700px) rotateX(55deg) rotateZ(-27deg);
+  mask-image: radial-gradient(ellipse at top right, #000, transparent 76%);
+  -webkit-mask-image: radial-gradient(ellipse at top right, #000, transparent 76%);
+}
+.bgx-signature::after {
+  width: 190px;
+  height: 130px;
+  top: 35px;
+  right: 60px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.19);
+  transform: skewY(-24deg) rotate(16deg);
+  box-shadow:
+    20px 14px 0 -1px transparent,
+    20px 14px 0 0 rgba(var(--bg-shape-color), 0.12),
+    40px 28px 0 -1px transparent,
+    40px 28px 0 0 rgba(var(--bg-shape-color), 0.08);
+}
+
+
+/* ==========================================================================
+   09. SECTION 8: POSITION, SCALE & CONTRAST MODIFIERS
+   Apply alongside any base class for instant customization
+   ========================================================================== */
+
+/* Lying boxes top-right reposition */
+.bg-shape-boxes-lying-tr::before {
+  top: -160px;
+  right: -100px;
+}
+
+/* Lying boxes bottom-right reposition */
+.bg-shape-boxes-lying-br::before {
+  top: auto;
+  bottom: -190px;
+  right: -90px;
+}
+
+/* Lying boxes bold 58px contrast grid */
+.bg-shape-boxes-lying-bold::before {
+  background:
+    linear-gradient(rgba(var(--bg-shape-color), 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.16) 1px, transparent 1px);
+  background-size: 58px 58px;
+}
+
+/* General box positioning modifiers */
+.bg-shape-boxes-tr::before {
+  top: -100px;
+  right: -60px;
+}
+
+.bg-shape-boxes-bl::before {
+  top: auto;
+  right: auto;
+  bottom: -100px;
+  left: -60px;
+}
+
+/* Scale & dimension modifiers */
+.bg-shape-cubes-tr::before {
+  width: 540px;
+  height: 440px;
+  top: -130px;
+  right: -100px;
+}
+
+.bg-shape-diamond-tr::before {
+  width: 650px;
+  height: 420px;
+  top: -120px;
+  right: -150px;
+}
+
+.bg-shape-platform-tr::before {
+  width: 620px;
+  height: 340px;
+  top: -100px;
+  right: -150px;
+}
+
+.bg-shape-perspective-wide::before {
+  width: 680px;
+  height: 440px;
+  right: -140px;
+  top: -110px;
+}
+
+/* Opacity / contrast strength modifiers */
+.bg-shape-geometry-soft::before,
+.bg-shape-geometry-soft::after {
+  opacity: 0.45;
+}
+
+.bg-shape-geometry-bold::before,
+.bg-shape-geometry-bold::after {
+  opacity: 1;
+}
+
+/* Placement adjustments */
+.bg-shape-geometry-bottom::before {
+  top: auto;
+  bottom: -110px;
+}
+
+.bg-shape-geometry-center::before {
+  top: 50%;
+  right: -40px;
+  transform: translateY(-50%) rotate(-15deg);
+}
+
+
+/* ==========================================================================
+   SHAPE OPACITY UTILITIES (10%, 20%, 40%, 60%, 80%, 100% [Default])
+   Adjust shape visibility on any Elementor container or card.
+   By default, all shapes render at 100% (1.0).
+   Usage: class="bg-shape-grid bg-shape-opacity-40" or "bg-shape-grid bg-shape-40"
+   ========================================================================== */
+
+/* 10% Opacity — Ultra subtle, barely-there whisper background */
+.bg-shape-opacity-10,
+.bg-shape-op-10,
+.bg-shape-10 {
+  --bg-shape-opacity: 0.1;
+}
+.bg-shape-opacity-10::before,
+.bg-shape-opacity-10::after,
+.bg-shape-op-10::before,
+.bg-shape-op-10::after,
+.bg-shape-10::before,
+.bg-shape-10::after {
+  opacity: 0.1 !important;
+}
+
+/* 20% Opacity — Soft & quiet, ideal for content-heavy copy */
+.bg-shape-opacity-20,
+.bg-shape-op-20,
+.bg-shape-20 {
+  --bg-shape-opacity: 0.2;
+}
+.bg-shape-opacity-20::before,
+.bg-shape-opacity-20::after,
+.bg-shape-op-20::before,
+.bg-shape-op-20::after,
+.bg-shape-20::before,
+.bg-shape-20::after {
+  opacity: 0.2 !important;
+}
+
+/* 40% Opacity — Balanced medium fade for feature cards and testimonials */
+.bg-shape-opacity-40,
+.bg-shape-op-40,
+.bg-shape-40 {
+  --bg-shape-opacity: 0.4;
+}
+.bg-shape-opacity-40::before,
+.bg-shape-opacity-40::after,
+.bg-shape-op-40::before,
+.bg-shape-op-40::after,
+.bg-shape-40::before,
+.bg-shape-40::after {
+  opacity: 0.4 !important;
+}
+
+/* 60% Opacity — Moderate visibility, clean and modern presentation */
+.bg-shape-opacity-60,
+.bg-shape-op-60,
+.bg-shape-60 {
+  --bg-shape-opacity: 0.6;
+}
+.bg-shape-opacity-60::before,
+.bg-shape-opacity-60::after,
+.bg-shape-op-60::before,
+.bg-shape-op-60::after,
+.bg-shape-60::before,
+.bg-shape-60::after {
+  opacity: 0.6 !important;
+}
+
+/* 80% Opacity — Crisp high-definition clarity for hero banners */
+.bg-shape-opacity-80,
+.bg-shape-op-80,
+.bg-shape-80 {
+  --bg-shape-opacity: 0.8;
+}
+.bg-shape-opacity-80::before,
+.bg-shape-opacity-80::after,
+.bg-shape-op-80::before,
+.bg-shape-op-80::after,
+.bg-shape-80::before,
+.bg-shape-80::after {
+  opacity: 0.8 !important;
+}
+
+/* 100% Opacity — Default full-strength baseline */
+.bg-shape-opacity-100,
+.bg-shape-op-100,
+.bg-shape-100 {
+  --bg-shape-opacity: 1;
+}
+.bg-shape-opacity-100::before,
+.bg-shape-opacity-100::after,
+.bg-shape-op-100::before,
+.bg-shape-op-100::after,
+.bg-shape-100::before,
+.bg-shape-100::after {
+  opacity: 1 !important;
+}
+
+
+/* ==========================================================================
+   ASH & NEUTRAL FADE COLOR PRESETS
+   Universal neutral tones that blend into every website palette.
+   Usage: class="bg-shape-grid bg-shape-ash" or "bg-shape-grid bg-shape-charcoal"
+   ========================================================================== */
+
+.bg-shape-ash, .bg-shape-color-ash          { --bg-shape-color: 100, 116, 139; } /* Neutral Slate Ash (Default) */
+.bg-shape-smoke, .bg-shape-color-smoke      { --bg-shape-color: 115, 115, 115; } /* Pure Smoke Ash (Zero Hue) */
+.bg-shape-silver, .bg-shape-color-silver    { --bg-shape-color: 148, 163, 184; } /* Soft Silver Ash */
+.bg-shape-charcoal, .bg-shape-color-charcoal{ --bg-shape-color: 55, 65, 81; }    /* Deep Charcoal Ash */
+.bg-shape-graphite, .bg-shape-color-graphite{ --bg-shape-color: 71, 85, 105; }   /* Architectural Graphite */
+.bg-shape-zinc, .bg-shape-color-zinc        { --bg-shape-color: 113, 113, 122; } /* Neutral Zinc Ash */
+.bg-shape-stone, .bg-shape-color-stone      { --bg-shape-color: 120, 113, 108; } /* Warm Stone Ash */
+
+
+
+/* ==========================================================================
+   10. SECTION 9: UNIFIED RESPONSIVE ADAPTATIONS (MOBILE & TABLET)
+   Consolidated media queries ensuring clean scaling on all viewports
+   ========================================================================== */
+
+/* Mask-repeat reset for perspective and architectural shapes */
+.bgx-floor-wide::before,
+.bgx-floor-dense::before,
+.bgx-floor-giant::before,
+.bgx-floor-diagonal::before,
+.bgx-floor-double::before,
+.bgx-floor-boxes::before,
+.bgx-floor-tracks::before,
+.bgx-floor-offset::before,
+.bgx-floor-fade::before,
+.bgx-floor-corner::before,
+.bgx-iso-mesh::before,
+.bgx-cube-grid::before,
+.bgx-hex-grid::before,
+.bgx-diamond-lattice::before,
+.bgx-diamond-floor::before,
+.bgx-iso-corner::before,
+.bgx-architecture-lines::before,
+.bgx-circuit::before,
+.bgx-tech-grid::before,
+.bgx-blueprint::before,
+.bgx-slanted-panels::before,
+.bgx-parallel-architecture::before,
+.bgx-floor-architecture::before,
+.bgx-corner-frame-grid::before,
+.bgx-diamond-glow::before,
+.bgx-grid-cubes::before,
+.bgx-signature::before {
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+}
+
+@media (max-width: 767px) {
+  /* Soften general strength on mobile */
+  [class*="bgx-"]::before {
+    opacity: 0.72;
+  }
+
+  /* Grid glow sizes */
+  .bg-shape-grid-top-right::after,
+  .bg-shape-grid-top-left::after,
+  .bg-shape-grid-bottom-right::after,
+  .bg-shape-grid-bottom-left::after {
+    width: 24rem;
+    height: 24rem;
+  }
+
+  /* Ring and circle scales */
+  .bg-shape-grid-rings-tr::after,
+  .bg-shape-grid-rings-center::after,
+  .bg-shape-grid-circles::after,
+  .bg-shape-rings-tr::before {
+    width: 20rem;
+    height: 20rem;
+  }
+
+  /* Organic blobs */
+  .bg-shape-grid-blob-tr::after,
+  .bg-shape-blob-tr::before {
+    width: 23rem;
+    height: 19rem;
+  }
+
+  /* Squares */
+  .bg-shape-grid-squares-tr::after,
+  .bg-shape-squares-tr::before {
+    width: 13rem;
+    height: 13rem;
+  }
+
+  /* Perspective depths */
+  .bg-shape-grid-perspective::after {
+    bottom: -75%;
+  }
+
+  .bg-shape-grid-frame::after {
+    inset: 1.25rem;
+  }
+
+  /* Lying perspective boxes */
+  .bg-shape-boxes-lying::before {
+    width: 380px;
+    height: 300px;
+    right: -155px;
+    top: -80px;
+    background-size: 32px 32px;
+  }
+  .bg-shape-boxes-lying::after {
+    width: 75px;
+    height: 52px;
+    right: 35px;
+    top: 45px;
+  }
+
+  /* Isometric floors & steps */
+  .bg-shape-iso-cubes::before,
+  .bg-shape-diamond-floor::before,
+  .bg-shape-perspective-steps::before,
+  .bg-shape-hex-floor::before,
+  .bg-shape-grid-platform::before,
+  .bg-shape-3d-lattice::before,
+  .bg-shape-isometric-floor::before {
+    width: 320px;
+    height: 260px;
+    right: -130px;
+    top: -60px;
+    opacity: 0.7;
+  }
+
+  /* Small isometric wireframe stacks */
+  .bg-shape-tile-stack::before,
+  .bg-shape-wireframe::before,
+  .bg-shape-layered-frames::before,
+  .bg-shape-outline-blocks::before {
+    right: 20px;
+    transform: scale(0.72) skewY(-20deg) rotate(15deg);
+    transform-origin: top right;
+  }
+
+  .bg-shape-geometric-corner::before {
+    width: 220px;
+    height: 220px;
+    top: -120px;
+    right: -100px;
+  }
+
+  /* Massive pack floors */
+  .bgx-floor-wide::before,
+  .bgx-floor-dense::before,
+  .bgx-floor-giant::before,
+  .bgx-floor-diagonal::before,
+  .bgx-floor-double::before,
+  .bgx-floor-boxes::before,
+  .bgx-floor-tracks::before,
+  .bgx-floor-offset::before,
+  .bgx-floor-fade::before,
+  .bgx-floor-corner::before,
+  .bgx-iso-mesh::before,
+  .bgx-cube-grid::before,
+  .bgx-hex-grid::before,
+  .bgx-diamond-lattice::before,
+  .bgx-diamond-floor::before,
+  .bgx-iso-corner::before,
+  .bgx-architecture-lines::before,
+  .bgx-circuit::before,
+  .bgx-tech-grid::before,
+  .bgx-blueprint::before,
+  .bgx-slanted-panels::before,
+  .bgx-parallel-architecture::before,
+  .bgx-floor-architecture::before,
+  .bgx-corner-frame-grid::before,
+  .bgx-diamond-glow::before,
+  .bgx-grid-cubes::before,
+  .bgx-signature::before {
+    width: 85%;
+    right: -25%;
+  }
+
+  /* Massive pack wireframes */
+  .bgx-box-nested::before,
+  .bgx-box-offset::before,
+  .bgx-tile-stack::before,
+  .bgx-blocks-long::before,
+  .bgx-box-cluster::before,
+  .bgx-tile-outline::before,
+  .bgx-panels-double::before,
+  .bgx-diamond-stack::before,
+  .bgx-frames-long::before,
+  .bgx-cube-cluster::before,
+  .bgx-iso-blocks::before,
+  .bgx-cubes-interlock::before,
+  .bgx-architecture-frame::before,
+  .bgx-stairs::before,
+  .bgx-blueprint-frames::before,
+  .bgx-abstract-layers::before,
+  .bgx-signature::after {
+    transform: scale(0.72) skewY(-15deg);
+    transform-origin: top right;
+  }
+}

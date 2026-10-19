@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Universal Elementor Background Shapes — Light Mode Visual Catalog</title>
+  <link rel="stylesheet" href="shape.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Urbanist:wght@700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ==========================================================================
+       UNIVERSAL LIGHT MODE DESIGN SYSTEM
+       Clean, crisp, high-contrast light interface engineered for light websites.
+       Soft graphite/slate fade shapes on clean white/off-white backgrounds.
+       ========================================================================== */
+    :root {
+      --bg-page: #f8fafc;
+      --bg-card: #ffffff;
+      --border: rgba(15, 23, 42, 0.08);
+      --border-hover: rgba(15, 23, 42, 0.22);
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --card-canvas-bg: #ffffff;
+      --card-border-render: rgba(15, 23, 42, 0.06);
+      --badge-bg: rgba(15, 23, 42, 0.05);
+      --btn-primary-bg: #0f172a;
+      --btn-primary-text: #ffffff;
+    }
+
+    /* Contrast Boost Modes */
+    [data-boost="2"] .preview-stage::before,
+    [data-boost="2"] .preview-stage::after,
+    [data-boost="2"] .modal-preview-stage::before,
+    [data-boost="2"] .modal-preview-stage::after {
+      filter: contrast(1.5) brightness(0.85);
+      opacity: 0.95 !important;
+    }
+    [data-boost="3"] .preview-stage::before,
+    [data-boost="3"] .preview-stage::after,
+    [data-boost="3"] .modal-preview-stage::before,
+    [data-boost="3"] .modal-preview-stage::after {
+      filter: contrast(2.4) brightness(0.7);
+      opacity: 1 !important;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg-page);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 2.5rem 1.5rem 5rem;
+    }
+
+    .container {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      margin-bottom: 2.5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 1rem;
+      border-radius: 9999px;
+      background: var(--badge-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 780px;
+      margin: 0 auto 1.75rem;
+      line-height: 1.6;
+    }
+
+    /* Controls Bar */
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 1.15rem 1.35rem;
+      border-radius: 1rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+    }
+
+    .controls-top-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      width: 100%;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 260px;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.65rem 1rem 0.65rem 2.5rem;
+      border-radius: 0.75rem;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border 0.2s;
+    }
+    .search-box input:focus {
+      border-color: var(--text);
+      background: #ffffff;
+    }
+    .search-icon {
+      position: absolute;
+      left: 0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      width: 100%;
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.45rem 0.9rem;
+      border-radius: 0.6rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover {
+      color: var(--text);
+      border-color: var(--border-hover);
+    }
+    .filter-btn.active {
+      background: var(--btn-primary-bg);
+      color: var(--btn-primary-text);
+      border-color: var(--btn-primary-bg);
+    }
+
+    .toolbar-actions {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .tool-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.5rem 0.9rem;
+      border-radius: 0.6rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tool-btn:hover {
+      border-color: var(--border-hover);
+    }
+
+    /* Opacity utility quick selector bar */
+    .opacity-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      width: 100%;
+      padding-top: 0.9rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .opacity-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text);
+    }
+    .opacity-sub {
+      color: var(--text-muted);
+      font-size: 0.78rem;
+    }
+
+    .opacity-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .op-btn {
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.35rem 0.75rem;
+      border-radius: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .op-btn:hover {
+      color: var(--text);
+      border-color: var(--border-hover);
+    }
+    .op-btn.active {
+      background: var(--text);
+      color: #ffffff;
+      border-color: var(--text);
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.15);
+    }
+
+    .opacity-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.76rem;
+      background: #f1f5f9;
+      color: #334155;
+      padding: 0.35rem 0.75rem;
+      border-radius: 0.45rem;
+      border: 1px dashed var(--border);
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .opacity-badge:hover {
+      background: #e2e8f0;
+      border-color: var(--border-hover);
+    }
+
+    .modal-op-group {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      background: #f1f5f9;
+      padding: 0.25rem 0.45rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+    }
+
+    .modal-op-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 0.25rem 0.55rem;
+      border-radius: 0.35rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .modal-op-btn:hover {
+      color: var(--text);
+    }
+    .modal-op-btn.active {
+      background: var(--text);
+      color: #ffffff;
+    }
+
+    /* Stats Bar */
+    .stats-info {
+      display: flex;
+      justify-content: space-between;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+      padding: 0 0.5rem;
+    }
+
+    /* Grid layout */
+    .shape-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* Category Section Divider Banner */
+    .category-divider {
+      grid-column: 1 / -1;
+      margin: 1.75rem 0 0.5rem;
+      padding: 0.9rem 1.25rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--text);
+      border-radius: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 10px -2px rgba(15, 23, 42, 0.04);
+    }
+    .category-divider:first-child {
+      margin-top: 0;
+    }
+    .category-divider h2 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+    .category-divider .cat-count-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.65rem;
+      border-radius: 9999px;
+      background: var(--badge-bg);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+
+    /* Card */
+    .shape-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 10px -2px rgba(15, 23, 42, 0.04);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .shape-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 28px -6px rgba(15, 23, 42, 0.09);
+      border-color: var(--border-hover);
+    }
+
+    /* Preview Canvas (Container) */
+    .preview-canvas {
+      height: 200px;
+      background: var(--card-canvas-bg);
+      border-bottom: 1px solid var(--card-border-render);
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      cursor: pointer;
+    }
+
+    /* ==========================================================================
+       INDEX PREVIEW CANVAS OPTIMIZATIONS
+       Ensures each shape is properly framed, scaled, and covering the preview card
+       so users see the exact, complete shape directly without exploring/expanding.
+       ========================================================================== */
+
+    /* 1. All Floors & Perspective Ground Planes (Section 2) */
+    .preview-canvas[class*="floor"]::before,
+    .preview-canvas[class*="floor"]::after,
+    .preview-canvas.bg-shape-boxes-lying::before,
+    .preview-canvas.bg-shape-grid-perspective::after,
+    .preview-canvas.bg-shape-perspective-steps::before,
+    .preview-canvas.bg-shape-grid-platform::before,
+    .preview-canvas.bg-shape-3d-lattice::before,
+    .preview-canvas.bgx-iso-mesh::before,
+    .preview-canvas.bgx-cube-grid::before,
+    .preview-canvas.bgx-diamond-lattice::before,
+    .preview-canvas.bgx-iso-corner::before,
+    .preview-canvas.bgx-grid-cubes::before {
+      width: 100% !important;
+      height: 115% !important;
+      inset: -5% 0 auto 0 !important;
+      transform-origin: center bottom !important;
+      mask-image: linear-gradient(to bottom, #000 65%, transparent 95%) !important;
+      -webkit-mask-image: linear-gradient(to bottom, #000 65%, transparent 95%) !important;
+    }
+
+    /* 2. Massive pack perspective floors (bgx-floor-*) */
+    .preview-canvas[class*="bgx-floor-"]::before,
+    .preview-canvas[class*="bgx-floor-"]::after {
+      width: 100% !important;
+      height: 120% !important;
+      inset: auto 0 -10% 0 !important;
+      right: 0 !important;
+      top: auto !important;
+      transform-origin: center bottom !important;
+      mask-image: linear-gradient(to bottom, transparent 0%, #000 25%, #000 85%, transparent 100%) !important;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 25%, #000 85%, transparent 100%) !important;
+    }
+
+    /* 3. Isometric Wireframes & Cube Clusters (Section 3) */
+    .preview-canvas.bg-shape-squares::before,
+    .preview-canvas.bg-shape-squares-float::before,
+    .preview-canvas.bg-shape-squares-tr::before,
+    .preview-canvas.bg-shape-corner-geometry::before,
+    .preview-canvas.bg-shape-iso-cubes::before,
+    .preview-canvas.bg-shape-tile-stack::before,
+    .preview-canvas.bg-shape-wireframe::before,
+    .preview-canvas.bg-shape-floating-tiles::before,
+    .preview-canvas.bg-shape-box-cluster::before,
+    .preview-canvas.bg-shape-cube-corners::before,
+    .preview-canvas.bg-shape-layered-frames::before,
+    .preview-canvas.bg-shape-tilted-squares::before,
+    .preview-canvas.bg-shape-outline-blocks::before,
+    .preview-canvas.bg-shape-geometric-corner::before,
+    .preview-canvas.bgx-box-nested::before,
+    .preview-canvas.bgx-box-offset::before,
+    .preview-canvas.bgx-tile-stack::before,
+    .preview-canvas.bgx-blocks-long::before,
+    .preview-canvas.bgx-box-cluster::before,
+    .preview-canvas.bgx-tile-outline::before,
+    .preview-canvas.bgx-panels-double::before,
+    .preview-canvas.bgx-box-corner::before,
+    .preview-canvas.bgx-diamond-stack::before,
+    .preview-canvas.bgx-frames-long::before,
+    .preview-canvas.bgx-cube-cluster::before,
+    .preview-canvas.bgx-iso-blocks::before,
+    .preview-canvas.bgx-cubes-interlock::before,
+    .preview-canvas.bgx-box-diamond::before,
+    .preview-canvas.bgx-abstract-layers::before {
+      top: 50% !important;
+      right: 50% !important;
+      transform: translate(50%, -50%) scale(0.9) !important;
+      transform-origin: center center !important;
+      mask-image: none !important;
+      -webkit-mask-image: none !important;
+    }
+
+    /* 4. Giant Circles & Concentric Rings (Section 4) */
+    .preview-canvas.bg-shape-circle::before {
+      width: 17rem !important;
+      height: 17rem !important;
+      right: -3rem !important;
+      top: -3rem !important;
+    }
+    .preview-canvas.bg-shape-half-circle::before {
+      width: 22rem !important;
+      height: 22rem !important;
+      bottom: -11rem !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+    }
+    .preview-canvas.bg-shape-rings::before {
+      width: 16rem !important;
+      height: 16rem !important;
+      right: -2rem !important;
+      top: -2rem !important;
+    }
+    .preview-canvas.bg-shape-rings::after {
+      width: 11rem !important;
+      height: 11rem !important;
+      right: 0.5rem !important;
+      top: 0.5rem !important;
+    }
+    .preview-canvas.bg-shape-concentric::before {
+      width: 15rem !important;
+      height: 15rem !important;
+    }
+    .preview-canvas.bg-shape-concentric::after {
+      width: 9rem !important;
+      height: 9rem !important;
+    }
+    .preview-canvas.bg-shape-oval::before {
+      width: 24rem !important;
+      height: 12rem !important;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) rotate(-18deg) !important;
+    }
+    .preview-canvas.bg-shape-rings-tr::before,
+    .preview-canvas.bg-shape-orbit-tr::before,
+    .preview-canvas.bg-shape-radial-tr::before,
+    .preview-canvas.bg-shape-glow-rings::before,
+    .preview-canvas.bg-shape-glow-orbit::before,
+    .preview-canvas.bgx-tech-corner::before {
+      width: 18rem !important;
+      height: 18rem !important;
+      right: -2rem !important;
+      top: -2rem !important;
+    }
+
+    /* 5. Architectural Lines & Blueprints (Section 5) */
+    .preview-canvas[class*="circuit"]::before,
+    .preview-canvas[class*="blueprint"]::before,
+    .preview-canvas[class*="tech-grid"]::before,
+    .preview-canvas[class*="architecture"]::before,
+    .preview-canvas.bgx-slanted-panels::before,
+    .preview-canvas.bgx-parallel-architecture::before {
+      width: 100% !important;
+      height: 100% !important;
+      inset: 0 !important;
+      mask-image: none !important;
+      -webkit-mask-image: none !important;
+    }
+
+    /* 6. Ambient Glows & Blobs (Section 6) */
+    .preview-canvas.bg-shape-glow::before,
+    .preview-canvas.bg-shape-top-glow::before,
+    .preview-canvas.bg-shape-corner-glow::before,
+    .preview-canvas.bg-shape-fade-center::before,
+    .preview-canvas.bg-shape-blur-circle::before,
+    .preview-canvas.bg-shape-blob::before,
+    .preview-canvas.bg-shape-blob-tr::before,
+    .preview-canvas.bg-shape-glow-blob::before {
+      width: 18rem !important;
+      height: 18rem !important;
+      transform: scale(0.85) !important;
+    }
+
+    /* 7. Hero Compositions (Section 7) */
+    .preview-canvas.bg-shape-text::before {
+      font-size: 5rem !important;
+      line-height: 1 !important;
+      bottom: 1rem !important;
+      right: 1rem !important;
+    }
+    .preview-canvas.bgx-signature::before {
+      width: 100% !important;
+      height: 100% !important;
+      inset: 0 !important;
+    }
+    .preview-canvas.bgx-signature::after {
+      top: 50% !important;
+      right: 50% !important;
+      transform: translate(50%, -50%) scale(0.85) !important;
+    }
+
+    .preview-canvas .watermark-tag {
+      position: absolute;
+      bottom: 0.75rem;
+      left: 0.75rem;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(4px);
+      border: 1px solid var(--border);
+      color: #475569;
+      font-size: 0.72rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      pointer-events: none;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .expand-hint {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(4px);
+      border: 1px solid var(--border);
+      color: #0f172a;
+      font-size: 0.72rem;
+      padding: 0.25rem 0.55rem;
+      border-radius: 0.4rem;
+      z-index: 2;
+      font-weight: 600;
+      opacity: 0;
+      transform: translateY(-4px);
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+    .preview-canvas:hover .expand-hint {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Card Info */
+    .card-body {
+      padding: 1.15rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 0.65rem;
+    }
+
+    .card-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .shape-num {
+      font-size: 0.72rem;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      color: #64748b;
+      background: #f1f5f9;
+      padding: 0.15rem 0.45rem;
+      border-radius: 0.35rem;
+    }
+
+    .category-tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748b;
+    }
+
+    .shape-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .shape-desc {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+      flex: 1;
+    }
+
+    .action-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.25rem;
+    }
+
+    .copy-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .copy-btn:hover {
+      background: #f1f5f9;
+      border-color: var(--border-hover);
+    }
+    .copy-btn.copied {
+      background: #dcfce7;
+      color: #166534;
+      border-color: #86efac;
+    }
+
+    .preview-modal-btn {
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.5rem 0.85rem;
+      border-radius: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .preview-modal-btn:hover {
+      background: var(--text);
+      color: #ffffff;
+      border-color: var(--text);
+    }
+
+    .elementor-tip {
+      font-size: 0.72rem;
+      color: #94a3b8;
+      border-top: 1px dashed var(--border);
+      padding-top: 0.5rem;
+    }
+
+    /* Modal Backdrop */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-window {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      width: 100%;
+      max-width: 1200px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.3);
+      animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes modalPop {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-header {
+      padding: 1.25rem 1.75rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+    }
+
+    .modal-title-group h2 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .modal-title-group p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    .modal-close-btn {
+      background: #f1f5f9;
+      border: none;
+      color: var(--text);
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .modal-close-btn:hover {
+      background: #e2e8f0;
+      transform: rotate(90deg);
+    }
+
+    /* Live 1:1 Desktop Elementor Section Canvas */
+    .modal-section-container {
+      position: relative;
+      height: 480px;
+      background: #ffffff;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .modal-preview-stage {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .modal-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+      padding: 2rem;
+    }
+
+    .modal-hero-badge {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.3rem 0.85rem;
+      border-radius: 9999px;
+      background: rgba(15, 23, 42, 0.05);
+      border: 1px solid var(--border);
+      color: var(--text);
+      margin-bottom: 1.25rem;
+      letter-spacing: 0.02em;
+    }
+
+    .modal-hero-title {
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .modal-hero-sub {
+      font-size: 1rem;
+      color: #475569;
+      line-height: 1.6;
+      margin-bottom: 1.75rem;
+    }
+
+    .modal-hero-btns {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+    }
+
+    .modal-primary-btn {
+      background: var(--text);
+      color: #ffffff;
+      padding: 0.65rem 1.4rem;
+      border-radius: 0.6rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+    }
+
+    .modal-secondary-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.65rem 1.4rem;
+      border-radius: 0.6rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    .modal-footer {
+      padding: 1rem 1.75rem;
+      background: #f8fafc;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .modal-code-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 0.45rem 1rem;
+      border-radius: 0.5rem;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 0.75rem 1.25rem;
+      border-radius: 0.75rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+      z-index: 2000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    #toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Header -->
+  <header>
+    <div class="badge-pill">✦ Universal Ash &amp; Neutral Fade Shapes for All Websites</div>
+    <h1>Universal Elementor Background Shapes</h1>
+    <p class="subtitle">
+      Zero specific or clashing brand colors. Pure neutral <strong>Slate Ash &amp; Smoke Fades</strong> engineered to blend seamlessly into every website. Includes instant <strong>10%, 20%, 40%, 60%, 80%, 100%</strong> opacity utility classes.
+    </p>
+  </header>
+
+  <!-- Controls -->
+  <div class="controls">
+    <div class="controls-top-row">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Search shape by name, class, or keyword (e.g. grid, floor, 3D, blob)...">
+      </div>
+
+      <div class="toolbar-actions">
+        <!-- Ash Tone Presets Cycler -->
+        <button class="tool-btn" id="ashColorToggle" title="Cycle Neutral Ash & Smoke Tone Presets">
+          <span>🎨</span> <span id="ashColorText">Ash: Slate Ash (Default)</span>
+        </button>
+
+        <!-- Glow Contrast Boost -->
+        <button class="tool-btn" id="boostToggle" title="Toggle shape fade visibility">
+          <span>✨</span> <span id="boostText">Fade: Normal (1x)</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All (136)</button>
+      <button class="filter-btn" data-filter="grids">Grids &amp; Matrix (35)</button>
+      <button class="filter-btn" data-filter="floors">3D Floors &amp; Perspective (21)</button>
+      <button class="filter-btn" data-filter="isometric">Isometric &amp; Wireframes (32)</button>
+      <button class="filter-btn" data-filter="circles">Circles &amp; Rings (11)</button>
+      <button class="filter-btn" data-filter="tech">Tech &amp; Blueprints (21)</button>
+      <button class="filter-btn" data-filter="glows">Glows &amp; Blobs (12)</button>
+      <button class="filter-btn" data-filter="compositions">Hero Compositions (4)</button>
+    </div>
+
+    <!-- Opacity Utility Quick Selector Bar -->
+    <div class="opacity-bar">
+      <div class="opacity-label">
+        <span>👁️</span> <strong>Shape Opacity:</strong>
+        <span class="opacity-sub">(Default: 100% — click to test utility classes live across all shapes)</span>
+      </div>
+      <div class="opacity-options" id="globalOpOptions">
+        <button class="op-btn active" data-opacity="100">100% (Default)</button>
+        <button class="op-btn" data-opacity="80">80%</button>
+        <button class="op-btn" data-opacity="60">60%</button>
+        <button class="op-btn" data-opacity="40">40%</button>
+        <button class="op-btn" data-opacity="20">20%</button>
+        <button class="op-btn" data-opacity="10">10%</button>
+      </div>
+      <div class="opacity-badge" id="activeOpClassBadge" title="Click to copy opacity utility class">
+        <span>Class:</span> <code id="activeOpClassText">.bg-shape-opacity-100</code> <span>📋</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-info">
+    <span id="resultsCount">Showing all 136 shapes</span>
+    <span>💡 <strong>Tip:</strong> Click any card canvas to preview in full 100% desktop Elementor section mode</span>
+  </div>
+
+  <!-- Shapes Grid Container -->
+  <div class="shape-grid" id="shapesGrid">
+    <!-- Populated via Javascript -->
+  </div>
+</div>
+
+<!-- ================= FULL SECTION LIVE MODAL ================= -->
+<div class="modal-backdrop" id="previewModal">
+  <div class="modal-window">
+    <div class="modal-header">
+      <div class="modal-title-group">
+        <h2 id="modalShapeTitle">
+          <span id="modalShapeNum" class="shape-num">#002</span>
+          <span id="modalShapeName">Grid</span>
+        </h2>
+        <p id="modalShapeDesc">Universal modern 3.25rem square technical matrix.</p>
+      </div>
+      <button class="modal-close-btn" id="modalCloseBtn" title="Close preview (Esc)">✕</button>
+    </div>
+
+    <!-- Live 1:1 Elementor Section Simulation -->
+    <div class="modal-section-container">
+      <div class="modal-preview-stage" id="modalStage"></div>
+      
+      <!-- Live Foreground Elementor Hero Content -->
+      <div class="modal-hero-content">
+        <div class="modal-hero-badge">✦ WordPress Elementor Universal Fade</div>
+        <h1 class="modal-hero-title">Universal Design That Fits Every Website</h1>
+        <p class="modal-hero-sub">
+          Neutral, subtle graphite/slate lines and soft radial halos that sit quietly in the background without clashing with your brand palette, photography, or copy.
+        </p>
+        <div class="modal-hero-btns">
+          <a href="#" class="modal-primary-btn" onclick="return false;">Get Started</a>
+          <a href="#" class="modal-secondary-btn" onclick="return false;">View Documentation</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Controls & Code -->
+    <div class="modal-footer">
+      <div style="display: flex; flex-direction: column; gap: 0.35rem;">
+        <div class="modal-code-pill" id="modalClassCode">.bg-shape-grid</div>
+        <div style="font-size: 0.75rem; color: #64748b;" id="modalCopyTip">Elementor: Paste into Section &gt; Advanced &gt; CSS Classes</div>
+      </div>
+      <div class="modal-actions">
+        <!-- Modal Opacity Quick Buttons -->
+        <div class="modal-op-group" id="modalOpGroup">
+          <span style="font-size: 0.75rem; font-weight: 700; color: #64748b; margin-right: 0.2rem; margin-left: 0.2rem;">Opacity:</span>
+          <button class="modal-op-btn active" data-op="100">100%</button>
+          <button class="modal-op-btn" data-op="80">80%</button>
+          <button class="modal-op-btn" data-op="60">60%</button>
+          <button class="modal-op-btn" data-op="40">40%</button>
+          <button class="modal-op-btn" data-op="20">20%</button>
+          <button class="modal-op-btn" data-op="10">10%</button>
+        </div>
+
+        <button class="tool-btn" id="modalColorCycle" title="Test with neutral ash & smoke fade tones">
+          <span>🎨</span> <span id="modalColorText">Ash: Slate Ash (Default)</span>
+        </button>
+        <button class="tool-btn" id="modalCopyBtn" style="background: var(--btn-primary-bg); color: var(--btn-primary-text); font-weight: 700;">
+          <span>📋</span> <span>Copy Elementor Class</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast">Class name copied to clipboard!</div>
+
+<script>
+/* ==========================================================================
+   ORGANIZED SHAPES DATA (136 SHAPES)
+   Grouped sequentially by type:
+   1. Grids & Matrix (#001–#035) — 35 Shapes
+   2. 3D Floors & Perspective (#036–#056) — 21 Shapes
+   3. Isometric & Wireframes (#057–#088) — 32 Shapes
+   4. Circles & Rings (#089–#099) — 11 Shapes
+   5. Tech & Blueprints (#100–#120) — 21 Shapes
+   6. Glows & Blobs (#121–#132) — 12 Shapes
+   7. Hero Compositions (#133–#136) — 4 Shapes
+   ========================================================================== */
+
+const CATEGORY_NAMES = {
+  "grids": "Section 1: Grids, Matrices & Pinstripes",
+  "floors": "Section 2: 3D Floors & Perspective Planes",
+  "isometric": "Section 3: Isometric Cubes, Tiles & Wireframes",
+  "circles": "Section 4: Circles, Rings, Ovals & Radar",
+  "tech": "Section 5: Architectural Lines, Circuits & Blueprints",
+  "glows": "Section 6: Ambient Glows & Fluid Blobs",
+  "compositions": "Section 7: Hero Compositions & Watermarks"
+};
+
+const SHAPES_DATA = [
+  // ================= GROUP 1: GRIDS, MATRICES & PINSTRIPES (#001 – #035) =================
+  { num: "001", name: "None", cls: "bg-shape-none", cat: "grids", desc: "Clean reset container with relative positioning & isolated overflow.", best: "Base wrapper" },
+  { num: "002", name: "Grid", cls: "bg-shape-grid", cat: "grids", desc: "Universal modern 3.25rem square technical matrix.", best: "Hero & feature headers" },
+  { num: "003", name: "Large Grid", cls: "bg-shape-grid-large", cat: "grids", desc: "Spacious 6.25rem wide grid with generous negative space.", best: "Full-width hero banners" },
+  { num: "004", name: "Grid Fade", cls: "bg-shape-grid-fade", cat: "grids", desc: "Technical grid that fades gently to transparency at bottom.", best: "Section intro transitions" },
+  { num: "005", name: "Grid Sides", cls: "bg-shape-grid-sides", cat: "grids", desc: "Radial vignette grid focused in center, soft on edges.", best: "Centered CTA & pricing tables" },
+  { num: "006", name: "Grid Glow", cls: "bg-shape-grid-glow", cat: "grids", desc: "Grid illuminated by top ambient radial spotlight.", best: "Hero sections & headers" },
+  { num: "007", name: "Grid Top Right", cls: "bg-shape-grid-top-right", cat: "grids", desc: "Grid paired with prominent top-right radial glow aura.", best: "Hero headers with right visual" },
+  { num: "008", name: "Grid Top Left", cls: "bg-shape-grid-top-left", cat: "grids", desc: "Grid combined with top-left ambient illumination.", best: "Left-aligned title sections" },
+  { num: "009", name: "Grid Bottom Right", cls: "bg-shape-grid-bottom-right", cat: "grids", desc: "Grid with bottom-right corner glow flare.", best: "Bottom corner visual counterweight" },
+  { num: "010", name: "Grid Bottom Left", cls: "bg-shape-grid-bottom-left", cat: "grids", desc: "Grid with bottom-left corner ambient glow.", best: "Left-anchored content footers" },
+  { num: "011", name: "Grid Glow TR", cls: "bg-shape-grid-glow-tr", cat: "grids", desc: "Full section grid with soft top-right corner flare.", best: "Hero sections with right illustration" },
+  { num: "012", name: "Grid Glow Center", cls: "bg-shape-grid-glow-center", cat: "grids", desc: "Grid with soft center ambient light flare.", best: "Featured video / mockups" },
+  { num: "013", name: "Grid Glow Sides", cls: "bg-shape-grid-glow-sides", cat: "grids", desc: "Grid with lateral flanking glow orbs (left & right).", best: "Wide comparison tables" },
+  { num: "014", name: "Grid Frame", cls: "bg-shape-grid-frame", cat: "grids", desc: "Grid with inset technical frame & inner shadow.", best: "Testimonial quotes & dashboards" },
+  { num: "015", name: "Grid Diagonal", cls: "bg-shape-grid-diagonal", cat: "grids", desc: "Grid overlaid with 135deg diagonal light beam.", best: "Speed & performance stats" },
+  { num: "016", name: "Grid Wave", cls: "bg-shape-grid-wave", cat: "grids", desc: "Grid combined with radiating concentric wave ripples.", best: "Audio, wireless, or network tech" },
+  { num: "017", name: "Grid Radial TR", cls: "bg-shape-grid-radial-tr", cat: "grids", desc: "Grid combined with conic radar sunburst beams.", best: "High-energy feature launches" },
+  { num: "018", name: "Grid Rings TR", cls: "bg-shape-grid-rings-tr", cat: "grids", desc: "Grid paired with cascading top-right ripple rings.", best: "SaaS & tech product hero" },
+  { num: "019", name: "Grid Rings Center", cls: "bg-shape-grid-rings-center", cat: "grids", desc: "Grid with concentric center radar echo rings.", best: "Central focal point showcases" },
+  { num: "020", name: "Grid Circles", cls: "bg-shape-grid-circles", cat: "grids", desc: "Grid with multi-ring target ring formation.", best: "Security & target milestones" },
+  { num: "021", name: "Grid Squares TR", cls: "bg-shape-grid-squares-tr", cat: "grids", desc: "Grid with 25deg rotated square and echo shadows.", best: "App interface showcase" },
+  { num: "022", name: "Grid Orbit TR", cls: "bg-shape-grid-orbit-tr", cat: "grids", desc: "Grid layered with -35deg slanted orbital ring.", best: "Innovation & AI sections" },
+  { num: "023", name: "Grid Blob TR", cls: "bg-shape-grid-blob-tr", cat: "grids", desc: "High-tech grid combined with soft organic blob.", best: "Modern creative tech brands" },
+  { num: "024", name: "Grid Dots TR", cls: "bg-shape-grid-dots-tr", cat: "grids", desc: "Full grid with dense top-right dot cluster.", best: "Modern data analytics sections" },
+  { num: "025", name: "Grid Architecture", cls: "bg-shape-grid-architecture", cat: "grids", desc: "Grid paired with architectural precision line axes.", best: "Architecture & engineering" },
+  { num: "026", name: "Rings Grid", cls: "bgx-rings-grid", cat: "grids", desc: "Concentric ripple radar overlaid on metric grid.", best: "Geospatial, GPS, radar tech" },
+  { num: "027", name: "Corner Frame Grid", cls: "bgx-corner-frame-grid", cat: "grids", desc: "Corner metric grid with rotated double-border.", best: "Header badge backdrop" },
+  { num: "028", name: "Dots", cls: "bg-shape-dots", cat: "grids", desc: "Clean 1.5rem polka matrix with subtle 1px dot accents.", best: "Testimonials & card grids" },
+  { num: "029", name: "Dots Fade", cls: "bg-shape-dots-fade", cat: "grids", desc: "Dots matrix fading out smoothly toward bottom edge.", best: "Stats & metrics sections" },
+  { num: "030", name: "Large Dots", cls: "bg-shape-dots-large", cat: "grids", desc: "Bolder 2.75rem spaced matrix with prominent 2px dots.", best: "Creative portfolios & headers" },
+  { num: "031", name: "Vertical Bars", cls: "bg-shape-bars-v", cat: "grids", desc: "Clean vertical pinstripes repeating every 7rem.", best: "Modern sleek columns" },
+  { num: "032", name: "Horizontal Bars", cls: "bg-shape-bars-h", cat: "grids", desc: "Horizontal ledger lines spaced at 6rem intervals.", best: "Row-based feature lists" },
+  { num: "033", name: "Stripes", cls: "bg-shape-stripes", cat: "grids", desc: "Dynamic -18deg slanted technical stripes.", best: "Action-oriented CTA banners" },
+  { num: "034", name: "Diagonal Boxes", cls: "bg-shape-diagonal-boxes", cat: "grids", desc: "Slanted repeating structural bands at 45deg.", best: "Fast-paced corporate sections" },
+  { num: "035", name: "Diamond Lattice", cls: "bgx-diamond-lattice", cat: "grids", desc: "High-density 45-degree diamond lattice net.", best: "Clean architectural texture" },
+
+  // ================= GROUP 2: 3D FLOORS & PERSPECTIVE PLANES (#036 – #056) =================
+  { num: "036", name: "Grid Perspective", cls: "bg-shape-grid-perspective", cat: "floors", desc: "Two-plane 3D receding perspective ground floor.", best: "Futuristic hero stages" },
+  { num: "037", name: "Boxes Lying", cls: "bg-shape-boxes-lying", cat: "floors", desc: "3D angled floor grid with outlined isometric floating tile.", best: "Hero banner with 3D product" },
+  { num: "038", name: "Diamond Floor", cls: "bg-shape-diamond-floor", cat: "floors", desc: "Perspective diamond checkered floor (rotateX 48deg).", best: "SaaS hero platform" },
+  { num: "039", name: "Perspective Steps", cls: "bg-shape-perspective-steps", cat: "floors", desc: "Terraced perspective steps receding into background.", best: "Step-by-step onboarding" },
+  { num: "040", name: "Hex Floor", cls: "bg-shape-hex-floor", cat: "floors", desc: "Perspective honeycomb hexagonal floor grid.", best: "Web3, gaming & biotech" },
+  { num: "041", name: "Grid Platform", cls: "bg-shape-grid-platform", cat: "floors", desc: "Floating 3D perspective stage with perimeter border.", best: "Product or laptop mockup stage" },
+  { num: "042", name: "3D Lattice", cls: "bg-shape-3d-lattice", cat: "floors", desc: "Space-frame perspective triangular lattice grid.", best: "Space, aerospace, and robotics" },
+  { num: "043", name: "Isometric Floor", cls: "bg-shape-isometric-floor", cat: "floors", desc: "Ultra-dense fine isometric ground grid.", best: "Virtual worlds & tech stages" },
+  { num: "044", name: "Floor Wide", cls: "bgx-floor-wide", cat: "floors", desc: "Wide 3D perspective grid floor receding into distance.", best: "Hero banners & product stages" },
+  { num: "045", name: "Floor Dense", cls: "bgx-floor-dense", cat: "floors", desc: "High-density 22px perspective ground plane mesh.", best: "Fintech & mathematical products" },
+  { num: "046", name: "Floor Giant", cls: "bgx-floor-giant", cat: "floors", desc: "Massive 90px architectural floor tiles in perspective.", best: "Bold spacious modern layouts" },
+  { num: "047", name: "Floor Diagonal", cls: "bgx-floor-diagonal", cat: "floors", desc: "Diagonal cross-hatched perspective ground floor.", best: "Dynamic perspective staging" },
+  { num: "048", name: "Floor Double", cls: "bgx-floor-double", cat: "floors", desc: "Dual opposing 3D perspective floors (top & bottom).", best: "Full-viewport hero wrap" },
+  { num: "049", name: "Floor Boxes", cls: "bgx-floor-boxes", cat: "floors", desc: "Stepped isometric platform with 3D drop shelves.", best: "E-commerce or tier pricing" },
+  { num: "050", name: "Floor Tracks", cls: "bgx-floor-tracks", cat: "floors", desc: "Parallel perspective directional tracks / runways.", best: "Logistics, transport, & velocity" },
+  { num: "051", name: "Floor Offset", cls: "bgx-floor-offset", cat: "floors", desc: "Staggered shifted perspective tile pattern.", best: "Complex data architecture" },
+  { num: "052", name: "Floor Fade", cls: "bgx-floor-fade", cat: "floors", desc: "Perspective floor fading gracefully towards content.", best: "Seamless readability under text" },
+  { num: "053", name: "Floor Corner", cls: "bgx-floor-corner", cat: "floors", desc: "Corner-anchored steep perspective grid mesh.", best: "Top-right corner visual anchor" },
+  { num: "054", name: "Diamond Floor (BGX)", cls: "bgx-diamond-floor", cat: "floors", desc: "56px diamond tilted perspective ground plane.", best: "Spacious product showcase" },
+  { num: "055", name: "Floor Architecture", cls: "bgx-floor-architecture", cat: "floors", desc: "3D perspective floor with floating structural frame.", best: "Virtual showroom & 3D space" },
+  { num: "056", name: "Grid Cubes", cls: "bgx-grid-cubes", cat: "floors", desc: "Perspective floor supporting floating cube outlines.", best: "Cloud storage & 3D modules" },
+
+  // ================= GROUP 3: ISOMETRIC CUBES, TILES & WIREFRAMES (#057 – #088) =================
+  { num: "057", name: "Squares", cls: "bg-shape-squares", cat: "isometric", desc: "Dual angled outline squares framing top-left & bottom-right.", best: "Split text/media sections" },
+  { num: "058", name: "Floating Squares", cls: "bg-shape-squares-float", cat: "isometric", desc: "Two angled floating squares suspended in background.", best: "Feature cards & highlights" },
+  { num: "059", name: "Squares TR", cls: "bg-shape-squares-tr", cat: "isometric", desc: "Layered rotated square with double echo shadows.", best: "App badge or metric frame" },
+  { num: "060", name: "Corner Geometry", cls: "bg-shape-corner-geometry", cat: "isometric", desc: "45-degree diamond corner badge with echo rings.", best: "Corner architectural accent" },
+  { num: "061", name: "Iso Cubes", cls: "bg-shape-iso-cubes", cat: "isometric", desc: "Three-dimensional isometric cubic matrix field.", best: "Blockchain & 3D architecture" },
+  { num: "062", name: "Tile Stack", cls: "bg-shape-tile-stack", cat: "isometric", desc: "3D skewed stacked tiles descending in space.", best: "Layers, stacks, or database features" },
+  { num: "063", name: "Wireframe", cls: "bg-shape-wireframe", cat: "isometric", desc: "True 3D wireframe cuboid with realistic isometric depth.", best: "CAD, BIM, & product design" },
+  { num: "064", name: "Floating Tiles", cls: "bg-shape-floating-tiles", cat: "isometric", desc: "Scattered 45-degree diamond tiles floating in depth.", best: "Feature grid highlights" },
+  { num: "065", name: "Box Cluster", cls: "bg-shape-box-cluster", cat: "isometric", desc: "Multi-depth skewed isometric box constellation.", best: "Enterprise cloud infrastructure" },
+  { num: "066", name: "Cube Corners", cls: "bg-shape-cube-corners", cat: "isometric", desc: "Dual diagonal isometric corner cube wireframes.", best: "Framed technical showcase" },
+  { num: "067", name: "Layered Frames", cls: "bg-shape-layered-frames", cat: "isometric", desc: "Quadruple cascading angled wireframes with shadow.", best: "Multi-tier pricing or tiers" },
+  { num: "068", name: "Tilted Squares", cls: "bg-shape-tilted-squares", cat: "isometric", desc: "Cross-hatched 45-degree diamond module.", best: "Geometric brand accent" },
+  { num: "069", name: "Outline Blocks", cls: "bg-shape-outline-blocks", cat: "isometric", desc: "Ascending stepped isometric block towers.", best: "Growth, metrics & analytics" },
+  { num: "070", name: "Geometric Corner", cls: "bg-shape-geometric-corner", cat: "isometric", desc: "Concentric 45-degree diamond corner target.", best: "Section corner decoration" },
+  { num: "071", name: "Box Nested", cls: "bgx-box-nested", cat: "isometric", desc: "4-tier cascading nested wireframe boxes.", best: "Packaging, modules, containers" },
+  { num: "072", name: "Box Offset", cls: "bgx-box-offset", cat: "isometric", desc: "Upward-staggered isometric box outlines.", best: "Continuous deployment / pipelines" },
+  { num: "073", name: "Tile Stack (BGX)", cls: "bgx-tile-stack", cat: "isometric", desc: "Diagonal 45-degree stacked floating diamonds.", best: "Multi-layered technology stacks" },
+  { num: "074", name: "Blocks Long", cls: "bgx-blocks-long", cat: "isometric", desc: "Long horizontal isometric slabs / architectural beams.", best: "Horizontal timeline & roadmap" },
+  { num: "075", name: "Box Cluster (BGX)", cls: "bgx-box-cluster", cat: "isometric", desc: "Quad diamond constellation cluster.", best: "Microservices & network nodes" },
+  { num: "076", name: "Tile Outline", cls: "bgx-tile-outline", cat: "isometric", desc: "Broad slanted isometric surface tile with echo.", best: "Dashboard cards" },
+  { num: "077", name: "Panels Double", cls: "bgx-panels-double", cat: "isometric", desc: "Dual staggered isometric structural panels.", best: "Before/after comparisons" },
+  { num: "078", name: "Box Corner", cls: "bgx-box-corner", cat: "isometric", desc: "Multi-ring concentric diamond corner accent.", best: "Corner badge accent" },
+  { num: "079", name: "Diamond Stack", cls: "bgx-diamond-stack", cat: "isometric", desc: "Cascading triple diamond staircase.", best: "Tiered progression & benefits" },
+  { num: "080", name: "Frames Long", cls: "bgx-frames-long", cat: "isometric", desc: "Triple cascading long wide wireframes.", best: "Wide feature showcase" },
+  { num: "081", name: "Iso Mesh", cls: "bgx-iso-mesh", cat: "isometric", desc: "30/150-degree angled 3D isometric diamond net.", best: "High-tech computation hero" },
+  { num: "082", name: "Cube Grid", cls: "bgx-cube-grid", cat: "isometric", desc: "True 3-axis isometric cube matrix field.", best: "Modular software platforms" },
+  { num: "083", name: "Cube Cluster", cls: "bgx-cube-cluster", cat: "isometric", desc: "Ascending stepped 3D cube wireframe cluster.", best: "Growth & milestone tracking" },
+  { num: "084", name: "Iso Blocks", cls: "bgx-iso-blocks", cat: "isometric", desc: "Isometric block with gradient fill & shadow outlines.", best: "Hardware & server infrastructure" },
+  { num: "085", name: "Iso Corner", cls: "bgx-iso-corner", cat: "isometric", desc: "Deep perspective isometric corner web.", best: "Dramatic corner anchor" },
+  { num: "086", name: "Cubes Interlock", cls: "bgx-cubes-interlock", cat: "isometric", desc: "Interlocking orthogonal cube trio.", best: "Integrations & API connectivity" },
+  { num: "087", name: "Box Diamond", cls: "bgx-box-diamond", cat: "isometric", desc: "Dual overlapping geometry (rotated diamond + skewed box).", best: "Creative tech collaboration" },
+  { num: "088", name: "Abstract Layers", cls: "bgx-abstract-layers", cat: "isometric", desc: "Multi-tier structural frame with diamond inset.", best: "Executive summary sections" },
+
+  // ================= GROUP 4: CIRCLES, RINGS, OVALS & RADAR (#089 – #099) =================
+  { num: "089", name: "Circle", cls: "bg-shape-circle", cat: "circles", desc: "Giant 43rem outlined circle anchoring top-right corner.", best: "Hero headers with image left" },
+  { num: "090", name: "Half Circle", cls: "bg-shape-half-circle", cat: "circles", desc: "Massive 42rem dome rising up from bottom edge.", best: "Bottom CTAs & footers" },
+  { num: "091", name: "Rings", cls: "bg-shape-rings", cat: "circles", desc: "Dual concentric outlined rings in top-right quadrant.", best: "Hero right-hand visual anchor" },
+  { num: "092", name: "Concentric", cls: "bg-shape-concentric", cat: "circles", desc: "Centered dual concentric target circles.", best: "Centered badges & hero headers" },
+  { num: "093", name: "Oval", cls: "bg-shape-oval", cat: "circles", desc: "Tilted 44rem x 18rem elliptical orbital ring.", best: "Abstract corporate sections" },
+  { num: "094", name: "Rings TR", cls: "bg-shape-rings-tr", cat: "circles", desc: "Four-tier cascading ripple waves without grid.", best: "Minimalist ripple effect" },
+  { num: "095", name: "Orbit TR", cls: "bg-shape-orbit-tr", cat: "circles", desc: "Dual cross-intersecting 35deg orbital rings.", best: "Atomic / orbital themes" },
+  { num: "096", name: "Radial TR", cls: "bg-shape-radial-tr", cat: "circles", desc: "Conic radar sunburst light rays.", best: "Radar / telemetry sections" },
+  { num: "097", name: "Glow Rings", cls: "bg-shape-glow-rings", cat: "circles", desc: "Ambient glow orb cradling concentric wire rings.", best: "Modern tech hero" },
+  { num: "098", name: "Glow Orbit", cls: "bg-shape-glow-orbit", cat: "circles", desc: "Radial glow flare intersected by tilted orbit ring.", best: "Product preview backdrop" },
+  { num: "099", name: "Tech Corner", cls: "bgx-tech-corner", cat: "circles", desc: "Heavy concentric high-tech corner radar.", best: "Command centers & dashboards" },
+
+  // ================= GROUP 5: ARCHITECTURAL LINES, CIRCUITS & BLUEPRINTS (#100 – #120) =================
+  { num: "100", name: "Lines", cls: "bg-shape-lines", cat: "tech", desc: "Architectural cross-section alignment guidelines.", best: "Case studies & timelines" },
+  { num: "101", name: "Architecture", cls: "bg-shape-architecture", cat: "tech", desc: "Structural framing lines positioned at 20%/80%.", best: "Engineering & architectural brands" },
+  { num: "102", name: "Cross", cls: "bg-shape-cross", cat: "tech", desc: "Crosshair intersecting lines through center of section.", best: "Centered product showcase" },
+  { num: "103", name: "Plus", cls: "bg-shape-plus", cat: "tech", desc: "Refined 40% sized plus crosshair target marker.", best: "Precision tech & metrics" },
+  { num: "104", name: "Frame", cls: "bg-shape-frame", cat: "tech", desc: "Inset 3.75rem perimeter border framing content.", best: "VIP announcements & cards" },
+  { num: "105", name: "Diagonal Line", cls: "bg-shape-diagonal-line", cat: "tech", desc: "Subtle -7deg slanted dividing rule traversing section.", best: "Section dividers & quotes" },
+  { num: "106", name: "Angled Panels", cls: "bg-shape-angled-panels", cat: "tech", desc: "Slanted architectural shearing facade louvers.", best: "Modern architectural headers" },
+  { num: "107", name: "Tech Panels", cls: "bg-shape-tech-panels", cat: "tech", desc: "Matrix grid technical blueprint panels.", best: "Developer documentation & API" },
+  { num: "108", name: "Abstract Architecture", cls: "bg-shape-abstract-architecture", cat: "tech", desc: "Cantilevered stepped architectural skyline frame.", best: "Construction & real estate" },
+  { num: "109", name: "Hex Grid", cls: "bgx-hex-grid", cat: "tech", desc: "Hexagonal honeycomb structural grid.", best: "Security & biological sciences" },
+  { num: "110", name: "Hex Corner", cls: "bgx-hex-corner", cat: "tech", desc: "Concentric hexagonal corner shield.", best: "Cybersecurity & defense" },
+  { num: "111", name: "Architecture Lines", cls: "bgx-architecture-lines", cat: "tech", desc: "Skewed large architectural grid matrix (68px).", best: "Civil engineering & city plans" },
+  { num: "112", name: "Architecture Frame", cls: "bgx-architecture-frame", cat: "tech", desc: "Architectural structural frame with triple echo.", best: "Framing headlines & awards" },
+  { num: "113", name: "Circuit", cls: "bgx-circuit", cat: "tech", desc: "Circuit board grid with solder node dots.", best: "Semiconductors & IoT devices" },
+  { num: "114", name: "Tech Grid", cls: "bgx-tech-grid", cat: "tech", desc: "Angled engineering tech grid panels.", best: "Cloud DevOps & servers" },
+  { num: "115", name: "Stairs", cls: "bgx-stairs", cat: "tech", desc: "Stepped architectural cantilevered escalator.", best: "Customer journey / career path" },
+  { num: "116", name: "Parallel Architecture", cls: "bgx-parallel-architecture", cat: "tech", desc: "Slanted multi-rib architectural louvers.", best: "Automotive & high-end design" },
+  { num: "117", name: "Blueprint", cls: "bgx-blueprint", cat: "tech", desc: "Fine 18px engineering blueprint millimeter grid.", best: "Precision manufacturing & specs" },
+  { num: "118", name: "Slanted Panels", cls: "bgx-slanted-panels", cat: "tech", desc: "Sheared diagonal facade louvers (44px).", best: "Modern architectural headers" },
+  { num: "119", name: "Blueprint Frames", cls: "bgx-blueprint-frames", cat: "tech", desc: "Blueprint grid within cascading isometric frames.", best: "Technical case studies" },
+  { num: "120", name: "Split Corner", cls: "bgx-split-corner", cat: "tech", desc: "Diagonal cut glass panel with floating isometric tile.", best: "Modern asymmetric split layout" },
+
+  // ================= GROUP 6: AMBIENT GLOWS & FLUID BLOBS (#121 – #132) =================
+  { num: "121", name: "Glow", cls: "bg-shape-glow", cat: "glows", desc: "Ambient center-top radial neutral luminescence.", best: "Hero headers & badges" },
+  { num: "122", name: "Top Glow", cls: "bg-shape-top-glow", cat: "glows", desc: "Soft elliptical wash pouring from section top edge.", best: "Section header illumination" },
+  { num: "123", name: "Corner Glow", cls: "bg-shape-corner-glow", cat: "glows", desc: "Dual corner ambient glow flares (TR & BL).", best: "Diagonal eye movement" },
+  { num: "124", name: "Center Glow", cls: "bg-shape-fade-center", cat: "glows", desc: "Radial bloom spotlighting central content block.", best: "Pricing cards & app previews" },
+  { num: "125", name: "Soft Circle", cls: "bg-shape-blur-circle", cat: "glows", desc: "Heavily blurred 28rem orb with 4rem gaussian blur.", best: "Organic atmosphere & cards" },
+  { num: "126", name: "Diagonal", cls: "bg-shape-diagonal", cat: "glows", desc: "Angled translucent gradient ribbon across top.", best: "Dynamic section transitions" },
+  { num: "127", name: "Blob", cls: "bg-shape-blob", cat: "glows", desc: "Organic morphic fluid blob shape.", best: "Creative & agency portfolios" },
+  { num: "128", name: "Fade", cls: "bg-shape-fade", cat: "glows", desc: "Smooth top-to-bottom shading wash.", best: "Seamless section blending" },
+  { num: "129", name: "Side Fade", cls: "bg-shape-fade-side", cat: "glows", desc: "Gentle left-to-right horizontal shading veil.", best: "Two-column split sections" },
+  { num: "130", name: "Blob TR", cls: "bg-shape-blob-tr", cat: "glows", desc: "Standalone fluid gradient blob in top right.", best: "Soft modern branding" },
+  { num: "131", name: "Glow Corners", cls: "bg-shape-glow-corners", cat: "glows", desc: "Opposing diagonal ambient glow flares.", best: "Clean balance across section" },
+  { num: "132", name: "Glow Blob", cls: "bg-shape-glow-blob", cat: "glows", desc: "Radial aura combined with fluid organic blob.", best: "Friendly fintech & SaaS" },
+
+  // ================= GROUP 7: HERO COMPOSITIONS & WATERMARKS (#133 – #136) =================
+  { num: "133", name: "Outline Text", cls: "bg-shape-text", cat: "compositions", desc: "Massive stroke-outlined watermark typography.", best: "Hero watermark brand text" },
+  { num: "134", name: "Glow Tile", cls: "bgx-glow-tile", cat: "compositions", desc: "Radial ambient halo combined with rotated 45deg tile.", best: "App icon backdrop" },
+  { num: "135", name: "Diamond Glow", cls: "bgx-diamond-glow", cat: "compositions", desc: "Perspective diamond floor with ambient soft halo.", best: "SaaS hero banner center" },
+  { num: "136", name: "Signature Hero", cls: "bgx-signature", cat: "compositions", desc: "Signature hero: perspective ground grid + 3-layer shield.", best: "Ultimate flagship hero section" }
+];
+
+const shapesGrid = document.getElementById("shapesGrid");
+const searchInput = document.getElementById("searchInput");
+const filterBtns = document.querySelectorAll(".filter-btn");
+const resultsCount = document.getElementById("resultsCount");
+const toast = document.getElementById("toast");
+const boostToggle = document.getElementById("boostToggle");
+const boostText = document.getElementById("boostText");
+const ashColorToggle = document.getElementById("ashColorToggle");
+const ashColorText = document.getElementById("ashColorText");
+const activeOpClassBadge = document.getElementById("activeOpClassBadge");
+const activeOpClassText = document.getElementById("activeOpClassText");
+const globalOpButtons = document.querySelectorAll("#globalOpOptions .op-btn");
+
+// Modal elements
+const previewModal = document.getElementById("previewModal");
+const modalCloseBtn = document.getElementById("modalCloseBtn");
+const modalStage = document.getElementById("modalStage");
+const modalShapeNum = document.getElementById("modalShapeNum");
+const modalShapeName = document.getElementById("modalShapeName");
+const modalShapeDesc = document.getElementById("modalShapeDesc");
+const modalClassCode = document.getElementById("modalClassCode");
+const modalCopyBtn = document.getElementById("modalCopyBtn");
+const modalColorCycle = document.getElementById("modalColorCycle");
+const modalColorText = document.getElementById("modalColorText");
+const modalOpButtons = document.querySelectorAll("#modalOpGroup .modal-op-btn");
+
+let activeFilter = "all";
+let searchTerm = "";
+let currentActiveShape = null;
+let currentOpacity = 100; // Default: 100%
+
+// Universal Neutral Ash & Smoke Tone Presets
+const ASH_PRESETS = [
+  { name: "Slate Ash (Default)", val: "100, 116, 139", hex: "#64748b", cls: "bg-shape-ash" },
+  { name: "Pure Smoke (Zero Hue)", val: "115, 115, 115", hex: "#737373", cls: "bg-shape-smoke" },
+  { name: "Soft Silver Ash", val: "148, 163, 184", hex: "#94a3b8", cls: "bg-shape-silver" },
+  { name: "Deep Charcoal Ash", val: "55, 65, 81", hex: "#374151", cls: "bg-shape-charcoal" },
+  { name: "Architectural Graphite", val: "71, 85, 105", hex: "#475569", cls: "bg-shape-graphite" },
+  { name: "Neutral Zinc Ash", val: "113, 113, 122", hex: "#71717a", cls: "bg-shape-zinc" },
+  { name: "Warm Stone Ash", val: "120, 113, 108", hex: "#78716c", cls: "bg-shape-stone" }
+];
+let currentAshIndex = 0;
+
+function setShapeOpacity(percent, source = "user") {
+  currentOpacity = percent;
+  
+  // Update CSS custom property on root so all shapes render with this opacity
+  const dec = percent / 100;
+  document.documentElement.style.setProperty("--bg-shape-opacity", dec.toString());
+
+  // Update global buttons active state
+  globalOpButtons.forEach(btn => {
+    btn.classList.toggle("active", parseInt(btn.dataset.opacity) === percent);
+  });
+
+  // Update modal buttons active state
+  modalOpButtons.forEach(btn => {
+    btn.classList.toggle("active", parseInt(btn.dataset.op) === percent);
+  });
+
+  // Update opacity class badge text
+  const opCls = percent === 100 ? ".bg-shape-opacity-100" : `.bg-shape-opacity-${percent}`;
+  if (activeOpClassText) {
+    activeOpClassText.textContent = opCls;
+  }
+
+  // If modal is open, update modal stage and code pill
+  if (currentActiveShape) {
+    updateModalDisplay();
+  }
+
+  // Update visible copy button labels on all rendered cards
+  document.querySelectorAll(".shape-card").forEach(card => {
+    const cls = card.dataset.shapeClass;
+    if (cls) {
+      const copySpan = card.querySelector(".copy-cls-text");
+      if (copySpan) {
+        copySpan.textContent = percent === 100 ? `.${cls}` : `.${cls} .bg-shape-opacity-${percent}`;
+      }
+    }
+  });
+
+  if (source !== "init") {
+    showToast(`Opacity set to ${percent}% (${opCls})`);
+  }
+}
+
+function renderShapes() {
+  const filtered = SHAPES_DATA.filter(s => {
+    const matchesFilter = (activeFilter === "all") || (s.cat === activeFilter);
+    const matchesSearch = !searchTerm || 
+      s.name.toLowerCase().includes(searchTerm) || 
+      s.cls.toLowerCase().includes(searchTerm) || 
+      s.desc.toLowerCase().includes(searchTerm) ||
+      s.best.toLowerCase().includes(searchTerm);
+    return matchesFilter && matchesSearch;
+  });
+
+  resultsCount.textContent = `Showing ${filtered.length} of ${SHAPES_DATA.length} shapes`;
+
+  let html = "";
+  let lastCategory = null;
+
+  filtered.forEach(s => {
+    // In "All" view without active search, render category section dividers
+    if (activeFilter === "all" && !searchTerm && s.cat !== lastCategory) {
+      lastCategory = s.cat;
+      const countInCat = SHAPES_DATA.filter(item => item.cat === s.cat).length;
+      html += `
+        <div class="category-divider">
+          <h2>${CATEGORY_NAMES[s.cat] || s.cat.toUpperCase()}</h2>
+          <span class="cat-count-badge">${countInCat} Shapes</span>
+        </div>
+      `;
+    }
+
+    const opLabel = currentOpacity === 100 
+      ? `.${s.cls}` 
+      : `.${s.cls} .bg-shape-opacity-${currentOpacity}`;
+
+    html += `
+      <div class="shape-card" data-shape-class="${s.cls}">
+        <div class="preview-canvas ${s.cls}" onclick="openModal('${s.cls}')" title="Click to open full 100% desktop preview">
+          <span class="watermark-tag">🔍 Live Render</span>
+          <span class="expand-hint">Expand Section ↗</span>
+        </div>
+
+        <div class="card-body">
+          <div class="card-header-row">
+            <span class="shape-num">#${s.num}</span>
+            <span class="category-tag">${s.cat}</span>
+          </div>
+          <h3 class="shape-title">${s.name}</h3>
+          <p class="shape-desc">${s.desc}</p>
+          
+          <div class="action-row">
+            <button class="copy-btn" onclick="copyCardClass('${s.cls}', this)" title="Click to copy class name for Elementor">
+              <span class="copy-cls-text">${opLabel}</span>
+              <span>📋</span>
+            </button>
+            <button class="preview-modal-btn" onclick="openModal('${s.cls}')" title="Open 100% full section preview">
+              <span>Expand</span>
+            </button>
+          </div>
+
+          <div class="elementor-tip">
+            <strong>Best for:</strong> ${s.best}
+          </div>
+        </div>
+      </div>
+    `;
+  });
+
+  shapesGrid.innerHTML = html;
+}
+
+function openModal(className) {
+  const shape = SHAPES_DATA.find(s => s.cls === className);
+  if (!shape) return;
+  currentActiveShape = shape;
+
+  modalShapeNum.textContent = `#${shape.num}`;
+  modalShapeName.textContent = shape.name;
+  modalShapeDesc.textContent = `${shape.desc} (Best suited for: ${shape.best})`;
+  
+  updateModalDisplay();
+
+  previewModal.classList.add("open");
+}
+
+function updateModalDisplay() {
+  if (!currentActiveShape) return;
+  const opCls = currentOpacity === 100 ? "" : ` bg-shape-opacity-${currentOpacity}`;
+  modalStage.className = `modal-preview-stage ${currentActiveShape.cls}${opCls}`;
+  
+  if (currentOpacity === 100) {
+    modalClassCode.textContent = `.${currentActiveShape.cls}`;
+  } else {
+    modalClassCode.textContent = `.${currentActiveShape.cls} .bg-shape-opacity-${currentOpacity}`;
+  }
+}
+
+function closeModal() {
+  previewModal.classList.remove("open");
+}
+
+modalCloseBtn.addEventListener("click", closeModal);
+previewModal.addEventListener("click", (e) => {
+  if (e.target === previewModal) closeModal();
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && previewModal.classList.contains("open")) {
+    closeModal();
+  }
+});
+
+function copyCardClass(shapeCls, btn) {
+  const classToCopy = currentOpacity === 100 
+    ? shapeCls 
+    : `${shapeCls} bg-shape-opacity-${currentOpacity}`;
+  copyTextToClipboard(classToCopy, btn, `Copied: ${classToCopy}`);
+}
+
+modalCopyBtn.addEventListener("click", () => {
+  if (currentActiveShape) {
+    const classToCopy = currentOpacity === 100 
+      ? currentActiveShape.cls 
+      : `${currentActiveShape.cls} bg-shape-opacity-${currentOpacity}`;
+    copyTextToClipboard(classToCopy, modalCopyBtn, `Copied: ${classToCopy}`);
+  }
+});
+
+if (activeOpClassBadge) {
+  activeOpClassBadge.addEventListener("click", () => {
+    const opCls = currentOpacity === 100 ? "bg-shape-opacity-100" : `bg-shape-opacity-${currentOpacity}`;
+    navigator.clipboard.writeText(opCls).then(() => {
+      showToast(`Copied .${opCls} to clipboard!`);
+    });
+  });
+}
+
+function cycleAshTone() {
+  currentAshIndex = (currentAshIndex + 1) % ASH_PRESETS.length;
+  const col = ASH_PRESETS[currentAshIndex];
+  document.documentElement.style.setProperty("--bg-shape-color", col.val);
+  
+  const label = `Ash: ${col.name}`;
+  if (ashColorText) ashColorText.textContent = label;
+  if (modalColorText) modalColorText.textContent = label;
+  
+  showToast(`Switched shape tone to ${col.name}!`);
+}
+
+if (ashColorToggle) {
+  ashColorToggle.addEventListener("click", cycleAshTone);
+}
+if (modalColorCycle) {
+  modalColorCycle.addEventListener("click", cycleAshTone);
+}
+
+// Opacity button event listeners
+globalOpButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const op = parseInt(btn.dataset.opacity, 10);
+    setShapeOpacity(op);
+  });
+});
+
+modalOpButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const op = parseInt(btn.dataset.op, 10);
+    setShapeOpacity(op);
+  });
+});
+
+function copyTextToClipboard(text, btn, toastMsg) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.classList.add("copied");
+    const origHtml = btn.innerHTML;
+    btn.innerHTML = `<span>Copied: ${text}</span> <span>✓</span>`;
+    showToast(toastMsg || `Copied ${text} to clipboard!`);
+    setTimeout(() => {
+      btn.classList.remove("copied");
+      btn.innerHTML = origHtml;
+    }, 2000);
+  });
+}
+
+function showToast(msg) {
+  toast.textContent = msg;
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 2500);
+}
+
+searchInput.addEventListener("input", (e) => {
+  searchTerm = e.target.value.toLowerCase().trim();
+  renderShapes();
+});
+
+filterBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+    filterBtns.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    activeFilter = btn.dataset.filter;
+    renderShapes();
+  });
+});
+
+// Glow contrast boost toggle
+let boostLevel = 1;
+boostToggle.addEventListener("click", () => {
+  boostLevel = (boostLevel % 3) + 1;
+  document.body.setAttribute("data-boost", boostLevel.toString());
+  if (boostLevel === 1) {
+    boostText.textContent = "Fade: Normal (1x)";
+  } else if (boostLevel === 2) {
+    boostText.textContent = "Fade: Enhanced (1.5x)";
+  } else {
+    boostText.textContent = "Fade: High Contrast (2.4x)";
+  }
+  showToast(`Contrast Mode: ${boostText.textContent}`);
+});
+
+// Initial Setup
+setShapeOpacity(100, "init");
+renderShapes();
+</script>
+
+</body>
+</html>
