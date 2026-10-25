@@ -14,6 +14,8 @@ const globalAnimButtons = document.querySelectorAll("#globalAnimOptions .anim-bt
 const activeAnimClassBadge = document.getElementById("activeAnimClassBadge");
 const activeAnimClassText = document.getElementById("activeAnimClassText");
 const modalAnimButtons = document.querySelectorAll("#modalAnimGroup .modal-anim-btn");
+const smartMotionToggle = document.getElementById("smartMotionToggle");
+const speedButtons = document.querySelectorAll("#speedOptions .speed-btn");
 
 // Modal elements
 const previewModal = document.getElementById("previewModal");
@@ -41,6 +43,8 @@ let searchTerm = "";
 let currentActiveShape = null;
 let currentOpacity = 100; // Default: 100%
 let currentAnimation = "none"; // Default: None (Static)
+let isSmartMotionActive = false;
+let currentSpeed = "normal"; // "slow", "normal", "fast"
 let currentFilteredShapes = [...SHAPES_DATA];
 
 // Universal Neutral Ash & Smoke Tone Presets
@@ -55,36 +59,107 @@ const ASH_PRESETS = [
 ];
 let currentAshIndex = 0;
 
-function getActiveShapeClasses(shapeCls) {
+const CATEGORY_SMART_MOTION = {
+  "grids": "bg-shape-anim-drift",
+  "floors": "bg-shape-anim-tilt",
+  "isometric": "bg-shape-anim-float",
+  "circles": "bg-shape-anim-spin",
+  "tech": "bg-shape-anim-shimmer",
+  "glows": "bg-shape-anim-pulse",
+  "compositions": "bg-shape-anim-breathe",
+  "doodles": "bg-shape-anim-doodle-sway",
+  "waves": "bg-shape-anim-wave",
+  "circuits": "bg-shape-anim-glitch",
+  "hud": "bg-shape-anim-radar",
+  "geometry": "bg-shape-anim-spin-reverse",
+  "gaming": "bg-shape-anim-conveyor",
+  "organic": "bg-shape-anim-wobble",
+  "data": "bg-shape-anim-pulse",
+  "business": "bg-shape-anim-float",
+  "motion": ""
+};
+
+const ALL_ANIMATION_CLASSES = [
+  "bg-shape-anim-float", "bg-shape-anim-drift", "bg-shape-anim-pan",
+  "bg-shape-anim-spin", "bg-shape-anim-spin-reverse", "bg-shape-anim-rotate",
+  "bg-shape-anim-pulse", "bg-shape-anim-wave", "bg-shape-anim-tilt",
+  "bg-shape-anim-shimmer", "bg-shape-anim-doodle-sway", "bg-shape-anim-radar",
+  "bg-shape-anim-scan", "bg-shape-anim-glitch", "bg-shape-anim-bounce",
+  "bg-shape-anim-breathe", "bg-shape-anim-wobble", "bg-shape-anim-flash",
+  "bg-shape-anim-conveyor", "bg-shape-anim-vortex"
+];
+
+function getShapeMotionClass(shapeCat = "") {
+  if (isSmartMotionActive) {
+    return CATEGORY_SMART_MOTION[shapeCat] || "";
+  }
+  return currentAnimation !== "none" ? currentAnimation : "";
+}
+
+function getActiveShapeClasses(shapeCls, shapeCat = "") {
   let parts = [shapeCls];
   if (currentOpacity !== 100) {
     parts.push(`bg-shape-opacity-${currentOpacity}`);
   }
-  if (currentAnimation !== "none") {
-    parts.push(currentAnimation);
+  const motion = getShapeMotionClass(shapeCat);
+  if (motion) {
+    parts.push(motion);
   }
   return parts.join(" ");
 }
 
-function getActiveShapeLabel(shapeCls) {
+function getActiveShapeLabel(shapeCls, shapeCat = "") {
   let parts = [`.${shapeCls}`];
   if (currentOpacity !== 100) {
     parts.push(`.bg-shape-opacity-${currentOpacity}`);
   }
-  if (currentAnimation !== "none") {
-    parts.push(`.${currentAnimation}`);
+  const motion = getShapeMotionClass(shapeCat);
+  if (motion) {
+    parts.push(`.${motion}`);
   }
   return parts.join(" ");
 }
 
-const ALL_ANIMATION_CLASSES = [
-  "bg-shape-anim-float", "bg-shape-anim-drift", "bg-shape-anim-pan",
-  "bg-shape-anim-spin", "bg-shape-anim-rotate", "bg-shape-anim-pulse",
-  "bg-shape-anim-wave", "bg-shape-anim-tilt", "bg-shape-anim-shimmer",
-  "bg-shape-anim-doodle-sway", "bg-shape-anim-radar", "bg-shape-anim-scan"
-];
+function setPlaybackSpeed(speed, source = "user") {
+  currentSpeed = speed;
+  speedButtons.forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.speed === speed);
+  });
+  const factor = speed === "slow" ? "1.8" : speed === "fast" ? "0.5" : "1";
+  document.documentElement.style.setProperty("--bg-anim-dur", factor + "s");
+
+  if (source !== "init") {
+    showToast(`Animation Speed: ${speed === "slow" ? "0.5x (Slow/Zen)" : speed === "fast" ? "2x (Hyper)" : "1x (Normal)"}`);
+  }
+}
+
+function toggleSmartMotion() {
+  isSmartMotionActive = !isSmartMotionActive;
+  if (smartMotionToggle) {
+    smartMotionToggle.classList.toggle("active", isSmartMotionActive);
+  }
+
+  if (isSmartMotionActive) {
+    globalAnimButtons.forEach(btn => btn.classList.remove("active"));
+    if (activeAnimClassText) {
+      activeAnimClassText.textContent = "Smart Mode";
+    }
+    showToast("✨ Smart Motion Active: All 17 categories move naturally!");
+  } else {
+    setShapeAnimation(currentAnimation, "toggle");
+  }
+
+  renderShapes();
+  if (currentActiveShape) {
+    updateModalDisplay();
+  }
+}
 
 function setShapeAnimation(animClass, source = "user") {
+  if (source === "user" && isSmartMotionActive) {
+    isSmartMotionActive = false;
+    if (smartMotionToggle) smartMotionToggle.classList.remove("active");
+  }
   currentAnimation = animClass;
 
   // Update global buttons active state
@@ -113,10 +188,11 @@ function setShapeAnimation(animClass, source = "user") {
   // Update card copy button labels
   document.querySelectorAll(".shape-card").forEach(card => {
     const cls = card.dataset.shapeClass;
+    const cat = card.dataset.shapeCat || "";
     if (cls) {
       const copySpan = card.querySelector(".copy-cls-text");
       if (copySpan) {
-        copySpan.textContent = getActiveShapeLabel(cls);
+        copySpan.textContent = getActiveShapeLabel(cls, cat);
       }
     }
   });

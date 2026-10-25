@@ -53,10 +53,10 @@
       </div>
 
       <div class="filters">
-        <button class="filter-btn active" data-filter="all">All (261)</button>
+        <button class="filter-btn active" data-filter="all">All (300)</button>
         <button class="filter-btn" data-filter="doodles">Doodles &amp; Wallpapers (12)</button>
         <button class="filter-btn" data-filter="business">Business &amp; Industries (25)</button>
-        <button class="filter-btn" data-filter="motion">Kinetic &amp; Animated (20)</button>
+        <button class="filter-btn" data-filter="motion">Kinetic &amp; Animated (59)</button>
         <button class="filter-btn" data-filter="waves">Topography &amp; Waves (10)</button>
         <button class="filter-btn" data-filter="circuits">Circuits &amp; Cyber (10)</button>
         <button class="filter-btn" data-filter="hud">HUD &amp; Reticles (8)</button>
@@ -96,21 +96,40 @@
       <div class="animation-bar">
         <div class="animation-label">
           <span>✨</span> <strong>Shape Animation:</strong>
-          <span class="animation-sub">(Live CSS Motion — apply to ANY shape or copy modifier utility)</span>
+          <span class="animation-sub">(16 Motion Styles — apply to ANY shape, adjust speed, or activate Smart Motion)</span>
         </div>
         <div class="animation-options" id="globalAnimOptions">
           <button class="anim-btn active" data-anim="none">None (Static)</button>
           <button class="anim-btn" data-anim="bg-shape-anim-float">Float</button>
           <button class="anim-btn" data-anim="bg-shape-anim-drift">Drift</button>
           <button class="anim-btn" data-anim="bg-shape-anim-spin">Spin</button>
+          <button class="anim-btn" data-anim="bg-shape-anim-spin-reverse">Counter Spin</button>
           <button class="anim-btn" data-anim="bg-shape-anim-pulse">Pulse</button>
           <button class="anim-btn" data-anim="bg-shape-anim-wave">Wave</button>
           <button class="anim-btn" data-anim="bg-shape-anim-tilt">3D Tilt</button>
           <button class="anim-btn" data-anim="bg-shape-anim-shimmer">Shimmer</button>
           <button class="anim-btn" data-anim="bg-shape-anim-radar">Radar</button>
+          <button class="anim-btn" data-anim="bg-shape-anim-glitch">Glitch</button>
+          <button class="anim-btn" data-anim="bg-shape-anim-bounce">Bounce</button>
+          <button class="anim-btn" data-anim="bg-shape-anim-breathe">Breathe</button>
+          <button class="anim-btn" data-anim="bg-shape-anim-wobble">Wobble</button>
+          <button class="anim-btn" data-anim="bg-shape-anim-flash">Flash</button>
+          <button class="anim-btn" data-anim="bg-shape-anim-conveyor">Conveyor</button>
+          <button class="anim-btn" data-anim="bg-shape-anim-vortex">Vortex</button>
         </div>
-        <div class="animation-badge" id="activeAnimClassBadge" title="Click to copy animation utility class">
-          <span>Motion:</span> <code id="activeAnimClassText">None</code> <span>📋</span>
+        <div class="animation-cluster-right">
+          <button class="smart-motion-btn" id="smartMotionToggle" title="Auto-applies the most natural motion to each category">
+            <span>✨</span> <span>Smart Motion</span>
+          </button>
+          <div class="speed-options" id="speedOptions">
+            <span style="font-size: 0.72rem; font-weight: 700; color: #64748b; margin-right: 0.15rem;">Speed:</span>
+            <button class="speed-btn" data-speed="slow">0.5x</button>
+            <button class="speed-btn active" data-speed="normal">1x</button>
+            <button class="speed-btn" data-speed="fast">2x</button>
+          </div>
+          <div class="animation-badge" id="activeAnimClassBadge" title="Click to copy animation utility class">
+            <span>Motion:</span> <code id="activeAnimClassText">None</code> <span>📋</span>
+          </div>
         </div>
       </div>
     </div>
@@ -215,6 +234,8 @@
             <button class="modal-anim-btn" data-anim="bg-shape-anim-wave">Wave</button>
             <button class="modal-anim-btn" data-anim="bg-shape-anim-tilt">Tilt</button>
             <button class="modal-anim-btn" data-anim="bg-shape-anim-shimmer">Shimmer</button>
+            <button class="modal-anim-btn" data-anim="bg-shape-anim-glitch">Glitch</button>
+            <button class="modal-anim-btn" data-anim="bg-shape-anim-breathe">Breathe</button>
           </div>
 
           <div class="modal-op-group" id="modalOpGroup">

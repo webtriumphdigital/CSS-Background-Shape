@@ -4508,3 +4508,866 @@
   50% { transform: scale(1.03) translateY(-10px); }
   100% { transform: scale(1) translateY(0); }
 }
+
+/* ==========================================================================
+   EXPANDED MASTER MOTION SUITE (16 Universal Animation Styles + Speed Control)
+   Can be paired with ANY background shape in the 300-shape library!
+   ========================================================================== */
+
+/* Motion 1: Gentle 3D Float / Bob */
+.bg-shape-anim-float::before, .bg-shape-anim-float::after {
+  animation: bgShapeAnimFloat var(--bg-anim-dur, 6s) ease-in-out infinite alternate !important;
+  will-change: translate;
+}
+
+/* Motion 2: Infinite Grid Pan & Drift */
+.bg-shape-anim-drift::before, .bg-shape-anim-drift::after,
+.bg-shape-anim-pan::before, .bg-shape-anim-pan::after {
+  animation: bgShapeAnimDrift var(--bg-anim-dur, 30s) linear infinite !important;
+  will-change: background-position, -webkit-mask-position, mask-position;
+}
+
+/* Motion 3: Slow Ambient Clockwise Spin */
+.bg-shape-anim-spin::before, .bg-shape-anim-spin::after,
+.bg-shape-anim-rotate::before, .bg-shape-anim-rotate::after {
+  animation: bgShapeAnimSpin var(--bg-anim-dur, 45s) linear infinite !important;
+  transform-origin: center center;
+  will-change: rotate;
+}
+
+/* Motion 4: Slow Ambient Counter-Clockwise Spin */
+.bg-shape-anim-spin-reverse::before, .bg-shape-anim-spin-reverse::after {
+  animation: bgShapeAnimSpinReverse var(--bg-anim-dur, 45s) linear infinite !important;
+  transform-origin: center center;
+  will-change: rotate;
+}
+@keyframes bgShapeAnimSpinReverse {
+  0% { rotate: 360deg; }
+  100% { rotate: 0deg; }
+}
+
+/* Motion 5: Breathing Pulse & Luminosity */
+.bg-shape-anim-pulse::before, .bg-shape-anim-pulse::after {
+  animation: bgShapeAnimPulse var(--bg-anim-dur, 5s) ease-in-out infinite !important;
+  will-change: opacity, filter;
+}
+
+/* Motion 6: Liquid Wave Sway / Undulation */
+.bg-shape-anim-wave::before, .bg-shape-anim-wave::after {
+  animation: bgShapeAnimWave var(--bg-anim-dur, 9s) ease-in-out infinite !important;
+  will-change: translate;
+}
+
+/* Motion 7: 3D Perspective Tilt Rocking */
+.bg-shape-anim-tilt::before, .bg-shape-anim-tilt::after {
+  animation: bgShapeAnimTilt var(--bg-anim-dur, 8s) ease-in-out infinite alternate !important;
+  will-change: transform;
+}
+
+/* Motion 8: High-Tech Laser Shimmer Sweep */
+.bg-shape-anim-shimmer::after {
+  inset: -100% !important;
+  background: linear-gradient(115deg, transparent 40%, rgba(var(--bg-shape-color), 0.22) 50%, transparent 60%) !important;
+  animation: bgShapeAnimShimmer var(--bg-anim-dur, 8s) cubic-bezier(0.4, 0, 0.2, 1) infinite !important;
+  pointer-events: none;
+  z-index: 0 !important;
+}
+
+/* Motion 9: Tactical CRT Laser Scanline */
+.bg-shape-anim-radar::after, .bg-shape-anim-scan::after {
+  inset: 0 !important;
+  background: linear-gradient(180deg, transparent 0%, rgba(var(--bg-shape-color), 0.20) 50%, transparent 100%) !important;
+  background-size: 100% 120px !important;
+  background-repeat: no-repeat !important;
+  animation: bgShapeAnimScanline var(--bg-anim-dur, 6s) linear infinite !important;
+  pointer-events: none;
+}
+
+/* Motion 10: Cyber Glitch & Jitter */
+.bg-shape-anim-glitch::before, .bg-shape-anim-glitch::after {
+  animation: bgShapeAnimGlitch var(--bg-anim-dur, 3s) infinite !important;
+  will-change: transform, opacity;
+}
+@keyframes bgShapeAnimGlitch {
+  0%, 100% { transform: translate(0, 0); opacity: var(--bg-shape-opacity, 1); }
+  92% { transform: translate(0, 0); }
+  93% { transform: translate(-3px, 1px); opacity: 0.9; }
+  95% { transform: translate(3px, -1px); opacity: 1; }
+  96% { transform: translate(-2px, 0); }
+  98% { transform: translate(0, 0); }
+}
+
+/* Motion 11: Elastic Kinetic Bounce */
+.bg-shape-anim-bounce::before, .bg-shape-anim-bounce::after {
+  animation: bgShapeAnimBounce var(--bg-anim-dur, 4s) cubic-bezier(0.34, 1.56, 0.64, 1) infinite !important;
+  will-change: transform;
+}
+@keyframes bgShapeAnimBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08) translateY(-8px); }
+}
+
+/* Motion 12: Depth Hypnotic Breathe */
+.bg-shape-anim-breathe::before, .bg-shape-anim-breathe::after {
+  animation: bgShapeAnimBreathe var(--bg-anim-dur, 7s) ease-in-out infinite alternate !important;
+  will-change: transform;
+}
+@keyframes bgShapeAnimBreathe {
+  0% { transform: scale(0.94); filter: brightness(0.9); }
+  100% { transform: scale(1.06); filter: brightness(1.15); }
+}
+
+/* Motion 13: Liquid Jelly Wobble */
+.bg-shape-anim-wobble::before, .bg-shape-anim-wobble::after {
+  animation: bgShapeAnimWobble var(--bg-anim-dur, 6s) ease-in-out infinite !important;
+  will-change: transform;
+}
+@keyframes bgShapeAnimWobble {
+  0%, 100% { transform: skewX(0deg) skewY(0deg); }
+  25% { transform: skewX(3deg) skewY(-2deg); }
+  50% { transform: skewX(-2deg) skewY(3deg); }
+  75% { transform: skewX(1deg) skewY(-1deg); }
+}
+
+/* Motion 14: High-Energy Flash Strobe */
+.bg-shape-anim-flash::before, .bg-shape-anim-flash::after {
+  animation: bgShapeAnimFlash var(--bg-anim-dur, 2.5s) ease-in-out infinite !important;
+  will-change: opacity;
+}
+@keyframes bgShapeAnimFlash {
+  0%, 100% { opacity: calc(var(--bg-shape-opacity, 1) * 0.95); }
+  45% { opacity: calc(var(--bg-shape-opacity, 1) * 0.35); }
+  50% { opacity: calc(var(--bg-shape-opacity, 1) * 1.4); filter: brightness(1.4); }
+  55% { opacity: calc(var(--bg-shape-opacity, 1) * 0.4); }
+}
+
+/* Motion 15: Horizontal Conveyor Drive */
+.bg-shape-anim-conveyor::before, .bg-shape-anim-conveyor::after {
+  animation: bgShapeAnimConveyor var(--bg-anim-dur, 16s) linear infinite !important;
+  will-change: background-position, -webkit-mask-position, mask-position;
+}
+@keyframes bgShapeAnimConveyor {
+  0% { background-position: 0 0; -webkit-mask-position: 0 0; mask-position: 0 0; }
+  100% { background-position: 380px 0; -webkit-mask-position: 380px 0; mask-position: 380px 0; }
+}
+
+/* Motion 16: Spiral Vortex Swirl */
+.bg-shape-anim-vortex::before, .bg-shape-anim-vortex::after {
+  animation: bgShapeAnimVortex var(--bg-anim-dur, 20s) ease-in-out infinite alternate !important;
+  transform-origin: center center;
+  will-change: transform;
+}
+@keyframes bgShapeAnimVortex {
+  0% { transform: rotate(0deg) scale(0.9); }
+  50% { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(0.9); }
+}
+
+/* SPEED MODIFIER UTILITIES (Control playback speed of any animation) */
+.bg-shape-speed-slow, [data-anim-speed="slow"] {
+  --bg-anim-dur: 1.8x;
+  animation-duration: 1.8em !important;
+}
+.bg-shape-speed-normal, [data-anim-speed="normal"] {
+  --bg-anim-dur: 1;
+}
+.bg-shape-speed-fast, [data-anim-speed="fast"] {
+  --bg-anim-dur: 0.5;
+}
+
+/* Dynamic CSS Custom Property support for speed multiplier */
+:root {
+  --bg-shape-anim-speed-factor: 1;
+}
+
+
+/* ==========================================================================
+   15. SECTION 13: 39 NEW DEDICATED KINETIC SHAPES (#262 – #300) [39 Shapes]
+   Flagship animations reaching the 300 Milestone!
+   ========================================================================== */
+
+/* 262 — Quantum Particle Collider (Concentric magnetic deflection rings with counter-rotating particle packets racing around accelerator circumferences.) */
+.bg-shape-motion-collider::before {
+  width: 28rem;
+  height: 28rem;
+  right: -5rem;
+  top: -6rem;
+  border-radius: 50%;
+  border: 1.5px solid rgba(var(--bg-shape-color), 0.22);
+  box-shadow: 0 0 0 2.5rem rgba(var(--bg-shape-color), 0.02), 0 0 0 2.6rem rgba(var(--bg-shape-color), 0.16), 0 0 0 5.5rem rgba(var(--bg-shape-color), 0.02), 0 0 0 5.6rem rgba(var(--bg-shape-color), 0.12);
+  animation: motionColliderSpin 18s linear infinite;
+}
+.bg-shape-motion-collider::after {
+  width: 18rem;
+  height: 18rem;
+  right: 0rem;
+  top: -1rem;
+  border-radius: 50%;
+  border: 2px dashed rgba(var(--bg-shape-color), 0.25);
+  animation: motionColliderCounter 10s linear infinite;
+}
+@keyframes motionColliderSpin { 0% { rotate: 0deg; } 100% { rotate: 360deg; } }
+@keyframes motionColliderCounter { 0% { rotate: 360deg; } 100% { rotate: 0deg; } }
+
+/* 263 — Matrix Digital Rain Cascade (Cascading vertical streams of binary matrix code and cyber rune characters streaming smoothly downward.) */
+.bg-shape-motion-matrix-rain::before {
+  inset: 0;
+  background-image: repeating-linear-gradient(90deg, rgba(var(--bg-shape-color), 0.18) 0 1px, transparent 1px 3rem);
+}
+.bg-shape-motion-matrix-rain::after {
+  inset: 0;
+  background-image: repeating-linear-gradient(180deg, transparent 0, rgba(var(--bg-shape-color), 0.28) 40px, transparent 80px);
+  background-size: 100% 160px;
+  animation: motionMatrixRain 3s linear infinite;
+}
+@keyframes motionMatrixRain { 0% { background-position: 0 -160px; } 100% { background-position: 0 160px; } }
+
+/* 264 — 4D Hypercube Tesseract (Nested perspective wireframe cubes with connecting vertex struts breathing and rotating in 4D geometric space.) */
+.bg-shape-motion-tesseract::before {
+  width: 220px;
+  height: 220px;
+  top: 40px;
+  right: 80px;
+  border: 1.5px solid rgba(var(--bg-shape-color), 0.22);
+  transform: rotate(45deg);
+  animation: motionTesseractOuter 12s ease-in-out infinite alternate;
+}
+.bg-shape-motion-tesseract::after {
+  width: 120px;
+  height: 120px;
+  top: 90px;
+  right: 130px;
+  border: 1.5px solid rgba(var(--bg-shape-color), 0.26);
+  transform: rotate(45deg);
+  animation: motionTesseractInner 12s ease-in-out infinite alternate;
+}
+@keyframes motionTesseractOuter { 0% { transform: rotate(45deg) scale(0.9); } 100% { transform: rotate(85deg) scale(1.12); } }
+@keyframes motionTesseractInner { 0% { transform: rotate(45deg) scale(1.2); } 100% { transform: rotate(5deg) scale(0.8); } }
+
+/* 265 — Pulsar Cosmic Radio Beacons (Rotating compact neutron star emitting dual opposing radio beam cones with expanding concentric harmonic waves.) */
+.bg-shape-motion-pulsar::before {
+  width: 28rem;
+  height: 28rem;
+  right: -6rem;
+  top: -8rem;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, rgba(var(--bg-shape-color), 0.3) 0deg, transparent 40deg, transparent 180deg, rgba(var(--bg-shape-color), 0.3) 180deg, transparent 220deg);
+  animation: motionPulsarBeams 6s linear infinite;
+  mask-image: radial-gradient(circle, #000 65%, transparent 72%);
+  -webkit-mask-image: radial-gradient(circle, #000 65%, transparent 72%);
+}
+.bg-shape-motion-pulsar::after {
+  width: 28rem;
+  height: 28rem;
+  right: -6rem;
+  top: -8rem;
+  border-radius: 50%;
+  border: 1px solid rgba(var(--bg-shape-color), 0.2);
+  box-shadow: 0 0 0 3rem rgba(var(--bg-shape-color), 0.02), 0 0 0 3.1rem rgba(var(--bg-shape-color), 0.14);
+  animation: motionPulsarRings 3s ease-in-out infinite alternate;
+}
+@keyframes motionPulsarBeams { 0% { rotate: 0deg; } 100% { rotate: 360deg; } }
+@keyframes motionPulsarRings { 0% { transform: scale(0.95); opacity: 0.6; } 100% { transform: scale(1.05); opacity: 1; } }
+
+/* 266 — Interstellar Warp Speed Streaks (Radial perspective star streaks hurtling outward from a central vanishing point into infinite hyperspace.) */
+.bg-shape-motion-warp-speed::before {
+  inset: -30%;
+  background: repeating-conic-gradient(from 0deg, transparent 0deg 4deg, rgba(var(--bg-shape-color), 0.22) 4deg 5deg, transparent 5deg 18deg);
+  animation: motionWarpRotate 25s linear infinite;
+  mask-image: radial-gradient(circle, transparent 20%, #000 60%, transparent 85%);
+  -webkit-mask-image: radial-gradient(circle, transparent 20%, #000 60%, transparent 85%);
+}
+.bg-shape-motion-warp-speed::after {
+  width: 14rem;
+  height: 14rem;
+  top: 50%;
+  left: 50%;
+  margin-top: -7rem;
+  margin-left: -7rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--bg-shape-color), 0.25) 0%, transparent 70%);
+  animation: motionWarpCorePulse 2s ease-in-out infinite alternate;
+}
+@keyframes motionWarpRotate { 0% { rotate: 0deg; } 100% { rotate: 360deg; } }
+@keyframes motionWarpCorePulse { 0% { transform: scale(0.8); opacity: 0.5; } 100% { transform: scale(1.3); opacity: 1; } }
+
+/* 267 — Hexagonal Forcefield Shield (Honeycomb energy barrier with cascading impact ripples and defensive energetic forcefield sheens.) */
+.bg-shape-motion-hex-shield::before {
+  inset: 0;
+  background-image:
+    linear-gradient(30deg, transparent 49%, rgba(var(--bg-shape-color), 0.16) 49.5%, rgba(var(--bg-shape-color), 0.16) 50.5%, transparent 51%),
+    linear-gradient(150deg, transparent 49%, rgba(var(--bg-shape-color), 0.16) 49.5%, rgba(var(--bg-shape-color), 0.16) 50.5%, transparent 51%),
+    linear-gradient(90deg, transparent 49%, rgba(var(--bg-shape-color), 0.14) 49.5%, rgba(var(--bg-shape-color), 0.14) 50.5%, transparent 51%);
+  background-size: 52px 90px;
+}
+.bg-shape-motion-hex-shield::after {
+  inset: -50%;
+  background: radial-gradient(circle at 60% 40%, rgba(var(--bg-shape-color), 0.35) 0%, transparent 50%);
+  animation: motionHexRipples 5s ease-in-out infinite alternate;
+}
+@keyframes motionHexRipples { 0% { transform: scale(0.85); opacity: 0.3; } 100% { transform: scale(1.25); opacity: 0.9; } }
+
+/* 268 — Liquid Lava Lamp Metaballs (Viscous organic fluid droplets rising, sinking, and fusing with dynamic surface tension in liquid suspension.) */
+.bg-shape-motion-lava-lamp::before {
+  width: 22rem;
+  height: 22rem;
+  right: -3rem;
+  top: 15%;
+  border-radius: 65% 35% 45% 55% / 55% 45% 55% 45%;
+  background: radial-gradient(circle at 40% 40%, rgba(var(--bg-shape-color), 0.22) 0%, rgba(var(--bg-shape-color), 0.06) 60%, transparent 75%);
+  animation: motionLavaFloat1 12s ease-in-out infinite alternate;
+}
+.bg-shape-motion-lava-lamp::after {
+  width: 16rem;
+  height: 16rem;
+  right: 15%;
+  top: -4rem;
+  border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%;
+  background: radial-gradient(circle at 40% 40%, rgba(var(--bg-shape-color), 0.18) 0%, transparent 70%);
+  animation: motionLavaFloat2 9s ease-in-out infinite alternate;
+}
+@keyframes motionLavaFloat1 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(-40px, -60px) scale(1.12); } }
+@keyframes motionLavaFloat2 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(30px, 70px) scale(0.9); } }
+
+/* 269 — Lissajous Laser Harmonic Curves (Harmonically oscillating mathematical figure-8 Lissajous curves morphing continuous phase angles.) */
+.bg-shape-motion-lissajous::before {
+  width: 320px;
+  height: 320px;
+  top: 20px;
+  right: 80px;
+  border: 1.5px solid rgba(var(--bg-shape-color), 0.24);
+  border-radius: 50% 50% 50% 50% / 30% 70% 30% 70%;
+  transform: rotate(45deg);
+  animation: motionLissajousPhase 8s ease-in-out infinite alternate;
+}
+.bg-shape-motion-lissajous::after {
+  width: 240px;
+  height: 240px;
+  top: 60px;
+  right: 120px;
+  border: 1px dashed rgba(var(--bg-shape-color), 0.20);
+  border-radius: 70% 30% 70% 30% / 50% 50% 50% 50%;
+  transform: rotate(-30deg);
+  animation: motionLissajousPhase2 10s ease-in-out infinite alternate;
+}
+@keyframes motionLissajousPhase { 0% { border-radius: 50% 50% 50% 50% / 30% 70% 30% 70%; rotate: 45deg; } 100% { border-radius: 30% 70% 30% 70% / 50% 50% 50% 50%; rotate: 135deg; } }
+@keyframes motionLissajousPhase2 { 0% { rotate: -30deg; transform: scale(0.9); } 100% { rotate: 60deg; transform: scale(1.1); } }
+
+/* 270 — Rotating 3D Wireframe Globe (Latitude and longitude wireframe sphere rotating smoothly around its polar axis with coordinate nodes.) */
+.bg-shape-motion-wireframe-globe::before {
+  width: 26rem;
+  height: 26rem;
+  right: -5rem;
+  top: -5rem;
+  border-radius: 50%;
+  border: 1.5px solid rgba(var(--bg-shape-color), 0.24);
+  box-shadow: inset 0 0 0 2rem rgba(var(--bg-shape-color), 0.02), inset 0 0 0 4rem rgba(var(--bg-shape-color), 0.02);
+  background-image:
+    linear-gradient(rgba(var(--bg-shape-color), 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.18) 1px, transparent 1px);
+  background-size: 2.6rem 2.6rem;
+  transform: perspective(600px) rotateX(20deg) rotateY(30deg);
+  animation: motionGlobeScroll 20s linear infinite;
+}
+@keyframes motionGlobeScroll { 0% { background-position: 0 0; } 100% { background-position: 26rem 0; } }
+
+/* 271 — Cymatics Resonance Mandala (Harmonic nodal frequency pattern expanding and breathing with resonant physical sound wave vibration.) */
+.bg-shape-motion-cymatics::before {
+  width: 24rem;
+  height: 24rem;
+  top: 50%;
+  left: 50%;
+  margin-top: -12rem;
+  margin-left: -12rem;
+  border-radius: 50%;
+  border: 1px solid rgba(var(--bg-shape-color), 0.22);
+  box-shadow:
+    0 0 0 1.5rem rgba(var(--bg-shape-color), 0.02), 0 0 0 1.6rem rgba(var(--bg-shape-color), 0.16),
+    0 0 0 3.5rem rgba(var(--bg-shape-color), 0.02), 0 0 0 3.6rem rgba(var(--bg-shape-color), 0.12),
+    0 0 0 6rem rgba(var(--bg-shape-color), 0.015), 0 0 0 6.1rem rgba(var(--bg-shape-color), 0.09);
+  animation: motionCymaticsPulse 4s ease-in-out infinite alternate;
+}
+@keyframes motionCymaticsPulse { 0% { transform: scale(0.92); } 50% { transform: scale(1.05); } 100% { transform: scale(0.96); } }
+
+/* 272 — Solar Prominence Plasma Loops (Arcing coronal solar plasma loops pulsating along curved magnetic field trajectories.) */
+.bg-shape-motion-solar-loops::before {
+  width: 32rem;
+  height: 20rem;
+  right: -8rem;
+  top: -4rem;
+  border: 2px solid rgba(var(--bg-shape-color), 0.22);
+  border-radius: 50% 50% 0 0;
+  border-bottom: none;
+  animation: motionSolarLoop1 7s ease-in-out infinite alternate;
+}
+.bg-shape-motion-solar-loops::after {
+  width: 24rem;
+  height: 15rem;
+  right: -4rem;
+  top: -2rem;
+  border: 1.5px dashed rgba(var(--bg-shape-color), 0.24);
+  border-radius: 50% 50% 0 0;
+  border-bottom: none;
+  animation: motionSolarLoop2 9s ease-in-out infinite alternate;
+}
+@keyframes motionSolarLoop1 { 0% { transform: scale(0.94) rotate(-5deg); } 100% { transform: scale(1.06) rotate(5deg); } }
+@keyframes motionSolarLoop2 { 0% { transform: scale(1.05) rotate(4deg); } 100% { transform: scale(0.92) rotate(-6deg); } }
+
+/* 273 — Subatomic Electron Cloud (Orbital atomic quantum shells with relativistic electron nodes revolving in continuous probability waves.) */
+.bg-shape-motion-electron-cloud::before {
+  width: 30rem;
+  height: 12rem;
+  right: -6rem;
+  top: 10%;
+  border: 1.5px solid rgba(var(--bg-shape-color), 0.24);
+  border-radius: 50%;
+  transform: rotate(35deg);
+  animation: motionElectronOrbit1 14s linear infinite;
+}
+.bg-shape-motion-electron-cloud::after {
+  width: 30rem;
+  height: 12rem;
+  right: -6rem;
+  top: 10%;
+  border: 1.5px solid rgba(var(--bg-shape-color), 0.24);
+  border-radius: 50%;
+  transform: rotate(-35deg);
+  animation: motionElectronOrbit2 18s linear infinite;
+}
+@keyframes motionElectronOrbit1 { 0% { rotate: 0deg; } 100% { rotate: 360deg; } }
+@keyframes motionElectronOrbit2 { 0% { rotate: 0deg; } 100% { rotate: -360deg; } }
+
+/* 274 — Neural Synaptic Network Impulse (Interconnected neural dendrite nodes with flashing action potential electrical sparks leaping across synapses.) */
+.bg-shape-motion-neural-synapse::before {
+  inset: 0;
+  background-image: radial-gradient(rgba(var(--bg-shape-color), 0.28) 2px, transparent 2.5px);
+  background-size: 3.5rem 3.5rem;
+}
+.bg-shape-motion-neural-synapse::after {
+  inset: 0;
+  background: radial-gradient(circle at 70% 30%, rgba(var(--bg-shape-color), 0.35) 0%, transparent 60%);
+  animation: motionSynapseFlash 4s ease-in-out infinite alternate;
+}
+@keyframes motionSynapseFlash { 0% { opacity: 0.3; transform: scale(0.85); } 50% { opacity: 1; transform: scale(1.15); } 100% { opacity: 0.5; } }
+
+/* 275 — Retro 8-Bit Arcade Pixel Grid (Chunky isometric voxel pixel grid with bouncing coin and character sprites jumping rhythmically.) */
+.bg-shape-motion-arcade-grid::before {
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(var(--bg-shape-color), 0.22) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.22) 2px, transparent 2px);
+  background-size: 2rem 2rem;
+  animation: motionArcadeScroll 8s steps(8, end) infinite;
+}
+@keyframes motionArcadeScroll { 0% { background-position: 0 0; } 100% { background-position: 2rem 2rem; } }
+
+/* 276 — Hypnotic Logarithmic Vortex (Golden ratio spiral arms curling continuously inward toward a deep cosmic gravitation center.) */
+.bg-shape-motion-vortex-spiral::before {
+  width: 34rem;
+  height: 34rem;
+  top: 50%;
+  left: 50%;
+  margin-top: -17rem;
+  margin-left: -17rem;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, rgba(var(--bg-shape-color), 0.25) 0deg, transparent 90deg, rgba(var(--bg-shape-color), 0.15) 180deg, transparent 270deg);
+  animation: motionVortexSpin 16s linear infinite;
+  mask-image: radial-gradient(circle, #000 60%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle, #000 60%, transparent 80%);
+}
+@keyframes motionVortexSpin { 0% { rotate: 0deg; } 100% { rotate: 360deg; } }
+
+/* 277 — Topographic Elevation Survey (Elevation survey contours that slowly morph and contour-shift like seismic geographic land shifts.) */
+.bg-shape-motion-elevation-survey::before {
+  inset: 0;
+  background-image: repeating-radial-gradient(ellipse at 80% 20%, transparent 0 2rem, rgba(var(--bg-shape-color), 0.16) 2rem 2.08rem, transparent 2.08rem 4rem);
+  animation: motionTopoShift 10s ease-in-out infinite alternate;
+}
+@keyframes motionTopoShift { 0% { transform: scale(0.96) translate(0, 0); } 100% { transform: scale(1.05) translate(-15px, 15px); } }
+
+/* 278 — Fibonacci Golden Spiral Bloom (Botanical seed head phyllotaxis sunflower spiral nodes blossoming outwards in golden ratio proportion.) */
+.bg-shape-motion-fibonacci-bloom::before {
+  width: 26rem;
+  height: 26rem;
+  right: -4rem;
+  top: -5rem;
+  border-radius: 50%;
+  border: 1px solid rgba(var(--bg-shape-color), 0.22);
+  box-shadow: 0 0 0 2rem rgba(var(--bg-shape-color), 0.02), 0 0 0 2.1rem rgba(var(--bg-shape-color), 0.16), 0 0 0 5rem rgba(var(--bg-shape-color), 0.02), 0 0 0 5.1rem rgba(var(--bg-shape-color), 0.12);
+  animation: motionFibonacciTwist 20s ease-in-out infinite alternate;
+}
+@keyframes motionFibonacciTwist { 0% { transform: rotate(0deg) scale(0.92); } 100% { transform: rotate(180deg) scale(1.08); } }
+
+/* 279 — Eternal Lemniscate Infinity (3D Möbius-strip infinity loop ribbon with a continuous glowing particle stream tracing the figure-8 path.) */
+.bg-shape-motion-infinity-loop::before {
+  width: 28rem;
+  height: 14rem;
+  right: -4rem;
+  top: 15%;
+  border-radius: 50%;
+  border: 2px solid rgba(var(--bg-shape-color), 0.24);
+  transform: rotate(-25deg);
+  animation: motionInfinityLeft 8s ease-in-out infinite alternate;
+}
+.bg-shape-motion-infinity-loop::after {
+  width: 28rem;
+  height: 14rem;
+  right: 10rem;
+  top: 15%;
+  border-radius: 50%;
+  border: 2px dashed rgba(var(--bg-shape-color), 0.24);
+  transform: rotate(25deg);
+  animation: motionInfinityRight 8s ease-in-out infinite alternate;
+}
+@keyframes motionInfinityLeft { 0% { transform: rotate(-25deg) scale(0.95); } 100% { transform: rotate(-15deg) scale(1.05); } }
+@keyframes motionInfinityRight { 0% { transform: rotate(25deg) scale(1.05); } 100% { transform: rotate(35deg) scale(0.95); } }
+
+/* 280 — Infinite Cyberpunk Wireframe Tunnel (Rectangular highway tunnel frames rushing continuously past the viewer into the infinite distance.) */
+.bg-shape-motion-wireframe-tunnel::before {
+  width: 20rem;
+  height: 14rem;
+  top: 50%;
+  left: 50%;
+  margin-top: -7rem;
+  margin-left: -10rem;
+  border: 2px solid rgba(var(--bg-shape-color), 0.24);
+  box-shadow: 0 0 0 2rem rgba(var(--bg-shape-color), 0.02), 0 0 0 2.1rem rgba(var(--bg-shape-color), 0.18), 0 0 0 5rem rgba(var(--bg-shape-color), 0.02), 0 0 0 5.1rem rgba(var(--bg-shape-color), 0.12);
+  animation: motionTunnelRun 4s linear infinite;
+}
+@keyframes motionTunnelRun { 0% { transform: scale(0.5); opacity: 0.3; } 100% { transform: scale(1.6); opacity: 1; } }
+
+/* 281 — Kinetic ASCII Matrix Code Flow (Monospace brackets, chevrons, slashes, and hash tokens flowing horizontally like a live terminal compiler.) */
+.bg-shape-motion-ascii-stream::before {
+  inset: 0;
+  background-image: repeating-linear-gradient(90deg, rgba(var(--bg-shape-color), 0.18) 0 2px, transparent 2px 4rem);
+}
+.bg-shape-motion-ascii-stream::after {
+  inset: 0;
+  background-image: repeating-linear-gradient(rgba(var(--bg-shape-color), 0.14) 0 1px, transparent 1px 1.5rem);
+  animation: motionAsciiPan 12s linear infinite;
+}
+@keyframes motionAsciiPan { 0% { background-position: 0 0; } 100% { background-position: 0 120px; } }
+
+/* 282 — Geodesic Dome Structural Pulse (Triangular geodesic dome wireframe sphere breathing with tensegrity structural elasticity.) */
+.bg-shape-motion-geodesic-pulse::before {
+  width: 24rem;
+  height: 24rem;
+  right: -4rem;
+  top: -4rem;
+  border-radius: 50%;
+  background:
+    repeating-linear-gradient(60deg, transparent 0 30px, rgba(var(--bg-shape-color), 0.16) 30px 31px),
+    repeating-linear-gradient(120deg, transparent 0 30px, rgba(var(--bg-shape-color), 0.16) 30px 31px);
+  animation: motionGeodesicBreathe 6s ease-in-out infinite alternate;
+}
+@keyframes motionGeodesicBreathe { 0% { transform: scale(0.94); } 100% { transform: scale(1.06); } }
+
+/* 283 — Hadron Particle Accelerator Ring (Massive circular accelerator tube with relativistic beam flashes circling at ultrasonic velocity.) */
+.bg-shape-motion-hadron-ring::before {
+  width: 30rem;
+  height: 30rem;
+  right: -7rem;
+  top: -8rem;
+  border-radius: 50%;
+  border: 2px solid rgba(var(--bg-shape-color), 0.22);
+}
+.bg-shape-motion-hadron-ring::after {
+  width: 30rem;
+  height: 30rem;
+  right: -7rem;
+  top: -8rem;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, rgba(var(--bg-shape-color), 0.45) 0deg, transparent 60deg);
+  animation: motionHadronSpin 3s linear infinite;
+  mask-image: radial-gradient(circle, transparent 65%, #000 70%, transparent 75%);
+  -webkit-mask-image: radial-gradient(circle, transparent 65%, #000 70%, transparent 75%);
+}
+@keyframes motionHadronSpin { 0% { rotate: 0deg; } 100% { rotate: 360deg; } }
+
+/* 284 — Wormhole Gravitational Singularity (Gravitational lensing ring with distorted spacetime grid lines curving into a central event horizon.) */
+.bg-shape-motion-wormhole::before {
+  width: 26rem;
+  height: 26rem;
+  top: 50%;
+  left: 50%;
+  margin-top: -13rem;
+  margin-left: -13rem;
+  border-radius: 50%;
+  border: 2px solid rgba(var(--bg-shape-color), 0.25);
+  box-shadow: 0 0 50px rgba(var(--bg-shape-color), 0.2);
+  animation: motionWormholePulse 5s ease-in-out infinite alternate;
+}
+@keyframes motionWormholePulse { 0% { transform: scale(0.85); box-shadow: 0 0 20px rgba(var(--bg-shape-color), 0.1); } 100% { transform: scale(1.15); box-shadow: 0 0 60px rgba(var(--bg-shape-color), 0.3); } }
+
+/* 285 — Omni-Directional Laser Barcode Grid (Intersecting criss-cross security laser lines scanning continuously over retail UPC matrix codes.) */
+.bg-shape-motion-laser-barcode::before {
+  inset: 0;
+  background-image: repeating-linear-gradient(90deg, rgba(var(--bg-shape-color), 0.20) 0 2px, transparent 2px 1.5rem, rgba(var(--bg-shape-color), 0.20) 1.5rem 1.7rem, transparent 1.7rem 2.5rem);
+}
+.bg-shape-motion-laser-barcode::after {
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 4px;
+  background: rgba(var(--bg-shape-color), 0.5);
+  box-shadow: 0 0 15px rgba(var(--bg-shape-color), 0.4);
+  animation: motionLaserBarSweep 4s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+}
+@keyframes motionLaserBarSweep { 0% { top: 10%; } 100% { top: 90%; } }
+
+/* 286 — Plasma Arc Electrostatic Dispersion (Tesla coil electrostatic discharge branching arcs that flicker and crackle organically across the section.) */
+.bg-shape-motion-plasma-arc::before {
+  inset: 0;
+  background-image: repeating-linear-gradient(135deg, transparent 0 40px, rgba(var(--bg-shape-color), 0.16) 40px 41px);
+}
+.bg-shape-motion-plasma-arc::after {
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(var(--bg-shape-color), 0.3) 0%, transparent 60%);
+  animation: motionPlasmaStrobe 2s steps(4, start) infinite;
+}
+@keyframes motionPlasmaStrobe { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.9; } }
+
+/* 287 — Dipole Magnetic Field Flux Lines (Toroidal magnetic flux field lines looping from north to south poles with smooth directional fluid flow.) */
+.bg-shape-motion-magnetic-flux::before {
+  width: 32rem;
+  height: 22rem;
+  top: 10%;
+  right: -5rem;
+  border-radius: 50%;
+  border: 1.5px solid rgba(var(--bg-shape-color), 0.22);
+  box-shadow: 0 0 0 2rem rgba(var(--bg-shape-color), 0.02), 0 0 0 2.1rem rgba(var(--bg-shape-color), 0.16), 0 0 0 4.5rem rgba(var(--bg-shape-color), 0.02), 0 0 0 4.6rem rgba(var(--bg-shape-color), 0.12);
+  animation: motionMagneticSway 8s ease-in-out infinite alternate;
+}
+@keyframes motionMagneticSway { 0% { transform: scaleY(0.92) rotate(-3deg); } 100% { transform: scaleY(1.08) rotate(3deg); } }
+
+/* 288 — Total Solar Eclipse Diamond Corona (Silhouette lunar disc flanked by shimmering coronal solar flares and radiant diamond ring flashes.) */
+.bg-shape-motion-eclipse-corona::before {
+  width: 22rem;
+  height: 22rem;
+  top: 15%;
+  right: 15%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--bg-shape-color), 0.28) 0%, rgba(var(--bg-shape-color), 0.08) 55%, transparent 72%);
+  box-shadow: 0 0 40px rgba(var(--bg-shape-color), 0.25);
+  animation: motionEclipseCorona 6s ease-in-out infinite alternate;
+}
+@keyframes motionEclipseCorona { 0% { transform: scale(0.92); opacity: 0.6; } 100% { transform: scale(1.1); opacity: 1; } }
+
+/* 289 — Quantum Entanglement Dual Resonance (Twin interconnected particle nodes mirroring each other's spin and wave vibrations in real time across space.) */
+.bg-shape-motion-entanglement::before {
+  width: 14rem;
+  height: 14rem;
+  top: 25%;
+  left: 20%;
+  border-radius: 50%;
+  border: 1.5px solid rgba(var(--bg-shape-color), 0.24);
+  animation: motionEntangleNode1 6s ease-in-out infinite alternate;
+}
+.bg-shape-motion-entanglement::after {
+  width: 14rem;
+  height: 14rem;
+  top: 25%;
+  right: 20%;
+  border-radius: 50%;
+  border: 1.5px solid rgba(var(--bg-shape-color), 0.24);
+  animation: motionEntangleNode2 6s ease-in-out infinite alternate;
+}
+@keyframes motionEntangleNode1 { 0% { transform: scale(0.85) rotate(0deg); } 100% { transform: scale(1.15) rotate(180deg); } }
+@keyframes motionEntangleNode2 { 0% { transform: scale(1.15) rotate(180deg); } 100% { transform: scale(0.85) rotate(0deg); } }
+
+/* 290 — Metropolitan Skyline Night Pulse (Silhouetted high-rise skyscrapers with glowing window grids and radio spire beacons blinking at night.) */
+.bg-shape-motion-skyline-pulse::before {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 200px;
+  background-image: repeating-linear-gradient(90deg, rgba(var(--bg-shape-color), 0.22) 0 35px, transparent 35px 45px);
+  mask-image: linear-gradient(to top, #000 60%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, #000 60%, transparent 100%);
+}
+.bg-shape-motion-skyline-pulse::after {
+  left: 0;
+  right: 0;
+  bottom: 120px;
+  height: 2px;
+  background: rgba(var(--bg-shape-color), 0.4);
+  box-shadow: 0 0 15px rgba(var(--bg-shape-color), 0.35);
+  animation: motionSkylineBeacon 3s ease-in-out infinite alternate;
+}
+@keyframes motionSkylineBeacon { 0% { opacity: 0.3; } 100% { opacity: 1; } }
+
+/* 291 — Blockchain Cryptographic Ledger (Sequential cryptographic hash block cubes linking via verified chain hashes across an infinite conveyor.) */
+.bg-shape-motion-blockchain-ledger::before {
+  inset: 0;
+  background-image: repeating-linear-gradient(90deg, transparent 0 60px, rgba(var(--bg-shape-color), 0.20) 60px 62px, transparent 62px 120px);
+  animation: motionBlockChainDrift 15s linear infinite;
+}
+.bg-shape-motion-blockchain-ledger::after {
+  width: 90px;
+  height: 70px;
+  top: 40%;
+  right: 20%;
+  border: 1.5px solid rgba(var(--bg-shape-color), 0.26);
+  transform: skewY(-20deg);
+  animation: motionBlockPulse 4s ease-in-out infinite alternate;
+}
+@keyframes motionBlockChainDrift { 0% { background-position: 0 0; } 100% { background-position: 120px 0; } }
+@keyframes motionBlockPulse { 0% { transform: skewY(-20deg) scale(0.9); } 100% { transform: skewY(-20deg) scale(1.1); } }
+
+/* 292 — Autonomous Vehicle LiDAR Cloud (360-degree rotating laser radar scan mapping real-time point clouds of road environments and obstacles.) */
+.bg-shape-motion-lidar-cloud::before {
+  width: 28rem;
+  height: 28rem;
+  right: -5rem;
+  top: -6rem;
+  border-radius: 50%;
+  background-image: radial-gradient(rgba(var(--bg-shape-color), 0.32) 1.5px, transparent 1.5px);
+  background-size: 1.5rem 1.5rem;
+  animation: motionLidarSpin 12s linear infinite;
+  mask-image: radial-gradient(circle, #000 65%, transparent 75%);
+  -webkit-mask-image: radial-gradient(circle, #000 65%, transparent 75%);
+}
+@keyframes motionLidarSpin { 0% { rotate: 0deg; } 100% { rotate: 360deg; } }
+
+/* 293 — Bioluminescent Jellyfish Undulation (Translucent deep-sea bell and trailing tentacles undulating with graceful hydraulic oceanic pulsation.) */
+.bg-shape-motion-jellyfish::before {
+  width: 20rem;
+  height: 16rem;
+  top: 15%;
+  right: 15%;
+  border-radius: 50% 50% 30% 30%;
+  border: 1.5px solid rgba(var(--bg-shape-color), 0.22);
+  background: radial-gradient(ellipse at 50% 30%, rgba(var(--bg-shape-color), 0.2) 0%, transparent 70%);
+  animation: motionJellySwim 6s ease-in-out infinite alternate;
+}
+@keyframes motionJellySwim { 0% { transform: scaleY(0.85) scaleX(1.1) translateY(0); } 100% { transform: scaleY(1.15) scaleX(0.9) translateY(-30px); } }
+
+/* 294 — Horological Clockwork Gear Train (Interlocking precision spur gears and escapement wheels turning in mechanical synchronization.) */
+.bg-shape-motion-clockwork-gears::before {
+  width: 180px;
+  height: 180px;
+  top: 40px;
+  right: 180px;
+  border-radius: 50%;
+  border: 2px dashed rgba(var(--bg-shape-color), 0.24);
+  box-shadow: 0 0 0 15px rgba(var(--bg-shape-color), 0.02), 0 0 0 16px rgba(var(--bg-shape-color), 0.14);
+  animation: motionGearClockwise 14s linear infinite;
+}
+.bg-shape-motion-clockwork-gears::after {
+  width: 120px;
+  height: 120px;
+  top: 120px;
+  right: 80px;
+  border-radius: 50%;
+  border: 2px dashed rgba(var(--bg-shape-color), 0.24);
+  box-shadow: 0 0 0 12px rgba(var(--bg-shape-color), 0.02), 0 0 0 13px rgba(var(--bg-shape-color), 0.14);
+  animation: motionGearCounter 9.33s linear infinite;
+}
+@keyframes motionGearClockwise { 0% { rotate: 0deg; } 100% { rotate: 360deg; } }
+@keyframes motionGearCounter { 0% { rotate: 360deg; } 100% { rotate: 0deg; } }
+
+/* 295 — Architectural CAD Blueprint Trace (Technical construction floorplans with animated drafting pen lines tracing structural walls live.) */
+.bg-shape-motion-blueprint-trace::before {
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(var(--bg-shape-color), 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.2) 1px, transparent 1px);
+  background-size: 3rem 3rem;
+}
+.bg-shape-motion-blueprint-trace::after {
+  width: 280px;
+  height: 180px;
+  top: 40px;
+  right: 60px;
+  border: 1.5px solid rgba(var(--bg-shape-color), 0.25);
+  box-shadow: 30px 20px 0 rgba(var(--bg-shape-color), 0.12);
+  animation: motionBlueprintDraw 8s ease-in-out infinite alternate;
+}
+@keyframes motionBlueprintDraw { 0% { opacity: 0.4; transform: scale(0.96); } 100% { opacity: 1; transform: scale(1.02); } }
+
+/* 296 — Optical Moiré Wave Interference (Overlapping fine concentric line patterns rotating relative to one another, producing organic moiré ripples.) */
+.bg-shape-motion-moire-wave::before {
+  width: 26rem;
+  height: 26rem;
+  top: 10%;
+  right: -4rem;
+  border-radius: 50%;
+  background: repeating-radial-gradient(circle, transparent 0 8px, rgba(var(--bg-shape-color), 0.16) 8px 9px);
+  animation: motionMoire1 30s linear infinite;
+}
+.bg-shape-motion-moire-wave::after {
+  width: 26rem;
+  height: 26rem;
+  top: 10%;
+  right: -2rem;
+  border-radius: 50%;
+  background: repeating-radial-gradient(circle, transparent 0 8px, rgba(var(--bg-shape-color), 0.16) 8px 9px);
+  animation: motionMoire2 25s linear infinite;
+}
+@keyframes motionMoire1 { 0% { rotate: 0deg; } 100% { rotate: 360deg; } }
+@keyframes motionMoire2 { 0% { rotate: 360deg; } 100% { rotate: 0deg; } }
+
+/* 297 — Perseid Cosmic Meteor Shower (45-degree shooting stars and meteor streaks hurtling across a deep starfield with fading luminescence tails.) */
+.bg-shape-motion-meteor-shower::before {
+  inset: -50%;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0 60px,
+    rgba(var(--bg-shape-color), 0.28) 60px 62px,
+    transparent 62px 140px
+  );
+  animation: motionMeteors 6s linear infinite;
+}
+@keyframes motionMeteors { 0% { transform: translate(0, 0); } 100% { transform: translate(140px, 140px); } }
+
+/* 298 — Liquid Mercury Chrome Ripple (Metallic chrome droplet falling onto a fluid surface, creating outward concentric liquid wave crests.) */
+.bg-shape-motion-mercury-ripple::before {
+  width: 26rem;
+  height: 26rem;
+  top: 50%;
+  left: 50%;
+  margin-top: -13rem;
+  margin-left: -13rem;
+  border-radius: 50%;
+  border: 1.5px solid rgba(var(--bg-shape-color), 0.25);
+  box-shadow:
+    0 0 0 2rem rgba(var(--bg-shape-color), 0.02), 0 0 0 2.1rem rgba(var(--bg-shape-color), 0.18),
+    0 0 0 4.5rem rgba(var(--bg-shape-color), 0.02), 0 0 0 4.6rem rgba(var(--bg-shape-color), 0.14),
+    0 0 0 7rem rgba(var(--bg-shape-color), 0.015), 0 0 0 7.1rem rgba(var(--bg-shape-color), 0.09);
+  animation: motionMercuryWave 4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+@keyframes motionMercuryWave { 0% { transform: scale(0.6); opacity: 0; } 50% { opacity: 1; } 100% { transform: scale(1.4); opacity: 0; } }
+
+/* 299 — Cosmic Supernova Shockwave (Stellar core collapse triggering an expanding spherical shockwave shell with illuminated gas filaments.) */
+.bg-shape-motion-supernova::before {
+  width: 30rem;
+  height: 30rem;
+  right: -6rem;
+  top: -8rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--bg-shape-color), 0.35) 0%, rgba(var(--bg-shape-color), 0.1) 45%, transparent 70%);
+  animation: motionSupernovaBlast 5s ease-out infinite;
+}
+@keyframes motionSupernovaBlast { 0% { transform: scale(0.2); opacity: 0.9; } 100% { transform: scale(1.6); opacity: 0; } }
+
+/* 300 — Grand Kinetic Nexus Master Matrix (The flagship motion matrix: composite 3D isometric perspective wireframe, rotating orbital rings & drifting technical grid.) */
+.bg-shape-motion-nexus-master::before {
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(var(--bg-shape-color), 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.18) 1px, transparent 1px);
+  background-size: 3.25rem 3.25rem;
+  animation: motionNexusGridDrift 20s linear infinite;
+}
+.bg-shape-motion-nexus-master::after {
+  width: 28rem;
+  height: 28rem;
+  right: -5rem;
+  top: -5rem;
+  border-radius: 50%;
+  border: 1.5px solid rgba(var(--bg-shape-color), 0.24);
+  box-shadow: 0 0 0 2rem rgba(var(--bg-shape-color), 0.02), 0 0 0 2.1rem rgba(var(--bg-shape-color), 0.16);
+  animation: motionNexusOrbital 24s linear infinite;
+}
+@keyframes motionNexusGridDrift { 0% { background-position: 0 0; } 100% { background-position: 3.25rem 3.25rem; } }
+@keyframes motionNexusOrbital { 0% { rotate: 0deg; transform: scale(0.95); } 50% { transform: scale(1.05); } 100% { rotate: 360deg; transform: scale(0.95); } }
