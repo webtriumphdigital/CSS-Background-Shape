@@ -17,7 +17,11 @@ const CATEGORY_NAMES = {
   "circles": "Section 4: Circles, Rings, Ovals & Radar",
   "tech": "Section 5: Architectural Lines, Circuits & Blueprints",
   "glows": "Section 6: Ambient Glows & Fluid Blobs",
-  "compositions": "Section 7: Hero Compositions & Watermarks"
+  "compositions": "Section 7: Hero Compositions & Watermarks",
+  "doodles": "Section 8: Doodles, Glyphs & Wallpaper Tapestries",
+  "waves": "Section 9: Topography, Contours & Harmonic Waves",
+  "circuits": "Section 10: Circuits, Hexagons & Cybernetics",
+  "hud": "Section 11: HUD, Reticles & Space Telemetry"
 };
 
 const SHAPES_DATA = [
@@ -169,5 +173,48 @@ const SHAPES_DATA = [
   { num: "133", name: "Outline Text", cls: "bg-shape-text", cat: "compositions", desc: "Massive stroke-outlined watermark typography.", best: "Hero watermark brand text" },
   { num: "134", name: "Glow Tile", cls: "bgx-glow-tile", cat: "compositions", desc: "Radial ambient halo combined with rotated 45deg tile.", best: "App icon backdrop" },
   { num: "135", name: "Diamond Glow", cls: "bgx-diamond-glow", cat: "compositions", desc: "Perspective diamond floor with ambient soft halo.", best: "SaaS hero banner center" },
-  { num: "136", name: "Signature Hero", cls: "bgx-signature", cat: "compositions", desc: "Signature hero: perspective ground grid + 3-layer shield.", best: "Ultimate flagship hero section" }
+  { num: "136", name: "Signature Hero", cls: "bgx-signature", cat: "compositions", desc: "Signature hero: perspective ground grid + 3-layer shield.", best: "Ultimate flagship hero section" },
+
+  // ================= NEW SHAPES (#137 – #176) =================
+  { num: "137", name: "Doodle Tapestry", cls: "bg-shape-doodle-tapestry", cat: "doodles", desc: "Seamless hand-drawn icon collage with whales, smileys, clouds, stars & coffee (like Telegram / Notion wallpaper).", best: "Creative brands, community hubs & modern landing pages" },
+  { num: "138", name: "Developer Doodles", cls: "bg-shape-doodle-tech", cat: "doodles", desc: "Seamless tech tapestry with code brackets, terminal windows, microchips, bugs, server racks & git branches.", best: "Developer tools, open-source projects & tech documentation" },
+  { num: "139", name: "SaaS Product Glyphs", cls: "bg-shape-doodle-saas", cat: "doodles", desc: "Seamless modern software motif with cursor arrows, sparkles, toggles, charts, bell alerts & shields.", best: "SaaS homepages, pricing tiers & marketing headers" },
+  { num: "140", name: "Creative Studio", cls: "bg-shape-doodle-creative", cat: "doodles", desc: "Artistic collage featuring paint palettes, lightbulb ideas, cameras, drafting rulers & pencils.", best: "Design agencies, portfolios & creative tool suites" },
+  { num: "141", name: "Cyber Security Matrix", cls: "bg-shape-doodle-cyber", cat: "doodles", desc: "Seamless cyber-defense pattern with padlocks, encryption keys, biometric fingerprints & shields.", best: "Cybersecurity, authentication & privacy platforms" },
+  { num: "142", name: "AI Sparkles & Stars", cls: "bg-shape-sparkles-matrix", cat: "doodles", desc: "Trending modern AI starburst cluster with 4-point celestial stars, twinkles & diamond specks.", best: "Artificial intelligence, generative models & innovation hero banners" },
+  { num: "143", name: "Memphis Motifs", cls: "bg-shape-pattern-memphis", cat: "doodles", desc: "Playful modern Memphis geometry with squiggles, hollow triangles, plus marks & pill bars.", best: "Creative agencies, podcasts & youth-oriented tech products" },
+  { num: "144", name: "Minimalist Micro-Icons", cls: "bg-shape-icons-minimal", cat: "doodles", desc: "Spacious architectural matrix of minimalist technical glyphs and geometric markers.", best: "Enterprise SaaS, minimalist portfolios & technical platforms" },
+  { num: "145", name: "Botanical Leaves", cls: "bg-shape-nature-botanical", cat: "doodles", desc: "Stylized monstera, palm fronds and flora silhouettes for organic, sustainable brands.", best: "Wellness, eco-friendly brands, cosmetics & organic products" },
+  { num: "146", name: "Fintech & Crypto Nodes", cls: "bg-shape-fintech-matrix", cat: "doodles", desc: "Seamless financial tapestry with credit cards, coins, trend charts, safe vaults & blockchain tokens.", best: "Fintech startups, crypto platforms & investment banking" },
+  { num: "147", name: "Space & Cosmos", cls: "bg-shape-space-cosmos", cat: "doodles", desc: "Cosmic wallpaper with Saturn rings, space rockets, crescent moons, constellations & shooting stars.", best: "Deep tech, aerospace, astronomy & futuristic web apps" },
+  { num: "148", name: "Travel & Adventure", cls: "bg-shape-travel-adventure", cat: "doodles", desc: "Outdoor exploration collage with mountain ranges, campfires, compass needles & camping tents.", best: "Travel agencies, outdoor gear, hospitality & sports brands" },
+  { num: "149", name: "Topographic Elevation", cls: "bg-shape-topo-elevation", cat: "waves", desc: "Natural undulating geographic contour map elevation lines with smooth multi-tiered curves.", best: "Mapbox / geospatial tech, outdoor brands & data visualization" },
+  { num: "150", name: "Topographic Hill Strata", cls: "bg-shape-topo-strata", cat: "waves", desc: "Concentric elevation contour rings forming a natural hill summit in top-right quadrant.", best: "SaaS hero sections, summit milestones & tracking dashboards" },
+  { num: "151", name: "Topographic Flow Streams", cls: "bg-shape-topo-flow", cat: "waves", desc: "Parallel contour strata streaming horizontally with gradual river-like meandering.", best: "Fintech continuous payment flows & data pipelines" },
+  { num: "152", name: "Audio Soundwave Oscilloscope", cls: "bg-shape-audio-waves", cat: "waves", desc: "Realistic oscilloscope audio soundwave frequencies with variable amplitude spikes.", best: "Podcasts, speech AI, audio tech & media streaming platforms" },
+  { num: "153", name: "Mathematical Sine Waves", cls: "bg-shape-sine-waves", cat: "waves", desc: "Tri-frequency harmonic mathematical sine waves with phased harmonic resonance.", best: "Scientific computing, quantum tech, telecom & acoustics" },
+  { num: "154", name: "Liquid Metaballs", cls: "bg-shape-metaballs", cat: "waves", desc: "Organic fluid liquid droplet formation with surface-tension connecting necks.", best: "Modern creative brands, digital agencies & Web3 fluid interfaces" },
+  { num: "155", name: "Liquid Ribbon Wave", cls: "bg-shape-liquid-ribbon", cat: "waves", desc: "Multi-ribbed 3D wave ribbon banner gracefully swooping across the hero backdrop.", best: "Fintech, consulting, automotive & sleek SaaS headers" },
+  { num: "156", name: "Equalizer Frequency Bars", cls: "bg-shape-equalizer-bars", cat: "waves", desc: "Digital audio frequency spectrum bars with variable stepped amplitude columns.", best: "Music streaming, telemetry analytics & voice interfaces" },
+  { num: "157", name: "Oceanic Ripple Rings", cls: "bg-shape-ocean-ripples", cat: "waves", desc: "Multiple offset elliptical wave ripples simulating water droplet surface impacts.", best: "Mindfulness, clean energy, eco-tech & water conservation" },
+  { num: "158", name: "DNA Double Helix", cls: "bg-shape-dna-helix", cat: "waves", desc: "Mathematical double helix spiral wave with connecting molecular base pair rungs.", best: "Biotechnology, genomics, pharmaceuticals & life sciences" },
+  { num: "159", name: "Electronic Circuit Board", cls: "bg-shape-circuit-board", cat: "circuits", desc: "Authentic PCB motherboard traces with 45° bends, circular vias, SMD pads & data buses.", best: "Hardware tech, IoT devices, semiconductor engineering & electronics" },
+  { num: "160", name: "Circuit Flow TR", cls: "bg-shape-circuit-core-tr", cat: "circuits", desc: "Top-right processor chip with dense bus lines cascading across the hero section.", best: "Enterprise computing, cloud infrastructure & microprocessor showcases" },
+  { num: "161", name: "Microchip Silicon Die", cls: "bg-shape-chip-die", cat: "circuits", desc: "Silicon processor wafer architecture: arithmetic logic units, cache block grids & interconnects.", best: "AI hardware, semiconductor foundries & chip architecture" },
+  { num: "162", name: "Neural Synaptic Network", cls: "bg-shape-neural-lattice", cat: "circuits", desc: "Interconnected synaptic nodes with dendritic pathways simulating neural intelligence.", best: "Machine learning, AI neural nets, neuroscience & cognitive science" },
+  { num: "163", name: "Honeycomb Hexagon Lattice", cls: "bg-shape-hex-honeycomb", cat: "circuits", desc: "Seamless interlocking mathematical hexagonal honeycomb carbon-fiber lattice.", best: "Automotive, cybersecurity, aerospace & advanced composites" },
+  { num: "164", name: "Hex Tech Cells", cls: "bg-shape-hex-tech", cat: "circuits", desc: "High-tech modular hexagons with concentric inner boundary rings and vertex connection pins.", best: "Web3 protocols, blockchain clusters & tech command dashboards" },
+  { num: "165", name: "Voronoi Cellular Web", cls: "bg-shape-voronoi-cells", cat: "circuits", desc: "Natural algorithmic Voronoi cell network with organic polygonal boundaries.", best: "Computational biology, generative art & materials science" },
+  { num: "166", name: "Herringbone Chevron Weave", cls: "bg-shape-herringbone", cat: "circuits", desc: "Architectural 45-degree herringbone chevron brickwork weave with pinstripe precision.", best: "Luxury real estate, interior design, architecture & apparel" },
+  { num: "167", name: "Cyber Matrix Pillars", cls: "bg-shape-matrix-pillars", cat: "circuits", desc: "Segmented vertical digital telemetry data pillars with varying stream lengths.", best: "Cloud servers, databases, big data & high-frequency trading" },
+  { num: "168", name: "Isometric Escher Tessellation", cls: "bg-shape-tessellation-cube", cat: "circuits", desc: "Interlocking 3D rhombic cube surface creating an impossible optical isometric tessellation.", best: "Architecture, mathematical software & creative tech studios" },
+  { num: "169", name: "HUD Reticle Target", cls: "bg-shape-hud-reticle", cat: "hud", desc: "Tactical fighter heads-up-display with multi-ring target reticles, azimuth ticks & crosshairs.", best: "Defense tech, gaming interfaces, aviation & telemetry dashboards" },
+  { num: "170", name: "Camera Viewfinder Brackets", cls: "bg-shape-viewfinder-brackets", cat: "hud", desc: "Framing corner brackets, center autofocus reticle & rule-of-thirds photography grid.", best: "Photography studios, video production & creative media apps" },
+  { num: "171", name: "Architectural Compass Dial", cls: "bg-shape-compass-dial", cat: "hud", desc: "Precision technical drafting compass rose with 360° degree tick marks & radial azimuth spokes.", best: "Architecture firms, structural engineering & maritime navigation" },
+  { num: "172", name: "Metric Calibration Scales", cls: "bg-shape-metric-calibration", cat: "hud", desc: "Technical precision ruler scales with millimeter marks & alignment crosshairs.", best: "Precision manufacturing, CAD tools & industrial engineering" },
+  { num: "173", name: "Polar Sonar Radar Sweep", cls: "bg-shape-radar-sweep", cat: "hud", desc: "Polar sonar display with range rings, 30° radial bearing spokes & sweep sector flare.", best: "Subsea tech, defense surveillance, marine & aviation" },
+  { num: "174", name: "Celestial Constellation Web", cls: "bg-shape-constellation", cat: "hud", desc: "Star map featuring Ursa Major & Orion linked by delicate geometric constellation lines.", best: "Astronomy, astrology, luxury hospitality & evening themes" },
+  { num: "175", name: "Spherical Globe Wireframe", cls: "bg-shape-globe-wireframe", cat: "hud", desc: "3D spherical latitude and longitude wireframe grid tilted at 23.5 degrees.", best: "Global logistics, international finance, telecommunications & CDN services" },
+  { num: "176", name: "Hexagonal HUD Radar", cls: "bg-shape-hud-hex-radar", cat: "hud", desc: "Concentric hexagonal tactical radar with corner telemetry readouts and degree cross-axes.", best: "Gaming HUDs, cybersecurity control centers & tactical aerospace" },
 ];
+
