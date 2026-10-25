@@ -366,6 +366,38 @@ boostToggle.addEventListener("click", () => {
   showToast(`Contrast Mode: ${boostText.textContent}`);
 });
 
+// Scroll to Top with Circular Progress Indicator
+const scrollTopBtn = document.getElementById("scrollTopBtn");
+const scrollProgressCircle = document.getElementById("scrollProgressCircle");
+const CIRCLE_CIRCUMFERENCE = 125.66; // 2 * PI * 20
+
+function handleWindowScroll() {
+  const scrollY = window.scrollY || document.documentElement.scrollTop;
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  
+  if (scrollTopBtn) {
+    if (scrollY > 300) {
+      scrollTopBtn.classList.add("visible");
+    } else {
+      scrollTopBtn.classList.remove("visible");
+    }
+  }
+
+  if (scrollProgressCircle && docHeight > 0) {
+    const progress = Math.min(Math.max(scrollY / docHeight, 0), 1);
+    const offset = CIRCLE_CIRCUMFERENCE - (progress * CIRCLE_CIRCUMFERENCE);
+    scrollProgressCircle.style.strokeDashoffset = offset;
+  }
+}
+
+if (scrollTopBtn) {
+  window.addEventListener("scroll", handleWindowScroll, { passive: true });
+  scrollTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
 // Initial Setup
 setShapeOpacity(100, "init");
 renderShapes();
+handleWindowScroll();
