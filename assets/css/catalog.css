@@ -1002,3 +1002,103 @@ h1 {
     opacity: 1;
     pointer-events: auto;
 }
+
+/* Animation Utility Quick Selector Bar */
+.animation-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    width: 100%;
+    padding-top: 0.9rem;
+    border-top: 1px dashed var(--border);
+}
+
+.animation-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text);
+}
+.animation-sub {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+}
+
+.animation-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.anim-btn {
+    background: #f1f5f9;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.5rem;
+    font-size: 0.76rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.anim-btn:hover {
+    color: var(--text);
+    border-color: var(--border-hover);
+}
+.anim-btn.active {
+    background: linear-gradient(135deg, #0284c7, #4f46e5);
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.25);
+}
+
+.animation-badge {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.76rem;
+    background: #f1f5f9;
+    color: #334155;
+    padding: 0.35rem 0.75rem;
+    border-radius: 0.45rem;
+    border: 1px dashed var(--border);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+.animation-badge:hover {
+    background: #e2e8f0;
+    border-color: var(--border-hover);
+}
+
+.modal-anim-group {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: #f1f5f9;
+    padding: 0.25rem 0.45rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border);
+}
+
+.modal-anim-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 0.25rem 0.55rem;
+    border-radius: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+.modal-anim-btn:hover {
+    color: var(--text);
+}
+.modal-anim-btn.active {
+    background: linear-gradient(135deg, #0284c7, #4f46e5);
+    color: #ffffff;
+}

@@ -10,6 +10,10 @@ const ashColorText = document.getElementById("ashColorText");
 const activeOpClassBadge = document.getElementById("activeOpClassBadge");
 const activeOpClassText = document.getElementById("activeOpClassText");
 const globalOpButtons = document.querySelectorAll("#globalOpOptions .op-btn");
+const globalAnimButtons = document.querySelectorAll("#globalAnimOptions .anim-btn");
+const activeAnimClassBadge = document.getElementById("activeAnimClassBadge");
+const activeAnimClassText = document.getElementById("activeAnimClassText");
+const modalAnimButtons = document.querySelectorAll("#modalAnimGroup .modal-anim-btn");
 
 // Modal elements
 const previewModal = document.getElementById("previewModal");
@@ -36,6 +40,7 @@ let activeFilter = "all";
 let searchTerm = "";
 let currentActiveShape = null;
 let currentOpacity = 100; // Default: 100%
+let currentAnimation = "none"; // Default: None (Static)
 let currentFilteredShapes = [...SHAPES_DATA];
 
 // Universal Neutral Ash & Smoke Tone Presets
@@ -49,6 +54,83 @@ const ASH_PRESETS = [
   { name: "Warm Stone Ash", val: "120, 113, 108", hex: "#78716c", cls: "bg-shape-stone" }
 ];
 let currentAshIndex = 0;
+
+function getActiveShapeClasses(shapeCls) {
+  let parts = [shapeCls];
+  if (currentOpacity !== 100) {
+    parts.push(`bg-shape-opacity-${currentOpacity}`);
+  }
+  if (currentAnimation !== "none") {
+    parts.push(currentAnimation);
+  }
+  return parts.join(" ");
+}
+
+function getActiveShapeLabel(shapeCls) {
+  let parts = [`.${shapeCls}`];
+  if (currentOpacity !== 100) {
+    parts.push(`.bg-shape-opacity-${currentOpacity}`);
+  }
+  if (currentAnimation !== "none") {
+    parts.push(`.${currentAnimation}`);
+  }
+  return parts.join(" ");
+}
+
+const ALL_ANIMATION_CLASSES = [
+  "bg-shape-anim-float", "bg-shape-anim-drift", "bg-shape-anim-pan",
+  "bg-shape-anim-spin", "bg-shape-anim-rotate", "bg-shape-anim-pulse",
+  "bg-shape-anim-wave", "bg-shape-anim-tilt", "bg-shape-anim-shimmer",
+  "bg-shape-anim-doodle-sway", "bg-shape-anim-radar", "bg-shape-anim-scan"
+];
+
+function setShapeAnimation(animClass, source = "user") {
+  currentAnimation = animClass;
+
+  // Update global buttons active state
+  globalAnimButtons.forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.anim === animClass);
+  });
+
+  // Update modal buttons active state
+  modalAnimButtons.forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.anim === animClass);
+  });
+
+  // Update animation badge text
+  if (activeAnimClassText) {
+    activeAnimClassText.textContent = animClass === "none" ? "None (Static)" : `.${animClass}`;
+  }
+
+  // Update all preview canvases on cards
+  document.querySelectorAll(".preview-stage-viewport").forEach(viewport => {
+    ALL_ANIMATION_CLASSES.forEach(c => viewport.classList.remove(c));
+    if (animClass !== "none") {
+      viewport.classList.add(animClass);
+    }
+  });
+
+  // Update card copy button labels
+  document.querySelectorAll(".shape-card").forEach(card => {
+    const cls = card.dataset.shapeClass;
+    if (cls) {
+      const copySpan = card.querySelector(".copy-cls-text");
+      if (copySpan) {
+        copySpan.textContent = getActiveShapeLabel(cls);
+      }
+    }
+  });
+
+  // Update modal display if open
+  if (currentActiveShape) {
+    updateModalDisplay();
+  }
+
+  if (source !== "init") {
+    const label = animClass === "none" ? "Static (No Motion)" : `.${animClass}`;
+    showToast(`Animation: ${label}`);
+  }
+}
 
 function setShapeOpacity(percent, source = "user") {
   currentOpacity = percent;

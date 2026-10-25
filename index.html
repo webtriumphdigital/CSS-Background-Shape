@@ -53,9 +53,10 @@
       </div>
 
       <div class="filters">
-        <button class="filter-btn active" data-filter="all">All (241)</button>
+        <button class="filter-btn active" data-filter="all">All (261)</button>
         <button class="filter-btn" data-filter="doodles">Doodles &amp; Wallpapers (12)</button>
         <button class="filter-btn" data-filter="business">Business &amp; Industries (25)</button>
+        <button class="filter-btn" data-filter="motion">Kinetic &amp; Animated (20)</button>
         <button class="filter-btn" data-filter="waves">Topography &amp; Waves (10)</button>
         <button class="filter-btn" data-filter="circuits">Circuits &amp; Cyber (10)</button>
         <button class="filter-btn" data-filter="hud">HUD &amp; Reticles (8)</button>
@@ -88,6 +89,28 @@
         </div>
         <div class="opacity-badge" id="activeOpClassBadge" title="Click to copy opacity utility class">
           <span>Class:</span> <code id="activeOpClassText">.bg-shape-opacity-100</code> <span>📋</span>
+        </div>
+      </div>
+
+      <!-- Animation Utility Quick Selector Bar -->
+      <div class="animation-bar">
+        <div class="animation-label">
+          <span>✨</span> <strong>Shape Animation:</strong>
+          <span class="animation-sub">(Live CSS Motion — apply to ANY shape or copy modifier utility)</span>
+        </div>
+        <div class="animation-options" id="globalAnimOptions">
+          <button class="anim-btn active" data-anim="none">None (Static)</button>
+          <button class="anim-btn" data-anim="bg-shape-anim-float">Float</button>
+          <button class="anim-btn" data-anim="bg-shape-anim-drift">Drift</button>
+          <button class="anim-btn" data-anim="bg-shape-anim-spin">Spin</button>
+          <button class="anim-btn" data-anim="bg-shape-anim-pulse">Pulse</button>
+          <button class="anim-btn" data-anim="bg-shape-anim-wave">Wave</button>
+          <button class="anim-btn" data-anim="bg-shape-anim-tilt">3D Tilt</button>
+          <button class="anim-btn" data-anim="bg-shape-anim-shimmer">Shimmer</button>
+          <button class="anim-btn" data-anim="bg-shape-anim-radar">Radar</button>
+        </div>
+        <div class="animation-badge" id="activeAnimClassBadge" title="Click to copy animation utility class">
+          <span>Motion:</span> <code id="activeAnimClassText">None</code> <span>📋</span>
         </div>
       </div>
     </div>
@@ -182,6 +205,18 @@
         </div>
         <div class="modal-actions">
           <!-- Modal Opacity Quick Buttons -->
+          <div class="modal-anim-group" id="modalAnimGroup">
+            <span style="font-size: 0.75rem; font-weight: 700; color: #64748b; margin-right: 0.2rem; margin-left: 0.2rem;">Motion:</span>
+            <button class="modal-anim-btn active" data-anim="none">None</button>
+            <button class="modal-anim-btn" data-anim="bg-shape-anim-float">Float</button>
+            <button class="modal-anim-btn" data-anim="bg-shape-anim-drift">Drift</button>
+            <button class="modal-anim-btn" data-anim="bg-shape-anim-spin">Spin</button>
+            <button class="modal-anim-btn" data-anim="bg-shape-anim-pulse">Pulse</button>
+            <button class="modal-anim-btn" data-anim="bg-shape-anim-wave">Wave</button>
+            <button class="modal-anim-btn" data-anim="bg-shape-anim-tilt">Tilt</button>
+            <button class="modal-anim-btn" data-anim="bg-shape-anim-shimmer">Shimmer</button>
+          </div>
+
           <div class="modal-op-group" id="modalOpGroup">
             <span
               style="font-size: 0.75rem; font-weight: 700; color: #64748b; margin-right: 0.2rem; margin-left: 0.2rem;">Opacity:</span>

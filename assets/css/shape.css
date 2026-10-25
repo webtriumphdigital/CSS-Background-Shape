@@ -3769,3 +3769,742 @@
   mask-repeat: repeat;
 }
 
+/* ==========================================================================
+   13. SECTION 11: UNIVERSAL SHAPE MOTION & ANIMATION UTILITIES
+   Can be applied to ANY of the 261 background shapes in the library!
+   Usage example in Elementor:
+     class="bg-shape-grid bg-shape-anim-drift"
+     class="bg-shape-rings-tr bg-shape-anim-spin"
+     class="bg-shape-blob-tr bg-shape-anim-float"
+     class="bg-shape-doodle-creative bg-shape-anim-doodle-sway"
+   ========================================================================== */
+
+/* Motion Utility 1: Gentle 3D Float / Bob (Ideal for icons, blobs, rings, wireframes) */
+.bg-shape-anim-float::before,
+.bg-shape-anim-float::after {
+  animation: bgShapeAnimFloat 6s ease-in-out infinite alternate !important;
+  will-change: transform, translate;
+}
+@keyframes bgShapeAnimFloat {
+  0% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -18px;
+  }
+  100% {
+    translate: 0 0;
+  }
+}
+
+/* Motion Utility 2: Infinite Grid Pan & Drift (Smooth diagonal scrolling of any grid or wallpaper) */
+.bg-shape-anim-drift::before,
+.bg-shape-anim-drift::after,
+.bg-shape-anim-pan::before,
+.bg-shape-anim-pan::after {
+  animation: bgShapeAnimDrift 30s linear infinite !important;
+  will-change: background-position, -webkit-mask-position, mask-position;
+}
+@keyframes bgShapeAnimDrift {
+  0% {
+    background-position: 0 0, 0 0, 0 0;
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
+  }
+  100% {
+    background-position: 380px 380px, 380px 380px, 380px 380px;
+    -webkit-mask-position: 380px 380px;
+    mask-position: 380px 380px;
+  }
+}
+
+/* Motion Utility 3: Slow Ambient 360° Spin (Great for circles, rings, radars, HUDs) */
+.bg-shape-anim-spin::before,
+.bg-shape-anim-spin::after,
+.bg-shape-anim-rotate::before,
+.bg-shape-anim-rotate::after {
+  animation: bgShapeAnimSpin 45s linear infinite !important;
+  transform-origin: center center;
+  will-change: rotate;
+}
+@keyframes bgShapeAnimSpin {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}
+
+/* Motion Utility 4: Breathing Glow & Pulse (Pulsing opacity & luminosity for glows, blobs, spotlights) */
+.bg-shape-anim-pulse::before,
+.bg-shape-anim-pulse::after {
+  animation: bgShapeAnimPulse 5s ease-in-out infinite !important;
+  will-change: opacity, filter;
+}
+@keyframes bgShapeAnimPulse {
+  0%, 100% {
+    opacity: calc(var(--bg-shape-opacity, 1) * 0.95);
+    filter: brightness(1);
+  }
+  50% {
+    opacity: calc(var(--bg-shape-opacity, 1) * 0.40);
+    filter: brightness(1.3);
+  }
+}
+
+/* Motion Utility 5: Liquid Wave Sway / Undulation (Harmonic sinusoidal swaying for waves & topography) */
+.bg-shape-anim-wave::before,
+.bg-shape-anim-wave::after {
+  animation: bgShapeAnimWave 9s ease-in-out infinite !important;
+  will-change: translate;
+}
+@keyframes bgShapeAnimWave {
+  0%, 100% {
+    translate: 0 0;
+  }
+  25% {
+    translate: 10px -14px;
+  }
+  50% {
+    translate: 0 -8px;
+  }
+  75% {
+    translate: -10px -16px;
+  }
+}
+
+/* Motion Utility 6: 3D Perspective Tilt Rocking (Ideal for perspective floors, isometric wireframes, cubes) */
+.bg-shape-anim-tilt::before,
+.bg-shape-anim-tilt::after {
+  animation: bgShapeAnimTilt 8s ease-in-out infinite alternate !important;
+  will-change: transform;
+}
+@keyframes bgShapeAnimTilt {
+  0% {
+    translate: 0 0;
+    filter: brightness(0.95);
+  }
+  100% {
+    translate: 12px -15px;
+    filter: brightness(1.1);
+  }
+}
+
+/* Motion Utility 7: High-Tech Laser Shimmer Sweep (A continuous luminous sheen sweeping across the pattern) */
+.bg-shape-anim-shimmer::after {
+  inset: -100% !important;
+  background: linear-gradient(115deg, transparent 40%, rgba(var(--bg-shape-color), 0.18) 50%, transparent 60%) !important;
+  animation: bgShapeAnimShimmer 8s cubic-bezier(0.4, 0, 0.2, 1) infinite !important;
+  pointer-events: none;
+  z-index: 0 !important;
+}
+@keyframes bgShapeAnimShimmer {
+  0% {
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    transform: translate(50%, 50%);
+  }
+}
+
+/* Motion Utility 8: Kinetic Doodle Pendulum Sway (Gentle swaying oscillation for wallpaper tapestries) */
+.bg-shape-anim-doodle-sway::before {
+  animation: bgShapeAnimDoodleSway 10s ease-in-out infinite alternate !important;
+  transform-origin: 50% 10%;
+  will-change: transform;
+}
+@keyframes bgShapeAnimDoodleSway {
+  0% {
+    transform: rotate(-1.5deg) scale(1);
+  }
+  50% {
+    transform: rotate(1.2deg) scale(1.02);
+  }
+  100% {
+    transform: rotate(-1.5deg) scale(1);
+  }
+}
+
+/* Motion Utility 9: Tactical Scanline Sweep (Security / Telemetry laser scanning down the section) */
+.bg-shape-anim-radar::after,
+.bg-shape-anim-scan::after {
+  inset: 0 !important;
+  background: linear-gradient(180deg, transparent 0%, rgba(var(--bg-shape-color), 0.16) 50%, transparent 100%) !important;
+  background-size: 100% 120px !important;
+  background-repeat: no-repeat !important;
+  animation: bgShapeAnimScanline 6s linear infinite !important;
+  pointer-events: none;
+}
+@keyframes bgShapeAnimScanline {
+  0% {
+    background-position: 0 -120px;
+  }
+  100% {
+    background-position: 0 120%;
+  }
+}
+
+/* Respect user accessibility motion settings */
+@media (prefers-reduced-motion: reduce) {
+  .bg-shape-anim-float::before, .bg-shape-anim-float::after,
+  .bg-shape-anim-drift::before, .bg-shape-anim-drift::after,
+  .bg-shape-anim-pan::before, .bg-shape-anim-pan::after,
+  .bg-shape-anim-spin::before, .bg-shape-anim-spin::after,
+  .bg-shape-anim-pulse::before, .bg-shape-anim-pulse::after,
+  .bg-shape-anim-wave::before, .bg-shape-anim-wave::after,
+  .bg-shape-anim-tilt::before, .bg-shape-anim-tilt::after,
+  .bg-shape-anim-shimmer::after,
+  .bg-shape-anim-doodle-sway::before,
+  .bg-shape-anim-radar::after, .bg-shape-anim-scan::after {
+    animation: none !important;
+    translate: none !important;
+    rotate: none !important;
+  }
+}
+
+
+/* ==========================================================================
+   14. SECTION 12: DEDICATED KINETIC & ANIMATED MOTION BACKGROUNDS (#242 – #261) [20 Shapes]
+   Cinematic 60FPS CSS animations engineered for SaaS heroes, cyber dashboards,
+   creative agency showreels & modern tech portals.
+   ========================================================================== */
+
+/* 242 — Infinite Cyber Matrix Grid (Infinite scrolling diagonal matrix grid with micro-coordinate markers and breathing luminous intersections.) */
+.bg-shape-motion-cyber-grid::before {
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(var(--bg-shape-color), 0.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.22) 1px, transparent 1px),
+    radial-gradient(circle at 1px 1px, rgba(var(--bg-shape-color), 0.40) 2px, transparent 2.5px);
+  background-size: 3.5rem 3.5rem, 3.5rem 3.5rem, 3.5rem 3.5rem;
+  animation: motionCyberGridScroll 24s linear infinite;
+  will-change: background-position;
+}
+.bg-shape-motion-cyber-grid::after {
+  inset: 0;
+  background: radial-gradient(circle at 50% 40%, rgba(var(--bg-shape-color), 0.16) 0%, transparent 70%);
+  animation: motionSpotlightPulse 6s ease-in-out infinite alternate;
+}
+@keyframes motionCyberGridScroll {
+  0% { background-position: 0 0, 0 0, 0 0; }
+  100% { background-position: 3.5rem 3.5rem, 3.5rem 3.5rem, 3.5rem 3.5rem; }
+}
+@keyframes motionSpotlightPulse {
+  0% { opacity: 0.6; transform: scale(0.96); }
+  100% { opacity: 1; transform: scale(1.05); }
+}
+
+/* 243 — 360° Tactical Radar Sweeper (Rotating tactical radar beam sweeping continuously over concentric range rings, cardinal axes & tracking blips.) */
+.bg-shape-motion-radar-sweeper::before {
+  width: 32rem;
+  height: 32rem;
+  right: -6rem;
+  top: -8rem;
+  border-radius: 50%;
+  border: 1px solid rgba(var(--bg-shape-color), 0.22);
+  box-shadow:
+    0 0 0 3rem rgba(var(--bg-shape-color), 0.02),
+    0 0 0 3.1rem rgba(var(--bg-shape-color), 0.14),
+    0 0 0 6.5rem rgba(var(--bg-shape-color), 0.02),
+    0 0 0 6.6rem rgba(var(--bg-shape-color), 0.12),
+    0 0 0 10.5rem rgba(var(--bg-shape-color), 0.015),
+    0 0 0 10.6rem rgba(var(--bg-shape-color), 0.09);
+  background-image:
+    linear-gradient(to right, transparent 49.6%, rgba(var(--bg-shape-color), 0.20) 49.8%, rgba(var(--bg-shape-color), 0.20) 50.2%, transparent 50.4%),
+    linear-gradient(to bottom, transparent 49.6%, rgba(var(--bg-shape-color), 0.20) 49.8%, rgba(var(--bg-shape-color), 0.20) 50.2%, transparent 50.4%);
+}
+.bg-shape-motion-radar-sweeper::after {
+  width: 32rem;
+  height: 32rem;
+  right: -6rem;
+  top: -8rem;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(var(--bg-shape-color), 0.28) 0deg,
+    rgba(var(--bg-shape-color), 0.12) 35deg,
+    rgba(var(--bg-shape-color), 0.02) 65deg,
+    transparent 75deg
+  );
+  animation: motionRadarSpin 10s linear infinite;
+  mask-image: radial-gradient(circle, #000 68%, transparent 72%);
+  -webkit-mask-image: radial-gradient(circle, #000 68%, transparent 72%);
+  transform-origin: center center;
+}
+@keyframes motionRadarSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 244 — Celestial Gyroscope Orbitals (Dual counter-rotating elliptical orbital rings with glowing satellite nodes orbiting in harmonious 3D space.) */
+.bg-shape-motion-orbitals::before {
+  width: 34rem;
+  height: 18rem;
+  right: -8rem;
+  top: -4rem;
+  border: 1.5px solid rgba(var(--bg-shape-color), 0.24);
+  border-radius: 50%;
+  transform: rotate(-32deg);
+  animation: motionOrbitClockwise 28s linear infinite;
+  box-shadow: 0 0 0 2rem rgba(var(--bg-shape-color), 0.02);
+}
+.bg-shape-motion-orbitals::after {
+  width: 28rem;
+  height: 15rem;
+  right: -5rem;
+  top: -2rem;
+  border: 1.5px dashed rgba(var(--bg-shape-color), 0.22);
+  border-radius: 50%;
+  transform: rotate(40deg);
+  animation: motionOrbitCounter 20s linear infinite;
+}
+@keyframes motionOrbitClockwise {
+  0% { transform: rotate(-32deg) scale(1); }
+  50% { transform: rotate(148deg) scale(1.05); }
+  100% { transform: rotate(328deg) scale(1); }
+}
+@keyframes motionOrbitCounter {
+  0% { transform: rotate(40deg) scale(1.04); }
+  50% { transform: rotate(-140deg) scale(0.96); }
+  100% { transform: rotate(-320deg) scale(1.04); }
+}
+
+/* 245 — Liquid Morphing Fluid Blob (Silky glassmorphic metaball continuously morphing between organic bezier curvatures with soft ambient lighting.) */
+.bg-shape-motion-morphing-blob::before {
+  width: 30rem;
+  height: 28rem;
+  right: -6rem;
+  top: -8rem;
+  background: radial-gradient(
+    ellipse at 40% 40%,
+    rgba(var(--bg-shape-color), 0.22) 0%,
+    rgba(var(--bg-shape-color), 0.08) 55%,
+    transparent 75%
+  );
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  animation: motionBlobMorph 14s ease-in-out infinite alternate;
+  will-change: border-radius, transform;
+}
+.bg-shape-motion-morphing-blob::after {
+  width: 22rem;
+  height: 22rem;
+  right: -2rem;
+  top: -3rem;
+  border: 1px solid rgba(var(--bg-shape-color), 0.16);
+  border-radius: 40% 60% 60% 40% / 50% 60% 40% 50%;
+  animation: motionBlobMorphSecondary 18s ease-in-out infinite alternate;
+}
+@keyframes motionBlobMorph {
+  0% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: rotate(0deg) scale(1);
+  }
+  34% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    transform: rotate(45deg) scale(1.06);
+  }
+  67% {
+    border-radius: 50% 50% 20% 80% / 25% 75% 40% 60%;
+    transform: rotate(-35deg) scale(0.95);
+  }
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: rotate(0deg) scale(1);
+  }
+}
+@keyframes motionBlobMorphSecondary {
+  0% {
+    border-radius: 40% 60% 60% 40% / 50% 60% 40% 50%;
+    transform: rotate(0deg);
+  }
+  100% {
+    border-radius: 60% 30% 40% 70% / 40% 70% 30% 60%;
+    transform: rotate(180deg);
+  }
+}
+
+/* 246 — Infinite Synthwave 3D Floor (Receding 3D perspective floor grid with infinite forward velocity rushing toward a glowing horizon vanishing point.) */
+.bg-shape-motion-synthwave-floor::before {
+  left: -30%;
+  right: -30%;
+  bottom: -60%;
+  height: 125%;
+  transform: perspective(280px) rotateX(62deg);
+  transform-origin: center top;
+  background-image:
+    linear-gradient(rgba(var(--bg-shape-color), 0.22) 1.5px, transparent 1.5px),
+    linear-gradient(90deg, rgba(var(--bg-shape-color), 0.22) 1.5px, transparent 1.5px);
+  background-size: 3.25rem 3.25rem;
+  animation: motionSynthwaveScroll 2s linear infinite;
+  mask-image: linear-gradient(to bottom, #000 0%, #000 45%, transparent 92%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 45%, transparent 92%);
+  will-change: background-position;
+}
+.bg-shape-motion-synthwave-floor::after {
+  left: 0;
+  right: 0;
+  bottom: 35%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 10%, rgba(var(--bg-shape-color), 0.40) 50%, transparent 90%);
+  filter: drop-shadow(0 0 12px rgba(var(--bg-shape-color), 0.35));
+  animation: motionHorizonBlink 4s ease-in-out infinite alternate;
+}
+@keyframes motionSynthwaveScroll {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 3.25rem; }
+}
+@keyframes motionHorizonBlink {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+/* 247 — Breathing Harmonic Contour Waves (Multilayered topographic elevation curves undulating with phase-shifted sinusoidal waves in organic rhythm.) */
+.bg-shape-motion-contour-waves::before {
+  inset: 0;
+  background-color: rgba(var(--bg-shape-color), 0.22);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22380%22 height=%22380%22 viewBox=%220 0 380 380%22 fill=%22none%22 stroke=%22black%22 stroke-width=%221.8%22 stroke-linecap=%22round%22%3E %3Cpath d=%22M 0 60 C 95 30 190 90 285 45 C 330 25 360 40 380 50%22 /%3E %3Cpath d=%22M 0 120 C 80 150 180 80 270 140 C 330 170 360 130 380 135%22 /%3E %3Cpath d=%22M 0 190 C 100 160 190 230 290 180 C 340 155 365 175 380 185%22 /%3E %3Cpath d=%22M 0 260 C 90 300 200 220 280 270 C 330 300 360 270 380 265%22 /%3E %3Cpath d=%22M 0 330 C 95 300 185 360 285 320 C 335 300 365 315 380 325%22 /%3E %3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22380%22 height=%22380%22 viewBox=%220 0 380 380%22 fill=%22none%22 stroke=%22black%22 stroke-width=%221.8%22 stroke-linecap=%22round%22%3E %3Cpath d=%22M 0 60 C 95 30 190 90 285 45 C 330 25 360 40 380 50%22 /%3E %3Cpath d=%22M 0 120 C 80 150 180 80 270 140 C 330 170 360 130 380 135%22 /%3E %3Cpath d=%22M 0 190 C 100 160 190 230 290 180 C 340 155 365 175 380 185%22 /%3E %3Cpath d=%22M 0 260 C 90 300 200 220 280 270 C 330 300 360 270 380 265%22 /%3E %3Cpath d=%22M 0 330 C 95 300 185 360 285 320 C 335 300 365 315 380 325%22 /%3E %3C/svg%3E");
+  -webkit-mask-size: 380px 380px;
+  mask-size: 380px 380px;
+  animation: motionContourSway 8s ease-in-out infinite alternate;
+}
+@keyframes motionContourSway {
+  0% { transform: translateY(0) scaleY(1); }
+  50% { transform: translateY(-12px) scaleY(1.04); }
+  100% { transform: translateY(8px) scaleY(0.96); }
+}
+
+/* 248 — Parallax Particle Starfield (Dual-layer dot matrix: background star particles drift slowly while foreground nodes drift at 2x velocity for 3D depth.) */
+.bg-shape-motion-starfield::before {
+  inset: 0;
+  background-image: radial-gradient(rgba(var(--bg-shape-color), 0.20) 1.5px, transparent 1.5px);
+  background-size: 2.5rem 2.5rem;
+  animation: motionStarsSlow 40s linear infinite;
+  will-change: background-position;
+}
+.bg-shape-motion-starfield::after {
+  inset: 0;
+  background-image: radial-gradient(rgba(var(--bg-shape-color), 0.35) 2.5px, transparent 2.5px);
+  background-size: 5rem 5rem;
+  animation: motionStarsFast 20s linear infinite;
+  will-change: background-position;
+}
+@keyframes motionStarsSlow {
+  0% { background-position: 0 0; }
+  100% { background-position: 250px 250px; }
+}
+@keyframes motionStarsFast {
+  0% { background-position: 0 0; }
+  100% { background-position: -500px 500px; }
+}
+
+/* 249 — Shifting Northern Aurora Glow (Multi-point undulating ambient radial mesh with 4 luminous focal points gliding in continuous organic figure-8 loops.) */
+.bg-shape-motion-aurora-glow::before {
+  width: 38rem;
+  height: 38rem;
+  right: -10rem;
+  top: -15rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--bg-shape-color), 0.22) 0%, rgba(var(--bg-shape-color), 0.06) 45%, transparent 70%);
+  animation: motionAuroraGlide1 16s ease-in-out infinite alternate;
+}
+.bg-shape-motion-aurora-glow::after {
+  width: 32rem;
+  height: 32rem;
+  left: 10%;
+  bottom: -10rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--bg-shape-color), 0.16) 0%, rgba(var(--bg-shape-color), 0.04) 50%, transparent 72%);
+  animation: motionAuroraGlide2 22s ease-in-out infinite alternate;
+}
+@keyframes motionAuroraGlide1 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-80px, 60px) scale(1.15); }
+  100% { transform: translate(40px, 100px) scale(0.92); }
+}
+@keyframes motionAuroraGlide2 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(100px, -70px) scale(1.2); }
+  100% { transform: translate(-60px, -40px) scale(0.9); }
+}
+
+/* 250 — Pulsing Neural Circuit Pathways (High-tech PCB traces and angled electronic pathways with animated data packets rushing continuously through buses.) */
+.bg-shape-motion-circuits::before {
+  inset: 0;
+  background-color: rgba(var(--bg-shape-color), 0.22);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22380%22 height=%22380%22 viewBox=%220 0 380 380%22 fill=%22none%22 stroke=%22black%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E %3Cpath d=%22M 0 50 L 80 50 L 130 100 L 250 100 L 280 70 L 380 70%22 /%3E %3Ccircle cx=%2280%22 cy=%2250%22 r=%224%22 fill=%22black%22 /%3E%3Ccircle cx=%22250%22 cy=%22100%22 r=%224%22 fill=%22black%22 /%3E %3Cpath d=%22M 40 180 L 120 180 L 160 140 L 290 140 L 330 180 L 380 180%22 /%3E %3Ccircle cx=%22120%22 cy=%22180%22 r=%224%22 fill=%22black%22 /%3E%3Ccircle cx=%22290%22 cy=%22140%22 r=%224%22 fill=%22black%22 /%3E %3Cpath d=%22M 0 290 L 100 290 L 140 250 L 240 250 L 290 300 L 380 300%22 /%3E %3Ccircle cx=%22100%22 cy=%22290%22 r=%224%22 fill=%22black%22 /%3E%3Ccircle cx=%22240%22 cy=%22250%22 r=%224%22 fill=%22black%22 /%3E %3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22380%22 height=%22380%22 viewBox=%220 0 380 380%22 fill=%22none%22 stroke=%22black%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E %3Cpath d=%22M 0 50 L 80 50 L 130 100 L 250 100 L 280 70 L 380 70%22 /%3E %3Ccircle cx=%2280%22 cy=%2250%22 r=%224%22 fill=%22black%22 /%3E%3Ccircle cx=%22250%22 cy=%22100%22 r=%224%22 fill=%22black%22 /%3E %3Cpath d=%22M 40 180 L 120 180 L 160 140 L 290 140 L 330 180 L 380 180%22 /%3E %3Ccircle cx=%22120%22 cy=%22180%22 r=%224%22 fill=%22black%22 /%3E%3Ccircle cx=%22290%22 cy=%22140%22 r=%224%22 fill=%22black%22 /%3E %3Cpath d=%22M 0 290 L 100 290 L 140 250 L 240 250 L 290 300 L 380 300%22 /%3E %3Ccircle cx=%22100%22 cy=%22290%22 r=%224%22 fill=%22black%22 /%3E%3Ccircle cx=%22240%22 cy=%22250%22 r=%224%22 fill=%22black%22 /%3E %3C/svg%3E");
+  -webkit-mask-size: 380px 380px;
+  mask-size: 380px 380px;
+  -webkit-mask-repeat: repeat;
+  mask-repeat: repeat;
+}
+.bg-shape-motion-circuits::after {
+  inset: -100%;
+  background: linear-gradient(90deg, transparent 40%, rgba(var(--bg-shape-color), 0.25) 50%, transparent 60%);
+  animation: motionCircuitPulse 5s linear infinite;
+}
+@keyframes motionCircuitPulse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(50%); }
+}
+
+/* 251 — Floating 3D Isometric Monolith (Levitating 3D isometric cube monolith with ascending wireframe steps and oscillating perspective ground shadow.) */
+.bg-shape-motion-isometric-float::before {
+  width: 170px;
+  height: 120px;
+  top: 50px;
+  right: 90px;
+  border: 1px solid rgba(var(--bg-shape-color), 0.24);
+  background: rgba(var(--bg-shape-color), 0.03);
+  transform: skewY(-25deg) rotate(20deg);
+  box-shadow:
+    24px -16px 0 0 rgba(var(--bg-shape-color), 0.16),
+    48px -32px 0 0 rgba(var(--bg-shape-color), 0.10);
+  animation: motionIsoFloat 5s ease-in-out infinite alternate;
+}
+.bg-shape-motion-isometric-float::after {
+  width: 140px;
+  height: 70px;
+  top: 220px;
+  right: 110px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(var(--bg-shape-color), 0.14) 0%, transparent 70%);
+  animation: motionShadowPulse 5s ease-in-out infinite alternate;
+}
+@keyframes motionIsoFloat {
+  0% { transform: translateY(0) skewY(-25deg) rotate(20deg); }
+  100% { transform: translateY(-24px) skewY(-25deg) rotate(20deg); }
+}
+@keyframes motionShadowPulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(0.75); opacity: 0.3; }
+}
+
+/* 252 — Hypnotic Spatial Tunnel Vortex (Concentric perspective square portals continuously expanding outward in hypnotic depth, creating a warp speed effect.) */
+.bg-shape-motion-tunnel-vortex::before {
+  width: 16rem;
+  height: 16rem;
+  top: 50%;
+  left: 50%;
+  margin-top: -8rem;
+  margin-left: -8rem;
+  border: 1.5px solid rgba(var(--bg-shape-color), 0.22);
+  transform: rotate(45deg);
+  box-shadow:
+    0 0 0 2rem rgba(var(--bg-shape-color), 0.015),
+    0 0 0 2.1rem rgba(var(--bg-shape-color), 0.18),
+    0 0 0 4.5rem rgba(var(--bg-shape-color), 0.015),
+    0 0 0 4.6rem rgba(var(--bg-shape-color), 0.14),
+    0 0 0 7.5rem rgba(var(--bg-shape-color), 0.01),
+    0 0 0 7.6rem rgba(var(--bg-shape-color), 0.09);
+  animation: motionTunnelPulse 7s ease-in-out infinite alternate;
+}
+.bg-shape-motion-tunnel-vortex::after {
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 20%, rgba(var(--bg-shape-color), 0.08) 60%, transparent 80%);
+  animation: motionTunnelGlow 4s ease-in-out infinite alternate;
+}
+@keyframes motionTunnelPulse {
+  0% { transform: rotate(45deg) scale(0.85); }
+  100% { transform: rotate(75deg) scale(1.15); }
+}
+@keyframes motionTunnelGlow {
+  0% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+/* 253 — Revolving Double DNA Helix (Revolving molecular double helix with phase-shifting vertical wave displacement and cross-connecting nucleotide rungs.) */
+.bg-shape-motion-dna-helix::before {
+  width: 220px;
+  height: 100%;
+  top: 0;
+  right: 15%;
+  background-color: rgba(var(--bg-shape-color), 0.22);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22220%22 height=%22160%22 viewBox=%220 0 220 160%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22%3E %3Cpath d=%22M 40 0 C 40 40 180 40 180 80 C 180 120 40 120 40 160%22 /%3E %3Cpath d=%22M 180 0 C 180 40 40 40 40 80 C 40 120 180 120 180 160%22 /%3E %3Cline x1=%2260%22 y1=%2220%22 x2=%22160%22 y2=%2220%22 /%3E %3Cline x1=%22100%22 y1=%2240%22 x2=%22120%22 y2=%2240%22 stroke-width=%223%22 /%3E %3Cline x1=%2260%22 y1=%2260%22 x2=%22160%22 y2=%2260%22 /%3E %3Cline x1=%2260%22 y1=%22100%22 x2=%22160%22 y2=%22100%22 /%3E %3Cline x1=%22100%22 y1=%22120%22 x2=%22120%22 y2=%22120%22 stroke-width=%223%22 /%3E %3Cline x1=%2260%22 y1=%22140%22 x2=%22160%22 y2=%22140%22 /%3E %3Ccircle cx=%2240%22 cy=%2280%22 r=%225%22 fill=%22black%22 /%3E%3Ccircle cx=%22180%22 cy=%2280%22 r=%225%22 fill=%22black%22 /%3E %3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22220%22 height=%22160%22 viewBox=%220 0 220 160%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22%3E %3Cpath d=%22M 40 0 C 40 40 180 40 180 80 C 180 120 40 120 40 160%22 /%3E %3Cpath d=%22M 180 0 C 180 40 40 40 40 80 C 40 120 180 120 180 160%22 /%3E %3Cline x1=%2260%22 y1=%2220%22 x2=%22160%22 y2=%2220%22 /%3E %3Cline x1=%22100%22 y1=%2240%22 x2=%22120%22 y2=%2240%22 stroke-width=%223%22 /%3E %3Cline x1=%2260%22 y1=%2260%22 x2=%22160%22 y2=%2260%22 /%3E %3Cline x1=%2260%22 y1=%22100%22 x2=%22160%22 y2=%22100%22 /%3E %3Cline x1=%22100%22 y1=%22120%22 x2=%22120%22 y2=%22120%22 stroke-width=%223%22 /%3E %3Cline x1=%2260%22 y1=%22140%22 x2=%22160%22 y2=%22140%22 /%3E %3Ccircle cx=%2240%22 cy=%2280%22 r=%225%22 fill=%22black%22 /%3E%3Ccircle cx=%22180%22 cy=%2280%22 r=%225%22 fill=%22black%22 /%3E %3C/svg%3E");
+  -webkit-mask-size: 220px 160px;
+  mask-size: 220px 160px;
+  animation: motionDnaScroll 12s linear infinite;
+  will-change: -webkit-mask-position, mask-position;
+}
+@keyframes motionDnaScroll {
+  0% { -webkit-mask-position: 0 0; mask-position: 0 0; }
+  100% { -webkit-mask-position: 0 160px; mask-position: 0 160px; }
+}
+
+/* 254 — Tactical CRT Laser Scanline (Architectural blueprint pinstripes with a high-precision laser beam scanning vertically across section content.) */
+.bg-shape-motion-laser-scanline::before {
+  inset: 0;
+  background-image: repeating-linear-gradient(rgba(var(--bg-shape-color), 0.16) 0 1px, transparent 1px 4rem);
+}
+.bg-shape-motion-laser-scanline::after {
+  left: 0;
+  right: 0;
+  top: -100px;
+  height: 90px;
+  background: linear-gradient(180deg, transparent 0%, rgba(var(--bg-shape-color), 0.28) 95%, rgba(var(--bg-shape-color), 0.60) 100%);
+  animation: motionScanlineSweep 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  box-shadow: 0 4px 15px rgba(var(--bg-shape-color), 0.25);
+  will-change: top;
+}
+@keyframes motionScanlineSweep {
+  0% { top: -100px; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 110%; opacity: 0; }
+}
+
+/* 255 — Kinetic Organic Terrazzo Drift (Scattered hand-cut organic terrazzo pebbles and confetti softly drifting and swaying in liquid suspension.) */
+.bg-shape-motion-terrazzo-drift::before {
+  inset: -15%;
+  background-color: rgba(var(--bg-shape-color), 0.22);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22380%22 height=%22380%22 viewBox=%220 0 380 380%22 fill=%22black%22 stroke=%22none%22%3E %3Cpath d=%22M 40 40 Q 60 25 75 45 Q 85 70 65 80 Q 40 85 30 65 Z%22 /%3E %3Cpath d=%22M 190 30 Q 220 30 230 55 Q 220 85 190 80 Q 170 70 175 45 Z%22 /%3E %3Cpolygon points=%22310,35 345,50 325,85 295,65%22 /%3E %3Cpath d=%22M 85 150 Q 115 130 135 155 Q 125 185 95 190 Q 70 175 85 150 Z%22 /%3E %3Cpolygon points=%22220,140 255,160 235,190 205,170%22 /%3E %3Ccircle cx=%22325%22 cy=%22170%22 r=%2218%22 /%3E %3Cpath d=%22M 45 260 Q 75 240 90 270 Q 75 300 45 295 Q 25 280 45 260 Z%22 /%3E %3Cpolygon points=%22170,250 205,270 185,305 150,285%22 /%3E %3Cpath d=%22M 290 260 Q 325 240 345 270 Q 330 305 295 300 Q 275 285 290 260 Z%22 /%3E %3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22380%22 height=%22380%22 viewBox=%220 0 380 380%22 fill=%22black%22 stroke=%22none%22%3E %3Cpath d=%22M 40 40 Q 60 25 75 45 Q 85 70 65 80 Q 40 85 30 65 Z%22 /%3E %3Cpath d=%22M 190 30 Q 220 30 230 55 Q 220 85 190 80 Q 170 70 175 45 Z%22 /%3E %3Cpolygon points=%22310,35 345,50 325,85 295,65%22 /%3E %3Cpath d=%22M 85 150 Q 115 130 135 155 Q 125 185 95 190 Q 70 175 85 150 Z%22 /%3E %3Cpolygon points=%22220,140 255,160 235,190 205,170%22 /%3E %3Ccircle cx=%22325%22 cy=%22170%22 r=%2218%22 /%3E %3Cpath d=%22M 45 260 Q 75 240 90 270 Q 75 300 45 295 Q 25 280 45 260 Z%22 /%3E %3Cpolygon points=%22170,250 205,270 185,305 150,285%22 /%3E %3Cpath d=%22M 290 260 Q 325 240 345 270 Q 330 305 295 300 Q 275 285 290 260 Z%22 /%3E %3C/svg%3E");
+  -webkit-mask-size: 380px 380px;
+  mask-size: 380px 380px;
+  animation: motionTerrazzoSway 15s ease-in-out infinite alternate;
+}
+@keyframes motionTerrazzoSway {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(25px, -30px) rotate(3deg); }
+  100% { transform: translate(-20px, 20px) rotate(-2deg); }
+}
+
+/* 256 — Sci-Fi HUD Targeting Telemetry (Outer azimuth dial and inner targeting reticle counter-rotating with blinking lock-on bracket crosshairs.) */
+.bg-shape-motion-hud-targeting::before {
+  width: 26rem;
+  height: 26rem;
+  right: -5rem;
+  top: -6rem;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(var(--bg-shape-color), 0.25);
+  box-shadow: 0 0 0 2rem rgba(var(--bg-shape-color), 0.02), 0 0 0 2.1rem rgba(var(--bg-shape-color), 0.16);
+  animation: motionHudOuterClockwise 30s linear infinite;
+}
+.bg-shape-motion-hud-targeting::after {
+  width: 14rem;
+  height: 14rem;
+  right: 1rem;
+  top: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(var(--bg-shape-color), 0.28);
+  border-left-color: transparent;
+  border-right-color: transparent;
+  animation: motionHudInnerCounter 12s linear infinite;
+}
+@keyframes motionHudOuterClockwise {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes motionHudInnerCounter {
+  0% { transform: rotate(0deg) scale(0.95); }
+  50% { transform: rotate(-180deg) scale(1.05); }
+  100% { transform: rotate(-360deg) scale(0.95); }
+}
+
+/* 257 — Rhythmic Soundwave Equalizer (Pulsating acoustic equalizer frequency bars undulating with rhythmic vertical bounce and soft harmonic glow.) */
+.bg-shape-motion-soundwave::before {
+  width: 320px;
+  height: 120px;
+  right: 5%;
+  top: 25%;
+  background-color: rgba(var(--bg-shape-color), 0.24);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22320%22 height=%22120%22 viewBox=%220 0 320 120%22 fill=%22black%22%3E %3Crect x=%2210%22 y=%2240%22 width=%228%22 height=%2240%22 rx=%224%22 /%3E %3Crect x=%2230%22 y=%2220%22 width=%228%22 height=%2280%22 rx=%224%22 /%3E %3Crect x=%2250%22 y=%225%22 width=%228%22 height=%22110%22 rx=%224%22 /%3E %3Crect x=%2270%22 y=%2225%22 width=%228%22 height=%2270%22 rx=%224%22 /%3E %3Crect x=%2290%22 y=%2245%22 width=%228%22 height=%2230%22 rx=%224%22 /%3E %3Crect x=%22110%22 y=%2215%22 width=%228%22 height=%2290%22 rx=%224%22 /%3E %3Crect x=%22130%22 y=%2230%22 width=%228%22 height=%2260%22 rx=%224%22 /%3E %3Crect x=%22150%22 y=%228%22 width=%228%22 height=%22104%22 rx=%224%22 /%3E %3Crect x=%22170%22 y=%2235%22 width=%228%22 height=%2250%22 rx=%224%22 /%3E %3Crect x=%22190%22 y=%2218%22 width=%228%22 height=%2284%22 rx=%224%22 /%3E %3Crect x=%22210%22 y=%2242%22 width=%228%22 height=%2236%22 rx=%224%22 /%3E %3Crect x=%22230%22 y=%2210%22 width=%228%22 height=%22100%22 rx=%224%22 /%3E %3Crect x=%22250%22 y=%2228%22 width=%228%22 height=%2264%22 rx=%224%22 /%3E %3Crect x=%22270%22 y=%2248%22 width=%228%22 height=%2224%22 rx=%224%22 /%3E %3Crect x=%22290%22 y=%2222%22 width=%228%22 height=%2276%22 rx=%224%22 /%3E %3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22320%22 height=%22120%22 viewBox=%220 0 320 120%22 fill=%22black%22%3E %3Crect x=%2210%22 y=%2240%22 width=%228%22 height=%2240%22 rx=%224%22 /%3E %3Crect x=%2230%22 y=%2220%22 width=%228%22 height=%2280%22 rx=%224%22 /%3E %3Crect x=%2250%22 y=%225%22 width=%228%22 height=%22110%22 rx=%224%22 /%3E %3Crect x=%2270%22 y=%2225%22 width=%228%22 height=%2270%22 rx=%224%22 /%3E %3Crect x=%2290%22 y=%2245%22 width=%228%22 height=%2230%22 rx=%224%22 /%3E %3Crect x=%22110%22 y=%2215%22 width=%228%22 height=%2290%22 rx=%224%22 /%3E %3Crect x=%22130%22 y=%2230%22 width=%228%22 height=%2260%22 rx=%224%22 /%3E %3Crect x=%22150%22 y=%228%22 width=%228%22 height=%22104%22 rx=%224%22 /%3E %3Crect x=%22170%22 y=%2235%22 width=%228%22 height=%2250%22 rx=%224%22 /%3E %3Crect x=%22190%22 y=%2218%22 width=%228%22 height=%2284%22 rx=%224%22 /%3E %3Crect x=%22210%22 y=%2242%22 width=%228%22 height=%2236%22 rx=%224%22 /%3E %3Crect x=%22230%22 y=%2210%22 width=%228%22 height=%22100%22 rx=%224%22 /%3E %3Crect x=%22250%22 y=%2228%22 width=%228%22 height=%2264%22 rx=%224%22 /%3E %3Crect x=%22270%22 y=%2248%22 width=%228%22 height=%2224%22 rx=%224%22 /%3E %3Crect x=%22290%22 y=%2222%22 width=%228%22 height=%2276%22 rx=%224%22 /%3E %3C/svg%3E");
+  -webkit-mask-size: 320px 120px;
+  mask-size: 320px 120px;
+  animation: motionSoundPulse 1.8s ease-in-out infinite alternate;
+}
+@keyframes motionSoundPulse {
+  0% { transform: scaleY(0.75); }
+  50% { transform: scaleY(1.15); }
+  100% { transform: scaleY(0.85); }
+}
+
+/* 258 — Levitating Sacred Geometry Polygons (Nested concentric diamonds and Merkaba octahedron lines gently breathing and counter-rotating in harmonic space.) */
+.bg-shape-motion-sacred-diamonds::before {
+  width: 220px;
+  height: 220px;
+  top: 35px;
+  right: 90px;
+  border: 1.5px solid rgba(var(--bg-shape-color), 0.24);
+  transform: rotate(45deg);
+  box-shadow:
+    0 0 0 20px rgba(var(--bg-shape-color), 0.02),
+    0 0 0 21px rgba(var(--bg-shape-color), 0.16),
+    0 0 0 42px rgba(var(--bg-shape-color), 0.02),
+    0 0 0 43px rgba(var(--bg-shape-color), 0.10);
+  animation: motionDiamondPulse 6s ease-in-out infinite alternate;
+}
+.bg-shape-motion-sacred-diamonds::after {
+  width: 140px;
+  height: 140px;
+  top: 75px;
+  right: 130px;
+  border: 1px dashed rgba(var(--bg-shape-color), 0.20);
+  transform: rotate(0deg);
+  animation: motionDiamondCounter 14s linear infinite;
+}
+@keyframes motionDiamondPulse {
+  0% { transform: rotate(45deg) scale(0.92); }
+  100% { transform: rotate(45deg) scale(1.08); }
+}
+@keyframes motionDiamondCounter {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
+}
+
+/* 259 — Living Hexagonal Honeycomb Matrix (High-density honeycomb matrix with an animated diagonal shimmer wave illuminating hexagonal cells in cascading sequence.) */
+.bg-shape-motion-honeycomb-shimmer::before {
+  inset: 0;
+  background-color: rgba(var(--bg-shape-color), 0.22);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%22104%22 viewBox=%220 0 60 104%22 fill=%22none%22 stroke=%22black%22 stroke-width=%221.6%22 stroke-linejoin=%22round%22%3E %3Cpolygon points=%2230,0 60,17.3 60,52 30,69.3 0,52 0,17.3%22 /%3E %3Cpolygon points=%2230,69.3 60,86.6 60,121.3 30,138.6 0,121.3 0,86.6%22 /%3E %3Cpolygon points=%2260,52 90,69.3 90,104 60,121.3 30,104 30,69.3%22 /%3E %3Cpolygon points=%220,52 30,69.3 30,104 0,121.3 -30,104 -30,69.3%22 /%3E %3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%22104%22 viewBox=%220 0 60 104%22 fill=%22none%22 stroke=%22black%22 stroke-width=%221.6%22 stroke-linejoin=%22round%22%3E %3Cpolygon points=%2230,0 60,17.3 60,52 30,69.3 0,52 0,17.3%22 /%3E %3Cpolygon points=%2230,69.3 60,86.6 60,121.3 30,138.6 0,121.3 0,86.6%22 /%3E %3Cpolygon points=%2260,52 90,69.3 90,104 60,121.3 30,104 30,69.3%22 /%3E %3Cpolygon points=%220,52 30,69.3 30,104 0,121.3 -30,104 -30,69.3%22 /%3E %3C/svg%3E");
+  -webkit-mask-size: 60px 104px;
+  mask-size: 60px 104px;
+}
+.bg-shape-motion-honeycomb-shimmer::after {
+  inset: -100%;
+  background: linear-gradient(135deg, transparent 42%, rgba(var(--bg-shape-color), 0.28) 50%, transparent 58%);
+  animation: motionHexShimmer 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@keyframes motionHexShimmer {
+  0% { transform: translate(-50%, -50%); }
+  100% { transform: translate(50%, 50%); }
+}
+
+/* 260 — High-Velocity Kinetic Speed Streams (Dynamic 45-degree light streaks and velocity lines streaming continuously across the canvas with exhilarating pace.) */
+.bg-shape-motion-speed-streams::before {
+  inset: -50%;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0 45px,
+    rgba(var(--bg-shape-color), 0.20) 45px 46px,
+    transparent 46px 90px
+  );
+  animation: motionSpeedStream 12s linear infinite;
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+}
+@keyframes motionSpeedStream {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(120px, 120px); }
+}
+
+/* 261 — Living Doodle Icon Wallpaper (Seamless hand-drawn creative doodles (lightbulbs, rocket, coffee, gears, pencils) floating with subtle organic swaying.) */
+.bg-shape-motion-doodle-wallpaper::before {
+  inset: 0;
+  background-color: rgba(var(--bg-shape-color), 0.22);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22380%22 height=%22380%22 viewBox=%220 0 380 380%22 fill=%22none%22 stroke=%22black%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E %3Cg transform=%22translate(50, 40) rotate(-18)%22%3E %3Cpath d=%22M 16 0 C 7 0 0 7 0 16 C 0 22 4 27 7 30 L 7 36 L 25 36 L 25 30 C 28 27 32 22 32 16 C 32 7 25 0 16 0 Z%22 /%3E %3Cline x1=%2210%22 y1=%2240%22 x2=%2222%22 y2=%2240%22 /%3E %3Cline x1=%2216%22 y1=%2210%22 x2=%2216%22 y2=%2222%22 /%3E %3C/g%3E %3Cg transform=%22translate(200, 30) rotate(24)%22%3E %3Cpath d=%22M 0 45 C 5 25 25 5 45 0 C 40 20 20 40 0 45 Z%22 /%3E %3Ccircle cx=%2222%22 cy=%2222%22 r=%226%22 /%3E %3Cpath d=%22M 4 41 L -4 48 L 4 36%22 /%3E%3Cpath d=%22M 41 4 L 48 -4 L 36 4%22 /%3E %3C/g%3E %3Cg transform=%22translate(320, 50) rotate(-28)%22%3E %3Crect x=%220%22 y=%228%22 width=%2232%22 height=%2226%22 rx=%224%22 /%3E %3Cpath d=%22M 32 14 C 40 14 40 28 32 28%22 /%3E %3Cpath d=%22M 8 0 C 8 4 12 4 12 8%22 /%3E%3Cpath d=%22M 18 0 C 18 4 22 4 22 8%22 /%3E %3C/g%3E %3Cg transform=%22translate(100, 140) rotate(16)%22%3E %3Ccircle cx=%2220%22 cy=%2220%22 r=%2214%22 /%3E %3Ccircle cx=%2220%22 cy=%2220%22 r=%225%22 fill=%22black%22 /%3E %3Cline x1=%2220%22 y1=%222%22 x2=%2220%22 y2=%226%22 stroke-width=%222.5%22 /%3E%3Cline x1=%2220%22 y1=%2234%22 x2=%2220%22 y2=%2238%22 stroke-width=%222.5%22 /%3E %3Cline x1=%222%22 y1=%2220%22 x2=%226%22 y2=%2220%22 stroke-width=%222.5%22 /%3E%3Cline x1=%2234%22 y1=%2220%22 x2=%2238%22 y2=%2220%22 stroke-width=%222.5%22 /%3E %3C/g%3E %3Cg transform=%22translate(250, 130) rotate(-35)%22%3E %3Cpolygon points=%220,6 6,0 48,42 42,48%22 /%3E %3Cpolygon points=%2248,42 54,48 42,48%22 fill=%22black%22 /%3E %3C/g%3E %3Ccircle cx=%22145%22 cy=%2245%22 r=%223%22 fill=%22black%22 /%3E%3Ccircle cx=%22275%22 cy=%2265%22 r=%224%22 /%3E %3Ccircle cx=%2245%22 cy=%22160%22 r=%222.5%22 fill=%22black%22 /%3E%3Ccircle cx=%22190%22 cy=%22135%22 r=%223%22 fill=%22black%22 /%3E %3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22380%22 height=%22380%22 viewBox=%220 0 380 380%22 fill=%22none%22 stroke=%22black%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E %3Cg transform=%22translate(50, 40) rotate(-18)%22%3E %3Cpath d=%22M 16 0 C 7 0 0 7 0 16 C 0 22 4 27 7 30 L 7 36 L 25 36 L 25 30 C 28 27 32 22 32 16 C 32 7 25 0 16 0 Z%22 /%3E %3Cline x1=%2210%22 y1=%2240%22 x2=%2222%22 y2=%2240%22 /%3E %3Cline x1=%2216%22 y1=%2210%22 x2=%2216%22 y2=%2222%22 /%3E %3C/g%3E %3Cg transform=%22translate(200, 30) rotate(24)%22%3E %3Cpath d=%22M 0 45 C 5 25 25 5 45 0 C 40 20 20 40 0 45 Z%22 /%3E %3Ccircle cx=%2222%22 cy=%2222%22 r=%226%22 /%3E %3Cpath d=%22M 4 41 L -4 48 L 4 36%22 /%3E%3Cpath d=%22M 41 4 L 48 -4 L 36 4%22 /%3E %3C/g%3E %3Cg transform=%22translate(320, 50) rotate(-28)%22%3E %3Crect x=%220%22 y=%228%22 width=%2232%22 height=%2226%22 rx=%224%22 /%3E %3Cpath d=%22M 32 14 C 40 14 40 28 32 28%22 /%3E %3Cpath d=%22M 8 0 C 8 4 12 4 12 8%22 /%3E%3Cpath d=%22M 18 0 C 18 4 22 4 22 8%22 /%3E %3C/g%3E %3Cg transform=%22translate(100, 140) rotate(16)%22%3E %3Ccircle cx=%2220%22 cy=%2220%22 r=%2214%22 /%3E %3Ccircle cx=%2220%22 cy=%2220%22 r=%225%22 fill=%22black%22 /%3E %3Cline x1=%2220%22 y1=%222%22 x2=%2220%22 y2=%226%22 stroke-width=%222.5%22 /%3E%3Cline x1=%2220%22 y1=%2234%22 x2=%2220%22 y2=%2238%22 stroke-width=%222.5%22 /%3E %3Cline x1=%222%22 y1=%2220%22 x2=%226%22 y2=%2220%22 stroke-width=%222.5%22 /%3E%3Cline x1=%2234%22 y1=%2220%22 x2=%2238%22 y2=%2220%22 stroke-width=%222.5%22 /%3E %3C/g%3E %3Cg transform=%22translate(250, 130) rotate(-35)%22%3E %3Cpolygon points=%220,6 6,0 48,42 42,48%22 /%3E %3Cpolygon points=%2248,42 54,48 42,48%22 fill=%22black%22 /%3E %3C/g%3E %3Ccircle cx=%22145%22 cy=%2245%22 r=%223%22 fill=%22black%22 /%3E%3Ccircle cx=%22275%22 cy=%2265%22 r=%224%22 /%3E %3Ccircle cx=%2245%22 cy=%22160%22 r=%222.5%22 fill=%22black%22 /%3E%3Ccircle cx=%22190%22 cy=%22135%22 r=%223%22 fill=%22black%22 /%3E %3C/svg%3E");
+  -webkit-mask-size: 380px 380px;
+  mask-size: 380px 380px;
+  animation: motionDoodleBreathe 8s ease-in-out infinite alternate;
+}
+@keyframes motionDoodleBreathe {
+  0% { transform: scale(1) translateY(0); }
+  50% { transform: scale(1.03) translateY(-10px); }
+  100% { transform: scale(1) translateY(0); }
+}
