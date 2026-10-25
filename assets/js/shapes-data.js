@@ -21,7 +21,12 @@ const CATEGORY_NAMES = {
   "doodles": "Section 8: Doodles, Glyphs & Wallpaper Tapestries",
   "waves": "Section 9: Topography, Contours & Harmonic Waves",
   "circuits": "Section 10: Circuits, Hexagons & Cybernetics",
-  "hud": "Section 11: HUD, Reticles & Space Telemetry"
+  "hud": "Section 11: HUD, Reticles & Space Telemetry",
+  "geometry": "Section 12: Polygonal Meshes & Sacred Geometry",
+  "gaming": "Section 13: Gaming, Arcade & Synthwave",
+  "organic": "Section 14: Organic Curves, Pebbles & Terrazzo",
+  "data": "Section 15: Cloud Architecture, Data Flow & Telemetry",
+  "business": "Section 16: Industry, Commerce & Business Wallpapers"
 };
 
 const SHAPES_DATA = [
@@ -258,4 +263,32 @@ const SHAPES_DATA = [
   { num: "214", name: "CI/CD Pipeline GitOps Graph", cls: "bg-shape-pipeline-graph", cat: "data", desc: "Automated GitOps continuous integration and continuous deployment pipeline DAG flow.", best: "DevOps automation, Git platforms, software testing suites & cloud continuous deployment" },
   { num: "215", name: "Network Topology Constellation", cls: "bg-shape-network-topology", cat: "data", desc: "Redundant mesh network graph with primary routing hubs, edge nodes & latency telemetry spokes.", best: "Enterprise networking, SD-WAN, cybersecurity firewalls & telecom providers" },
   { num: "216", name: "Analytics Radar Area Chart", cls: "bg-shape-analytics-radar", cat: "data", desc: "Spider web radar chart overlaying multi-axis performance metrics, throughput scores & latency benchmarks.", best: "Business intelligence, machine learning benchmarking, analytics & executive dashboards" }
+,
+
+  // ================= NEW SHAPES (#217 – #241) [25 Business & Industry Shapes] =================
+  { num: "217", name: "Real Estate & Property Tapestry", cls: "bg-shape-biz-realestate", cat: "business", desc: "Seamless real estate wallpaper: house keys, luxury villas, for-sale signs, location map pins & blueprint plans with organic tilts.", best: "Real estate agencies, property portals, luxury developments & architectural brokers" },
+  { num: "218", name: "Architectural Drafting & CAD", cls: "bg-shape-biz-architecture", cat: "business", desc: "Drafting T-square rulers, CAD compasses, spirit levels, builder hard hats & structural trusses.", best: "Architecture firms, civil engineering consultancies, structural designers & CAD tools" },
+  { num: "219", name: "Smart Home & Automation", cls: "bg-shape-biz-smarthome", cat: "business", desc: "Connected IoT door locks, smart thermostats, wifi roof transmitters, solar panels & security cameras.", best: "Smart home IoT tech, solar energy installers, home automation & security providers" },
+  { num: "220", name: "Global Tourism & Wanderlust", cls: "bg-shape-biz-tourism", cat: "business", desc: "Airplanes, passports, rolling suitcases, cruise liners, beach umbrellas & boarding passes with organic scattering.", best: "Travel agencies, international airlines, booking engines & travel bloggers" },
+  { num: "221", name: "Luxury Hotel & Hospitality", cls: "bg-shape-biz-hospitality", cat: "business", desc: "Concierge service bells, do-not-disturb tags, king suites, champagne flutes & room service cloches.", best: "Luxury resorts, 5-star boutique hotels, concierge clubs & fine hospitality" },
+  { num: "222", name: "Outdoor Trekking & Eco-Travel", cls: "bg-shape-biz-trekking", cat: "business", desc: "Wilderness camp tents, hiking boots, campfires, canteen rucksacks & trail signs with organic tilts.", best: "Eco-tourism, national parks, camping gear, outdoor adventures & glamping resorts" },
+  { num: "223", name: "E-Commerce & Online Store", cls: "bg-shape-biz-ecommerce", cat: "business", desc: "Shopping carts, paper gift bags, % discount sale tags, cardboard parcel boxes & delivery vans.", best: "E-commerce stores, Shopify / WooCommerce sites, retail marketplaces & delivery logistics" },
+  { num: "224", name: "Luxury Fashion & Boutique", cls: "bg-shape-biz-fashion", cat: "business", desc: "Dressmaker mannequins, clothes hangers, stiletto high heels, perfume atomizers & chronograph watches.", best: "Luxury apparel, fashion boutiques, designer cosmetics & jewelry retail" },
+  { num: "225", name: "POS Payments & Checkout", cls: "bg-shape-biz-payments", cat: "business", desc: "Wireless POS payment terminals, contactless NFC waves, paper receipts & chip cards.", best: "Fintech checkout gateways, merchant services, banking apps & POS hardware" },
+  { num: "226", name: "Creative Portfolio & UX Design", cls: "bg-shape-biz-portfolio", cat: "business", desc: "Vector pen tools, mobile phone mockups, color swatch fans, drafting pencils & design trophies.", best: "Design agency portfolios, freelance creatives, UX/UI studios & design tool sites" },
+  { num: "227", name: "Photography & Video Production", cls: "bg-shape-biz-photo", cat: "business", desc: "DSLR cameras, film roll canisters, tripod stands, clapperboards & studio softbox lights.", best: "Photographers, video production studios, film directors & creative media agencies" },
+  { num: "228", name: "Digital Marketing & Growth", cls: "bg-shape-biz-marketing", cat: "business", desc: "Megaphones, conversion funnels, target bullseyes, social heart reactions & growth rockets.", best: "Growth marketing agencies, SEO consultants, social media suites & lead gen platforms" },
+  { num: "229", name: "Medicine & Clinical Healthcare", cls: "bg-shape-biz-healthcare", cat: "business", desc: "Stethoscopes, heartbeat ECG pulses, medical cross shields, clinical clipboards & syringes with organic tilts.", best: "Hospitals, medical clinics, doctors portfolios, telehealth & health insurance" },
+  { num: "230", name: "Pharmacy & Pharmaceuticals", cls: "bg-shape-biz-pharmacy", cat: "business", desc: "Prescription pill bottles, capsules, blister packs, mortar & pestle bowls & chemical benzene rings.", best: "Pharmacies, pharmaceutical companies, drug discovery & chemical research labs" },
+  { num: "231", name: "Dental & Oral Health", cls: "bg-shape-biz-dental", cat: "business", desc: "Molar tooth crowns, angled dental mirrors, ergonomic toothbrushes & dental floss dispensers.", best: "Dentists, orthodontic clinics, dental laboratories & oral hygiene brands" },
+  { num: "232", name: "Education & Academic University", cls: "bg-shape-biz-education", cat: "business", desc: "Graduation mortarboard caps, open textbooks, university diplomas, chemistry flasks & atom models.", best: "Universities, academic colleges, public schools, tutoring centers & educational foundations" },
+  { num: "233", name: "E-Learning & Online EdTech", cls: "bg-shape-biz-elearning", cat: "business", desc: "Laptop video courses, audio learning headphones, brain gears, checklist quizzes & certificate badges.", best: "EdTech startups, online course creators, LMS platforms & skill bootcamps" },
+  { num: "234", name: "Fine Dining & Restaurant", cls: "bg-shape-biz-dining", cat: "business", desc: "Pleated chef hats, crossed culinary knives and forks, wine goblets, service cloches & pepper mills.", best: "Fine dining restaurants, bistros, catering services & culinary chefs" },
+  { num: "235", name: "Coffee Shop & Artisan Cafe", cls: "bg-shape-biz-cafe", cat: "business", desc: "Espresso portafilters, steaming latte cups with foam art, roasted coffee beans & butter croissants.", best: "Coffee shops, specialty roasteries, artisan bakeries & breakfast cafes" },
+  { num: "236", name: "Fitness, Gym & Crossfit", cls: "bg-shape-biz-fitness", cat: "business", desc: "Hexagonal dumbbells, cast-iron kettlebells, barbell weight plates, sneakers & protein shakers.", best: "Gyms, personal trainers, crossfit boxes, fitness apps & workout nutrition" },
+  { num: "237", name: "Yoga, Spa & Holistic Wellness", cls: "bg-shape-biz-wellness", cat: "business", desc: "Blooming lotus flowers, stacked zen river stones, essential oil droppers & smoking incense.", best: "Yoga studios, day spas, meditation retreats, massage therapies & holistic health" },
+  { num: "238", name: "Legal Practice & Law Firm", cls: "bg-shape-biz-legal", cat: "business", desc: "Scales of justice, judge gavels, law book volumes, wax seals & fountain pens.", best: "Law firms, attorneys, legal consultancies, notary publics & judiciary portals" },
+  { num: "239", name: "Corporate Enterprise & Finance", cls: "bg-shape-biz-corporate", cat: "business", desc: "Executive briefcases, corporate skyscrapers, business handshakes, ascendant growth charts & vault doors.", best: "Corporate enterprises, venture capital, financial advisory & B2B consulting" },
+  { num: "240", name: "Automotive & Mechanical Engineering", cls: "bg-shape-biz-automotive", cat: "business", desc: "Sports car silhouettes, turbochargers, 3-spoke steering wheels, engine pistons & speedometers.", best: "Car dealerships, automotive tuners, mechanical repair shops & racing motorsport" },
+  { num: "241", name: "Logistics & Freight Shipping", cls: "bg-shape-biz-logistics", cat: "business", desc: "Intermodal shipping containers, semi-freight trucks, warehouse forklifts & cargo airplanes.", best: "Global freight forwarders, container shipping, 3PL logistics & trucking fleets" }
 ];
