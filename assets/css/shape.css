@@ -48,7 +48,8 @@
   position: relative !important;
   overflow: hidden !important;
   isolation: isolate !important;
-  contain: paint;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 [class*="bg-shape-"]::before,
@@ -61,8 +62,10 @@
   pointer-events: none;
   opacity: var(--bg-shape-opacity, 1);
   transition: opacity 0.2s ease;
-  backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 /* Base reset container */

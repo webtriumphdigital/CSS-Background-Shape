@@ -412,7 +412,8 @@ function getDynamicShapeCss(shape) {
     "  position: relative !important;",
     "  overflow: hidden !important;",
     "  isolation: isolate !important;",
-    "  contain: paint;"
+    "  -webkit-transform: translateZ(0);",
+    "  transform: translateZ(0);"
   ];
 
   if (currentAshIndex !== 0 && ASH_PRESETS[currentAshIndex]) {
@@ -430,7 +431,7 @@ function getDynamicShapeCss(shape) {
   // Pseudo-element Reset Foundation:
   // Guarantees absolute positioning, -1 z-index, non-blocking pointer events,
   // and 3D backface stability even if the user does NOT load In-General CSS.
-  parts.push(`/* Pseudo-Element Reset Foundation */\n.${shape.cls}::before,\n.${shape.cls}::after {\n  content: "";\n  position: absolute;\n  z-index: -1;\n  pointer-events: none;\n  opacity: var(--bg-shape-opacity, 1);\n  transition: opacity 0.2s ease;\n  backface-visibility: hidden;\n  -webkit-backface-visibility: hidden;\n}`);
+  parts.push(`/* Pseudo-Element Reset Foundation */\n.${shape.cls}::before,\n.${shape.cls}::after {\n  content: "";\n  position: absolute;\n  z-index: -1;\n  pointer-events: none;\n  opacity: var(--bg-shape-opacity, 1);\n  transition: opacity 0.2s ease;\n  backface-visibility: hidden;\n  -webkit-backface-visibility: hidden;\n  -webkit-transform: translateZ(0);\n  transform: translateZ(0);\n}`);
 
   // Pseudo-element rules for the shape
   parts.push(cleanRules);
