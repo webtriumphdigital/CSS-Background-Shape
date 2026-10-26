@@ -106,9 +106,6 @@ function getShapeMotionClass(shapeCat = "") {
 
 function getActiveShapeClasses(shapeCls, shapeCat = "") {
   let parts = [shapeCls];
-  if (currentOpacity !== 100) {
-    parts.push(`bg-shape-opacity-${currentOpacity}`);
-  }
   const motion = getShapeMotionClass(shapeCat);
   if (motion) {
     parts.push(motion);
@@ -118,9 +115,6 @@ function getActiveShapeClasses(shapeCls, shapeCat = "") {
 
 function getActiveShapeLabel(shapeCls, shapeCat = "") {
   let parts = [`.${shapeCls}`];
-  if (currentOpacity !== 100) {
-    parts.push(`.bg-shape-opacity-${currentOpacity}`);
-  }
   const motion = getShapeMotionClass(shapeCat);
   if (motion) {
     parts.push(`.${motion}`);
@@ -235,13 +229,12 @@ function setShapeOpacity(percent, source = "user") {
     btn.classList.toggle("active", parseInt(btn.dataset.op) === percent);
   });
 
-  // Update opacity class badge text
-  const opCls = percent === 100 ? ".bg-shape-opacity-100" : `.bg-shape-opacity-${percent}`;
+  // Update opacity badge text
   if (activeOpClassText) {
-    activeOpClassText.textContent = opCls;
+    activeOpClassText.textContent = `${percent}%`;
   }
 
-  // If modal is open, update modal stage and code pill
+  // If modal is open, update modal stage and dynamic CSS code
   if (currentActiveShape) {
     updateModalDisplay();
   }
@@ -249,16 +242,17 @@ function setShapeOpacity(percent, source = "user") {
   // Update visible copy button labels on all rendered cards
   document.querySelectorAll(".shape-card").forEach(card => {
     const cls = card.dataset.shapeClass;
+    const cat = card.dataset.shapeCat || "";
     if (cls) {
       const copySpan = card.querySelector(".copy-cls-text");
       if (copySpan) {
-        copySpan.textContent = percent === 100 ? `.${cls}` : `.${cls} .bg-shape-opacity-${percent}`;
+        copySpan.textContent = getActiveShapeLabel(cls, cat);
       }
     }
   });
 
   if (source !== "init") {
-    showToast(`Opacity set to ${percent}% (${opCls})`);
+    showToast(`Opacity set to ${percent}% (updated in Particular CSS)`);
   }
 }
 
@@ -404,26 +398,33 @@ function getDynamicShapeCss(shape) {
     }
   }
 
-  // Active classes for top comment (e.g. .bg-shape-grid .bg-shape-opacity-80 .bg-shape-anim-float)
+  // Active classes for top comment (e.g. .bg-shape-grid or .bg-shape-grid .bg-shape-anim-float)
   const activeClasses = getActiveShapeClasses(shape.cls, shape.cat);
   const classPillText = activeClasses.split(" ").map(c => "." + c).join(" ");
   const topComment = `/* Shape #${shape.num} — ${shape.name} (${classPillText}) */`;
 
-  let parts = [topComment, cleanRules];
+  let parts = [topComment];
 
-  // 1. Color Customization (if not default Slate Ash)
-  if (currentAshIndex !== 0 && ASH_PRESETS[currentAshIndex]) {
-    const preset = ASH_PRESETS[currentAshIndex];
-    parts.push(`/* Color Tone Preset: ${preset.name} */\n.${shape.cls} {\n  --bg-shape-color: ${preset.val};\n}`);
+  // Opacity & Color Customization: Update existing particular shape CSS directly (no extra class required!)
+  const hasColorOverride = (currentAshIndex !== 0 && ASH_PRESETS[currentAshIndex]);
+  const hasOpacityOverride = (currentOpacity !== 100);
+
+  if (hasColorOverride || hasOpacityOverride) {
+    const props = [];
+    if (hasColorOverride) {
+      props.push(`  --bg-shape-color: ${ASH_PRESETS[currentAshIndex].val};`);
+    }
+    if (hasOpacityOverride) {
+      const dec = (currentOpacity / 100).toFixed(1);
+      props.push(`  --bg-shape-opacity: ${dec};`);
+    }
+    parts.push(`.${shape.cls} {\n${props.join("\n")}\n}`);
   }
 
-  // 2. Opacity Customization (if not 100%)
-  if (currentOpacity !== 100) {
-    const dec = (currentOpacity / 100).toFixed(1);
-    parts.push(`/* Opacity Modifier (${currentOpacity}%) */\n.bg-shape-opacity-${currentOpacity}::before,\n.bg-shape-opacity-${currentOpacity}::after {\n  opacity: ${dec} !important;\n}`);
-  }
+  // Pseudo-element rules for the shape
+  parts.push(cleanRules);
 
-  // 3. Motion / Animation Customization
+  // Motion / Animation Customization
   const motionCls = getShapeMotionClass(shape.cat);
   if (motionCls && motionCls !== "none" && window.ANIMATION_DEFINITIONS && window.ANIMATION_DEFINITIONS[motionCls]) {
     parts.push(`/* Motion Style: .${motionCls} */\n${window.ANIMATION_DEFINITIONS[motionCls]}`);
@@ -434,10 +435,9 @@ function getDynamicShapeCss(shape) {
 
 function updateModalDisplay() {
   if (!currentActiveShape) return;
-  const opCls = currentOpacity === 100 ? "" : ` bg-shape-opacity-${currentOpacity}`;
   const motionCls = getShapeMotionClass(currentActiveShape.cat);
   const motionPart = motionCls ? ` ${motionCls}` : "";
-  modalStage.className = `modal-preview-stage ${currentActiveShape.cls}${opCls}${motionPart}`;
+  modalStage.className = `modal-preview-stage ${currentActiveShape.cls}${motionPart}`;
 
   modalClassCode.textContent = getActiveShapeLabel(currentActiveShape.cls, currentActiveShape.cat);
 
@@ -548,9 +548,10 @@ function copyButtonSnippet(text, btn, toastMsg) {
 
 if (activeOpClassBadge) {
   activeOpClassBadge.addEventListener("click", () => {
-    const opCls = currentOpacity === 100 ? "bg-shape-opacity-100" : `bg-shape-opacity-${currentOpacity}`;
-    navigator.clipboard.writeText(opCls).then(() => {
-      showToast(`Copied .${opCls} to clipboard!`);
+    const val = currentOpacity === 100 ? "1" : (currentOpacity / 100).toFixed(1);
+    const codeSnippet = `--bg-shape-opacity: ${val};`;
+    navigator.clipboard.writeText(codeSnippet).then(() => {
+      showToast(`Copied ${codeSnippet} to clipboard!`);
     });
   });
 }
