@@ -405,21 +405,32 @@ function getDynamicShapeCss(shape) {
 
   let parts = [topComment];
 
-  // Opacity & Color Customization: Update existing particular shape CSS directly (no extra class required!)
-  const hasColorOverride = (currentAshIndex !== 0 && ASH_PRESETS[currentAshIndex]);
-  const hasOpacityOverride = (currentOpacity !== 100);
+  // Container Isolation & Anti-Bounce Lock:
+  // Enforces relative positioning, strict overflow containment, and layer isolation
+  // so the shape can NEVER overflow, cause scrollbar popping, or bounce the section.
+  const props = [
+    "  position: relative !important;",
+    "  overflow: hidden !important;",
+    "  isolation: isolate !important;",
+    "  contain: paint;"
+  ];
 
-  if (hasColorOverride || hasOpacityOverride) {
-    const props = [];
-    if (hasColorOverride) {
-      props.push(`  --bg-shape-color: ${ASH_PRESETS[currentAshIndex].val};`);
-    }
-    if (hasOpacityOverride) {
-      const dec = (currentOpacity / 100).toFixed(1);
-      props.push(`  --bg-shape-opacity: ${dec};`);
-    }
-    parts.push(`.${shape.cls} {\n${props.join("\n")}\n}`);
+  if (currentAshIndex !== 0 && ASH_PRESETS[currentAshIndex]) {
+    props.push(`  --bg-shape-color: ${ASH_PRESETS[currentAshIndex].val};`);
   }
+  if (currentOpacity !== 100) {
+    const dec = (currentOpacity / 100).toFixed(1);
+    props.push(`  --bg-shape-opacity: ${dec};`);
+  } else {
+    props.push("  --bg-shape-opacity: 1;");
+  }
+
+  parts.push(`/* Container Isolation & Boundary Lock (Prevents Section Bouncing & Overflow) */\n.${shape.cls} {\n${props.join("\n")}\n}`);
+
+  // Pseudo-element Reset Foundation:
+  // Guarantees absolute positioning, -1 z-index, non-blocking pointer events,
+  // and 3D backface stability even if the user does NOT load In-General CSS.
+  parts.push(`/* Pseudo-Element Reset Foundation */\n.${shape.cls}::before,\n.${shape.cls}::after {\n  content: "";\n  position: absolute;\n  z-index: -1;\n  pointer-events: none;\n  opacity: var(--bg-shape-opacity, 1);\n  transition: opacity 0.2s ease;\n  backface-visibility: hidden;\n  -webkit-backface-visibility: hidden;\n}`);
 
   // Pseudo-element rules for the shape
   parts.push(cleanRules);

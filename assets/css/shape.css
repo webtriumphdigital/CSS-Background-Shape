@@ -45,9 +45,10 @@
 
 [class*="bg-shape-"],
 [class*="bgx-"] {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
+  position: relative !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  contain: paint;
 }
 
 [class*="bg-shape-"]::before,
@@ -60,6 +61,8 @@
   pointer-events: none;
   opacity: var(--bg-shape-opacity, 1);
   transition: opacity 0.2s ease;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 /* Base reset container */
@@ -3802,19 +3805,15 @@
 .bg-shape-anim-drift::after,
 .bg-shape-anim-pan::before,
 .bg-shape-anim-pan::after {
-  animation: bgShapeAnimDrift 30s linear infinite !important;
-  will-change: background-position, -webkit-mask-position, mask-position;
+  animation: bgShapeAnimDrift var(--bg-anim-dur, 24s) ease-in-out infinite alternate !important;
+  will-change: background-position;
 }
 @keyframes bgShapeAnimDrift {
   0% {
     background-position: 0 0, 0 0, 0 0;
-    -webkit-mask-position: 0 0;
-    mask-position: 0 0;
   }
   100% {
-    background-position: 380px 380px, 380px 380px, 380px 380px;
-    -webkit-mask-position: 380px 380px;
-    mask-position: 380px 380px;
+    background-position: 60px 60px, 60px 60px, 60px 60px;
   }
 }
 
@@ -4523,8 +4522,8 @@
 /* Motion 2: Infinite Grid Pan & Drift */
 .bg-shape-anim-drift::before, .bg-shape-anim-drift::after,
 .bg-shape-anim-pan::before, .bg-shape-anim-pan::after {
-  animation: bgShapeAnimDrift var(--bg-anim-dur, 30s) linear infinite !important;
-  will-change: background-position, -webkit-mask-position, mask-position;
+  animation: bgShapeAnimDrift var(--bg-anim-dur, 24s) ease-in-out infinite alternate !important;
+  will-change: background-position;
 }
 
 /* Motion 3: Slow Ambient Clockwise Spin */
@@ -4643,12 +4642,12 @@
 
 /* Motion 15: Horizontal Conveyor Drive */
 .bg-shape-anim-conveyor::before, .bg-shape-anim-conveyor::after {
-  animation: bgShapeAnimConveyor var(--bg-anim-dur, 16s) linear infinite !important;
-  will-change: background-position, -webkit-mask-position, mask-position;
+  animation: bgShapeAnimConveyor var(--bg-anim-dur, 20s) ease-in-out infinite alternate !important;
+  will-change: background-position;
 }
 @keyframes bgShapeAnimConveyor {
-  0% { background-position: 0 0; -webkit-mask-position: 0 0; mask-position: 0 0; }
-  100% { background-position: 380px 0; -webkit-mask-position: 380px 0; mask-position: 380px 0; }
+  0% { background-position: 0 0; }
+  100% { background-position: 70px 0; }
 }
 
 /* Motion 16: Spiral Vortex Swirl */
