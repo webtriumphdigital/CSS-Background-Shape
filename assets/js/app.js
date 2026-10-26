@@ -133,6 +133,8 @@ function setPlaybackSpeed(speed, source = "user") {
   speedButtons.forEach(btn => {
     btn.classList.toggle("active", btn.dataset.speed === speed);
   });
+  document.body.classList.remove("speed-slow", "speed-normal", "speed-fast");
+  document.body.classList.add(`speed-${speed}`);
   const factor = speed === "slow" ? "1.8" : speed === "fast" ? "0.5" : "1";
   document.documentElement.style.setProperty("--bg-anim-dur", factor + "s");
 
@@ -293,14 +295,14 @@ function renderShapes() {
       `;
     }
 
-    const opLabel = currentOpacity === 100
-      ? `.${s.cls}`
-      : `.${s.cls} .bg-shape-opacity-${currentOpacity}`;
+    const motionCls = getShapeMotionClass(s.cat);
+    const viewportCls = `preview-stage-viewport ${s.cls}${motionCls ? ' ' + motionCls : ''}`;
+    const cardLabel = getActiveShapeLabel(s.cls, s.cat);
 
     html += `
-      <div class="shape-card" data-shape-class="${s.cls}">
+      <div class="shape-card" data-shape-class="${s.cls}" data-shape-cat="${s.cat}">
         <div class="preview-canvas" onclick="openModal('${s.cls}')" title="Click to open full 100% desktop preview">
-          <div class="preview-stage-viewport ${s.cls}"></div>
+          <div class="${viewportCls}"></div>
           <span class="watermark-tag">🔍 Live Render</span>
           <span class="expand-hint">Expand Section ↗</span>
         </div>
@@ -315,7 +317,7 @@ function renderShapes() {
           
           <div class="action-row">
             <button class="copy-btn" onclick="copyCardClass('${s.cls}', this)" title="Click to copy class name for Elementor">
-              <span class="copy-cls-text">${opLabel}</span>
+              <span class="copy-cls-text">${cardLabel}</span>
               <span>📋</span>
             </button>
             <button class="preview-modal-btn" onclick="openModal('${s.cls}')" title="Open 100% full section preview">
@@ -390,13 +392,16 @@ function openModal(className) {
 function updateModalDisplay() {
   if (!currentActiveShape) return;
   const opCls = currentOpacity === 100 ? "" : ` bg-shape-opacity-${currentOpacity}`;
-  modalStage.className = `modal-preview-stage ${currentActiveShape.cls}${opCls}`;
+  const motionCls = getShapeMotionClass(currentActiveShape.cat);
+  const motionPart = motionCls ? ` ${motionCls}` : "";
+  modalStage.className = `modal-preview-stage ${currentActiveShape.cls}${opCls}${motionPart}`;
 
-  if (currentOpacity === 100) {
-    modalClassCode.textContent = `.${currentActiveShape.cls}`;
-  } else {
-    modalClassCode.textContent = `.${currentActiveShape.cls} .bg-shape-opacity-${currentOpacity}`;
-  }
+  modalClassCode.textContent = getActiveShapeLabel(currentActiveShape.cls, currentActiveShape.cat);
+
+  // Sync modal motion buttons active state
+  modalAnimButtons.forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.anim === currentAnimation);
+  });
 
   // Populate Standalone Shape CSS & In-General CSS boxes
   if (modalCodeShapeNum) {
@@ -540,6 +545,45 @@ modalOpButtons.forEach(btn => {
     setShapeOpacity(op);
   });
 });
+
+// Global Animation Button Event Listeners
+globalAnimButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const anim = btn.dataset.anim || "none";
+    setShapeAnimation(anim);
+  });
+});
+
+// Modal Animation Button Event Listeners
+modalAnimButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const anim = btn.dataset.anim || "none";
+    setShapeAnimation(anim);
+  });
+});
+
+// Smart Motion Toggle Event Listener
+if (smartMotionToggle) {
+  smartMotionToggle.addEventListener("click", toggleSmartMotion);
+}
+
+// Speed Control Buttons
+speedButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const speed = btn.dataset.speed || "normal";
+    setPlaybackSpeed(speed);
+  });
+});
+
+// Animation Badge Click to Copy
+if (activeAnimClassBadge) {
+  activeAnimClassBadge.addEventListener("click", () => {
+    const animCls = currentAnimation === "none" ? "bg-shape-anim-float" : currentAnimation;
+    navigator.clipboard.writeText(animCls).then(() => {
+      showToast(`Copied .${animCls} to clipboard!`);
+    });
+  });
+}
 
 function copyTextToClipboard(text, btn, toastMsg) {
   navigator.clipboard.writeText(text).then(() => {

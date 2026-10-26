@@ -141,23 +141,41 @@ h1 {
     font-size: 1rem;
 }
 
+.filters-scroll-wrap {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 0.35rem;
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+    -webkit-overflow-scrolling: touch;
+}
+.filters-scroll-wrap::-webkit-scrollbar {
+    height: 4px;
+}
+.filters-scroll-wrap::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 9999px;
+}
+
 .filters {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    width: 100%;
+    flex-wrap: nowrap;
+    gap: 0.45rem;
+    width: max-content;
 }
 
 .filter-btn {
     background: transparent;
     border: 1px solid var(--border);
     color: var(--text-muted);
-    padding: 0.45rem 0.9rem;
+    padding: 0.4rem 0.85rem;
     border-radius: 0.6rem;
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 .filter-btn:hover {
     color: var(--text);
@@ -194,6 +212,16 @@ h1 {
     border-color: var(--border-hover);
 }
 
+.bar-header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text);
+    white-space: nowrap;
+}
+
 /* Opacity utility quick selector bar */
 .opacity-bar {
     display: flex;
@@ -202,20 +230,8 @@ h1 {
     justify-content: space-between;
     gap: 0.75rem;
     width: 100%;
-    padding-top: 0.9rem;
+    padding-top: 0.85rem;
     border-top: 1px solid var(--border);
-}
-
-.opacity-label {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.85rem;
-    color: var(--text);
-}
-.opacity-sub {
-    color: var(--text-muted);
-    font-size: 0.78rem;
 }
 
 .opacity-options {
@@ -1025,43 +1041,71 @@ h1 {
 /* Animation Utility Quick Selector Bar */
 .animation-bar {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
     gap: 0.75rem;
     width: 100%;
-    padding-top: 0.9rem;
+    padding-top: 0.85rem;
     border-top: 1px dashed var(--border);
 }
 
-.animation-label {
+.anim-bar-header {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 0.85rem;
-    color: var(--text);
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    flex-wrap: wrap;
 }
+
 .animation-sub {
     color: var(--text-muted);
     font-size: 0.78rem;
+    font-weight: normal;
+    margin-left: 0.35rem;
+}
+
+.animation-cluster-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.animation-options-scroll {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 0.35rem;
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+    -webkit-overflow-scrolling: touch;
+}
+.animation-options-scroll::-webkit-scrollbar {
+    height: 4px;
+}
+.animation-options-scroll::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 9999px;
 }
 
 .animation-options {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 0.35rem;
+    width: max-content;
 }
 
 .anim-btn {
     background: #f1f5f9;
     border: 1px solid var(--border);
     color: var(--text-muted);
-    padding: 0.3rem 0.6rem;
+    padding: 0.32rem 0.65rem;
     border-radius: 0.5rem;
     font-size: 0.76rem;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 .anim-btn:hover {
     color: var(--text);
@@ -1132,6 +1176,12 @@ h1 {
     border-radius: 0.5rem;
     border: 1px solid var(--border);
 }
+.speed-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #64748b;
+    margin-right: 0.15rem;
+}
 .speed-btn {
     background: transparent;
     border: none;
@@ -1176,11 +1226,19 @@ h1 {
     box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
 }
 
-.animation-cluster-right {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    flex-wrap: wrap;
+/* Global Animation Playback Speed Multipliers */
+body.speed-slow .preview-stage-viewport::before,
+body.speed-slow .preview-stage-viewport::after,
+body.speed-slow .modal-preview-stage::before,
+body.speed-slow .modal-preview-stage::after {
+    animation-duration: 18s !important;
+}
+
+body.speed-fast .preview-stage-viewport::before,
+body.speed-fast .preview-stage-viewport::after,
+body.speed-fast .modal-preview-stage::before,
+body.speed-fast .modal-preview-stage::after {
+    animation-duration: 2.2s !important;
 }
 
 /* ==========================================================================
