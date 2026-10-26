@@ -402,11 +402,16 @@ h1 {
 /* Ensure 1px grid lines downscaled 2.5x don't vanish due to subpixel anti-aliasing */
 .preview-stage-viewport[class*="grid"]::before {
     background-image:
-        linear-gradient(rgba(var(--bg-shape-color), 0.42) 2.5px, transparent 2.5px),
-        linear-gradient(90deg, rgba(var(--bg-shape-color), 0.42) 2.5px, transparent 2.5px) !important;
+        linear-gradient(
+            rgba(var(--bg-shape-color), 0.42) 2.5px,
+            transparent 2.5px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(var(--bg-shape-color), 0.42) 2.5px,
+            transparent 2.5px
+        ) !important;
 }
-
-
 
 .preview-canvas .watermark-tag {
     position: absolute;
@@ -574,11 +579,13 @@ h1 {
     border: 1px solid var(--border);
     border-radius: 1.25rem;
     width: 100%;
-    max-width: 1200px;
-    overflow: hidden;
+    max-width: 1240px;
+    max-height: 92vh;
+    overflow-y: auto;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.35);
     animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -594,12 +601,17 @@ h1 {
 }
 
 .modal-header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
     padding: 1.25rem 1.75rem;
     border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .modal-title-group h2 {
@@ -779,7 +791,8 @@ h1 {
 /* Live 1:1 Desktop Elementor Section Canvas */
 .modal-section-container {
     position: relative;
-    height: 480px;
+    height: 400px;
+    flex-shrink: 0;
     background: #ffffff;
     overflow: hidden;
     display: flex;
@@ -885,6 +898,7 @@ h1 {
 .modal-actions {
     display: flex;
     gap: 0.75rem;
+    flex-wrap: wrap;
 }
 
 /* Floating Scroll To Top with Circular Progress Indicator */
@@ -897,7 +911,9 @@ h1 {
     border-radius: 50%;
     background: #ffffff;
     border: 1px solid var(--border);
-    box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.12), 0 2px 6px -1px rgba(15, 23, 42, 0.06);
+    box-shadow:
+        0 8px 24px -4px rgba(15, 23, 42, 0.12),
+        0 2px 6px -1px rgba(15, 23, 42, 0.06);
     color: var(--text);
     cursor: pointer;
     z-index: 900;
@@ -908,10 +924,11 @@ h1 {
     opacity: 0;
     pointer-events: none;
     transform: translateY(16px) scale(0.9);
-    transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.2s ease,
-                background 0.2s ease;
+    transition:
+        opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.2s ease,
+        background 0.2s ease;
 }
 
 .scroll-top-btn.visible {
@@ -923,7 +940,9 @@ h1 {
 .scroll-top-btn:hover {
     background: #ffffff;
     transform: translateY(-3px) scale(1.06);
-    box-shadow: 0 14px 30px -4px rgba(15, 23, 42, 0.2), 0 4px 10px -2px rgba(15, 23, 42, 0.1);
+    box-shadow:
+        0 14px 30px -4px rgba(15, 23, 42, 0.2),
+        0 4px 10px -2px rgba(15, 23, 42, 0.1);
 }
 
 .scroll-top-btn:active {
@@ -1163,3 +1182,216 @@ h1 {
     gap: 0.5rem;
     flex-wrap: wrap;
 }
+
+/* ==========================================================================
+   MODAL STANDALONE CSS EXPORT SECTION (Zero Bloat Dual-Box)
+   ========================================================================== */
+.modal-css-export {
+    background: #f8fafc;
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 1.75rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.export-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+}
+
+.export-header-info {
+    max-width: 720px;
+}
+
+.export-title-row {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+}
+
+.export-badge {
+    font-size: 0.68rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: #e0f2fe;
+    color: #0369a1;
+    border: 1px solid #bae6fd;
+    padding: 0.2rem 0.55rem;
+    border-radius: 9999px;
+}
+
+.export-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+    margin: 0;
+}
+
+.export-desc {
+    font-size: 0.84rem;
+    color: #64748b;
+    margin-top: 0.35rem;
+    line-height: 1.5;
+}
+
+.export-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-copy-combined {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: #0f172a;
+    color: #ffffff;
+    border: 1px solid #1e293b;
+    padding: 0.6rem 1.15rem;
+    border-radius: 0.55rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.12);
+}
+.btn-copy-combined:hover {
+    background: #1e293b;
+    border-color: #475569;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+}
+.btn-copy-combined.copied {
+    background: #059669;
+    border-color: #10b981;
+}
+
+.modal-code-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+}
+
+.code-box {
+    background: #0b1120;
+    border: 1px solid #1e293b;
+    border-radius: 0.85rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.25);
+}
+
+.code-box-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    background: #0f172a;
+    border-bottom: 1px solid #1e293b;
+    gap: 0.75rem;
+}
+
+.code-box-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.code-box-name {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #f1f5f9;
+}
+
+.code-box-badge {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.45rem;
+    border-radius: 0.35rem;
+}
+
+.code-box-badge.badge-shape {
+    background: rgba(59, 130, 246, 0.18);
+    color: #60a5fa;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.code-box-badge.badge-general {
+    background: rgba(16, 185, 129, 0.18);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.code-box-copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: #e2e8f0;
+    font-size: 0.74rem;
+    font-weight: 600;
+    padding: 0.35rem 0.75rem;
+    border-radius: 0.45rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.code-box-copy-btn:hover {
+    background: #334155;
+    color: #ffffff;
+    border-color: #64748b;
+}
+.code-box-copy-btn.copied {
+    background: #059669;
+    color: #ffffff;
+    border-color: #10b981;
+}
+
+.code-viewport {
+    height: 220px;
+    overflow-y: auto;
+    overflow-x: auto;
+    padding: 1rem 1.15rem;
+    background: #070b14;
+    scrollbar-width: thin;
+    scrollbar-color: #334155 #070b14;
+}
+
+.code-viewport pre {
+    margin: 0;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.76rem;
+    line-height: 1.6;
+    color: #cbd5e1;
+    white-space: pre;
+}
+
+.code-box-footer {
+    padding: 0.55rem 1rem;
+    background: #0b1120;
+    border-top: 1px solid #1e293b;
+    font-size: 0.72rem;
+    color: #94a3b8;
+}
+
+@media (max-width: 860px) {
+    .modal-code-grid {
+        grid-template-columns: 1fr;
+    }
+    .code-viewport {
+        height: 190px;
+    }
+    .modal-section-container {
+        height: 360px;
+    }
+}
+

@@ -31,6 +31,14 @@ const modalColorCycle = document.getElementById("modalColorCycle");
 const modalColorText = document.getElementById("modalColorText");
 const modalOpButtons = document.querySelectorAll("#modalOpGroup .modal-op-btn");
 
+// Modal Standalone CSS Export elements
+const modalShapeCssCode = document.getElementById("modalShapeCssCode");
+const modalGeneralCssCode = document.getElementById("modalGeneralCssCode");
+const modalCodeShapeNum = document.getElementById("modalCodeShapeNum");
+const modalCopyShapeCssBtn = document.getElementById("modalCopyShapeCssBtn");
+const modalCopyGeneralCssBtn = document.getElementById("modalCopyGeneralCssBtn");
+const modalCopyCombinedBtn = document.getElementById("modalCopyCombinedBtn");
+
 // Modal Navigation elements
 const modalHeaderPrevBtn = document.getElementById("modalHeaderPrevBtn");
 const modalHeaderNextBtn = document.getElementById("modalHeaderNextBtn");
@@ -389,6 +397,20 @@ function updateModalDisplay() {
   } else {
     modalClassCode.textContent = `.${currentActiveShape.cls} .bg-shape-opacity-${currentOpacity}`;
   }
+
+  // Populate Standalone Shape CSS & In-General CSS boxes
+  if (modalCodeShapeNum) {
+    modalCodeShapeNum.textContent = currentActiveShape.num;
+  }
+  if (modalShapeCssCode) {
+    const shapeCss = (window.SHAPES_CSS && window.SHAPES_CSS[currentActiveShape.cls])
+      ? window.SHAPES_CSS[currentActiveShape.cls]
+      : `/* Standalone CSS for .${currentActiveShape.cls} */`;
+    modalShapeCssCode.textContent = shapeCss;
+  }
+  if (modalGeneralCssCode) {
+    modalGeneralCssCode.textContent = window.IN_GENERAL_CSS || "";
+  }
 }
 
 function closeModal() {
@@ -432,6 +454,49 @@ modalCopyBtn.addEventListener("click", () => {
     copyTextToClipboard(classToCopy, modalCopyBtn, `Copied: ${classToCopy}`);
   }
 });
+
+// Standalone CSS Export Copy Handlers
+if (modalCopyShapeCssBtn) {
+  modalCopyShapeCssBtn.addEventListener("click", () => {
+    if (modalShapeCssCode && currentActiveShape) {
+      const code = modalShapeCssCode.textContent;
+      copyButtonSnippet(code, modalCopyShapeCssBtn, `Copied Shape #${currentActiveShape.num} CSS!`);
+    }
+  });
+}
+
+if (modalCopyGeneralCssBtn) {
+  modalCopyGeneralCssBtn.addEventListener("click", () => {
+    if (modalGeneralCssCode) {
+      const code = modalGeneralCssCode.textContent;
+      copyButtonSnippet(code, modalCopyGeneralCssBtn, "Copied In-General Base CSS!");
+    }
+  });
+}
+
+if (modalCopyCombinedBtn) {
+  modalCopyCombinedBtn.addEventListener("click", () => {
+    if (currentActiveShape) {
+      const genCss = window.IN_GENERAL_CSS || "";
+      const shapeCss = (window.SHAPES_CSS && window.SHAPES_CSS[currentActiveShape.cls]) || "";
+      const combined = `${genCss}\n\n${shapeCss}`;
+      copyButtonSnippet(combined, modalCopyCombinedBtn, `Copied Combined CSS (Base + Shape #${currentActiveShape.num})!`);
+    }
+  });
+}
+
+function copyButtonSnippet(text, btn, toastMsg) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.classList.add("copied");
+    const origHtml = btn.innerHTML;
+    btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> <span>Copied!</span>`;
+    showToast(toastMsg || "Copied to clipboard!");
+    setTimeout(() => {
+      btn.classList.remove("copied");
+      btn.innerHTML = origHtml;
+    }, 2000);
+  });
+}
 
 if (activeOpClassBadge) {
   activeOpClassBadge.addEventListener("click", () => {
@@ -532,7 +597,7 @@ const CIRCLE_CIRCUMFERENCE = 125.66; // 2 * PI * 20
 function handleWindowScroll() {
   const scrollY = window.scrollY || document.documentElement.scrollTop;
   const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  
+
   if (scrollTopBtn) {
     if (scrollY > 300) {
       scrollTopBtn.classList.add("visible");

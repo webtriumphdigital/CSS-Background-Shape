@@ -258,6 +258,79 @@
           </button>
         </div>
       </div>
+
+      <!-- Modal Standalone CSS Export Section (Zero Bloat) -->
+      <div class="modal-css-export">
+        <div class="export-header">
+          <div class="export-header-info">
+            <div class="export-title-row">
+              <span class="export-badge">⚡ Standalone CSS Export</span>
+              <h3 class="export-title">Zero Full-Stylesheet Bloat</h3>
+            </div>
+            <p class="export-desc">
+              Only using a few shapes on your website? Avoid loading the entire 600KB stylesheet!
+              Copy the <strong>In-General Base CSS</strong> once for your website, then copy only the <strong>Particular Shape CSS</strong> you need.
+            </p>
+          </div>
+          <div class="export-header-actions">
+            <button class="btn-copy-combined" id="modalCopyCombinedBtn" title="Copy both Base CSS and this Shape's CSS together in one block">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span>Copy Combined (General + Shape CSS)</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="modal-code-grid">
+          <!-- Box 1: Specific Shape CSS -->
+          <div class="code-box shape-code-box">
+            <div class="code-box-header">
+              <div class="code-box-title">
+                <span class="code-box-badge badge-shape">PARTICULAR SHAPE</span>
+                <span class="code-box-name">Shape #<span id="modalCodeShapeNum">002</span> CSS</span>
+              </div>
+              <button class="code-box-copy-btn" id="modalCopyShapeCssBtn" title="Copy standalone CSS for this shape">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span>Copy Shape CSS</span>
+              </button>
+            </div>
+            <div class="code-viewport">
+              <pre><code id="modalShapeCssCode"></code></pre>
+            </div>
+            <div class="code-box-footer">
+              <span>🎯 Includes complete ::before, ::after pseudo-elements &amp; required @keyframes.</span>
+            </div>
+          </div>
+
+          <!-- Box 2: In-General Base CSS -->
+          <div class="code-box general-code-box">
+            <div class="code-box-header">
+              <div class="code-box-title">
+                <span class="code-box-badge badge-general">IN-GENERAL BASE</span>
+                <span class="code-box-name">Site Foundation CSS</span>
+              </div>
+              <button class="code-box-copy-btn" id="modalCopyGeneralCssBtn" title="Copy in-general base CSS">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span>Copy In-General CSS</span>
+              </button>
+            </div>
+            <div class="code-viewport">
+              <pre><code id="modalGeneralCssCode"></code></pre>
+            </div>
+            <div class="code-box-footer">
+              <span>📌 Paste ONCE per site into Customizer &gt; Additional CSS or child theme style.css.</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -276,8 +349,9 @@
 
   <div id="toast">Class name copied to clipboard!</div>
 
-  <!-- Core Shapes Data & Interactive Application -->
+  <!-- Core Shapes Data, CSS Dictionary & Interactive Application -->
   <script src="assets/js/shapes-data.js"></script>
+  <script src="assets/js/shapes-css.js"></script>
   <script src="assets/js/app.js"></script>
 
 </body>
