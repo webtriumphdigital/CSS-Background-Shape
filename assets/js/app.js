@@ -389,6 +389,49 @@ function openModal(className) {
   previewModal.classList.add("open");
 }
 
+function getDynamicShapeCss(shape) {
+  if (!shape) return "";
+  const rawRules = (window.SHAPES_RAW_CSS && window.SHAPES_RAW_CSS[shape.cls])
+    || (window.SHAPES_CSS && window.SHAPES_CSS[shape.cls])
+    || `.${shape.cls}::before { /* CSS */ }`;
+
+  // Strip existing top comment if rawRules starts with /*
+  let cleanRules = rawRules;
+  if (cleanRules.startsWith("/*")) {
+    const endComment = cleanRules.indexOf("*/");
+    if (endComment !== -1) {
+      cleanRules = cleanRules.slice(endComment + 2).trim();
+    }
+  }
+
+  // Active classes for top comment (e.g. .bg-shape-grid .bg-shape-opacity-80 .bg-shape-anim-float)
+  const activeClasses = getActiveShapeClasses(shape.cls, shape.cat);
+  const classPillText = activeClasses.split(" ").map(c => "." + c).join(" ");
+  const topComment = `/* Shape #${shape.num} — ${shape.name} (${classPillText}) */`;
+
+  let parts = [topComment, cleanRules];
+
+  // 1. Color Customization (if not default Slate Ash)
+  if (currentAshIndex !== 0 && ASH_PRESETS[currentAshIndex]) {
+    const preset = ASH_PRESETS[currentAshIndex];
+    parts.push(`/* Color Tone Preset: ${preset.name} */\n.${shape.cls} {\n  --bg-shape-color: ${preset.val};\n}`);
+  }
+
+  // 2. Opacity Customization (if not 100%)
+  if (currentOpacity !== 100) {
+    const dec = (currentOpacity / 100).toFixed(1);
+    parts.push(`/* Opacity Modifier (${currentOpacity}%) */\n.bg-shape-opacity-${currentOpacity}::before,\n.bg-shape-opacity-${currentOpacity}::after {\n  opacity: ${dec} !important;\n}`);
+  }
+
+  // 3. Motion / Animation Customization
+  const motionCls = getShapeMotionClass(shape.cat);
+  if (motionCls && motionCls !== "none" && window.ANIMATION_DEFINITIONS && window.ANIMATION_DEFINITIONS[motionCls]) {
+    parts.push(`/* Motion Style: .${motionCls} */\n${window.ANIMATION_DEFINITIONS[motionCls]}`);
+  }
+
+  return parts.join("\n\n");
+}
+
 function updateModalDisplay() {
   if (!currentActiveShape) return;
   const opCls = currentOpacity === 100 ? "" : ` bg-shape-opacity-${currentOpacity}`;
@@ -403,15 +446,17 @@ function updateModalDisplay() {
     btn.classList.toggle("active", btn.dataset.anim === currentAnimation);
   });
 
-  // Populate Standalone Shape CSS & In-General CSS boxes
+  // Sync modal opacity buttons active state
+  modalOpButtons.forEach(btn => {
+    btn.classList.toggle("active", parseInt(btn.dataset.op, 10) === currentOpacity);
+  });
+
+  // Populate Dynamic Standalone Shape CSS & In-General CSS boxes
   if (modalCodeShapeNum) {
     modalCodeShapeNum.textContent = currentActiveShape.num;
   }
   if (modalShapeCssCode) {
-    const shapeCss = (window.SHAPES_CSS && window.SHAPES_CSS[currentActiveShape.cls])
-      ? window.SHAPES_CSS[currentActiveShape.cls]
-      : `/* Standalone CSS for .${currentActiveShape.cls} */`;
-    modalShapeCssCode.textContent = shapeCss;
+    modalShapeCssCode.textContent = getDynamicShapeCss(currentActiveShape);
   }
   if (modalGeneralCssCode) {
     modalGeneralCssCode.textContent = window.IN_GENERAL_CSS || "";
@@ -445,17 +490,15 @@ document.addEventListener("keydown", (e) => {
 });
 
 function copyCardClass(shapeCls, btn) {
-  const classToCopy = currentOpacity === 100
-    ? shapeCls
-    : `${shapeCls} bg-shape-opacity-${currentOpacity}`;
+  const shape = SHAPES_DATA.find(s => s.cls === shapeCls);
+  const cat = shape ? shape.cat : "";
+  const classToCopy = getActiveShapeClasses(shapeCls, cat);
   copyTextToClipboard(classToCopy, btn, `Copied: ${classToCopy}`);
 }
 
 modalCopyBtn.addEventListener("click", () => {
   if (currentActiveShape) {
-    const classToCopy = currentOpacity === 100
-      ? currentActiveShape.cls
-      : `${currentActiveShape.cls} bg-shape-opacity-${currentOpacity}`;
+    const classToCopy = getActiveShapeClasses(currentActiveShape.cls, currentActiveShape.cat);
     copyTextToClipboard(classToCopy, modalCopyBtn, `Copied: ${classToCopy}`);
   }
 });
@@ -483,7 +526,7 @@ if (modalCopyCombinedBtn) {
   modalCopyCombinedBtn.addEventListener("click", () => {
     if (currentActiveShape) {
       const genCss = window.IN_GENERAL_CSS || "";
-      const shapeCss = (window.SHAPES_CSS && window.SHAPES_CSS[currentActiveShape.cls]) || "";
+      const shapeCss = getDynamicShapeCss(currentActiveShape);
       const combined = `${genCss}\n\n${shapeCss}`;
       copyButtonSnippet(combined, modalCopyCombinedBtn, `Copied Combined CSS (Base + Shape #${currentActiveShape.num})!`);
     }
@@ -520,6 +563,10 @@ function cycleAshTone() {
   const label = `Ash: ${col.name}`;
   if (ashColorText) ashColorText.textContent = label;
   if (modalColorText) modalColorText.textContent = label;
+
+  if (currentActiveShape) {
+    updateModalDisplay();
+  }
 
   showToast(`Switched shape tone to ${col.name}!`);
 }
